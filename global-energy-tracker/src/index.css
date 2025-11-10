@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900 m-0 min-h-screen text-sm;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  h1 {
+    @apply text-3xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+}
+
+@layer components {
+  .metric-card {
+    @apply bg-white rounded-lg shadow-md p-4 border border-gray-100;
+  }
+
+  .nav-link {
+    @apply text-base font-medium hover:text-blue-600 transition-colors cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 text-sm font-semibold rounded-lg transition-all hover:scale-105 active:scale-95;
+  }
+
+  .energy-source-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-white font-medium text-sm;
+  }
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Hide tooltips only on pie charts - use pie chart container as parent selector */
+.recharts-pie-chart .recharts-tooltip-wrapper,
+.recharts-pie-chart .recharts-default-tooltip,
+.recharts-pie-chart .recharts-tooltip,
+.recharts-pie-chart [class*="recharts-tooltip"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Disable pointer events on pie chart sectors to prevent tooltip activation */
+.recharts-pie-sector {
+  pointer-events: none !important;
+}
+
+/* Keep labels interactive but not the chart pieces themselves */
+.recharts-pie {
+  pointer-events: none !important;
+}

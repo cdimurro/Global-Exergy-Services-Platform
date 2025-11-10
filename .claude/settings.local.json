@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss:*)",
+      "Bash(node node_modules/tailwindcss/lib/cli.js:*)",
+      "Bash(python fetch_data.py:*)",
+      "Bash(python calculate_useful_energy.py:*)",
+      "Bash(python validate_calculations.py:*)",
+      "Bash(python diagnose_renewable_counting.py:*)",
+      "Bash(python calculate_useful_energy_corrected.py:*)",
+      "Bash(python calibrate_efficiency.py:*)",
+      "Bash(python:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(dir:*)",
+      "Bash(timeout:*)",
+      "Bash(cat:*)",
+      "Bash(curl:*)",
+      "Bash(echo:*)",
+      "Bash(srcpagesDemandGrowth.jsx)",
+      "Bash(move:*)",
+      "Bash(del check_shares.py 2)",
+      "Bash(nul)",
+      "Bash(del diagnose_fossil_decline.py compare_scaling.py)",
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(git add:*)",
+      "Bash(del /F nul)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

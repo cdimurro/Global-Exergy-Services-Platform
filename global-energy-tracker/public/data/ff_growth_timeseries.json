@@ -1,0 +1,540 @@
+{
+  "metadata": {
+    "description": "FF_growth and related metrics over time",
+    "formula": "FF_growth = (ΔFossil_useful) / (ΔTotal_useful) × 100%",
+    "generated_at": "2025-11-07T17:19:03.511559"
+  },
+  "data": [
+    {
+      "year": 1966,
+      "delta_total_ej": 2.98,
+      "delta_fossil_ej": 2.75,
+      "delta_clean_ej": 0.23,
+      "ff_growth_pct": 92.3,
+      "clean_growth_pct": 7.7,
+      "ff_growth_5yr_avg": 92.3
+    },
+    {
+      "year": 1967,
+      "delta_total_ej": 2.16,
+      "delta_fossil_ej": 2.07,
+      "delta_clean_ej": 0.09,
+      "ff_growth_pct": 95.8,
+      "clean_growth_pct": 4.2,
+      "ff_growth_5yr_avg": 94.0
+    },
+    {
+      "year": 1968,
+      "delta_total_ej": 3.56,
+      "delta_fossil_ej": 3.35,
+      "delta_clean_ej": 0.21,
+      "ff_growth_pct": 94.1,
+      "clean_growth_pct": 5.9,
+      "ff_growth_5yr_avg": 94.1
+    },
+    {
+      "year": 1969,
+      "delta_total_ej": 4.33,
+      "delta_fossil_ej": 4.1,
+      "delta_clean_ej": 0.23,
+      "ff_growth_pct": 94.7,
+      "clean_growth_pct": 5.3,
+      "ff_growth_5yr_avg": 94.2
+    },
+    {
+      "year": 1970,
+      "delta_total_ej": 4.34,
+      "delta_fossil_ej": 4.1,
+      "delta_clean_ej": 0.24,
+      "ff_growth_pct": 94.5,
+      "clean_growth_pct": 5.5,
+      "ff_growth_5yr_avg": 94.3
+    },
+    {
+      "year": 1971,
+      "delta_total_ej": 2.92,
+      "delta_fossil_ej": 2.65,
+      "delta_clean_ej": 0.27,
+      "ff_growth_pct": 90.8,
+      "clean_growth_pct": 9.2,
+      "ff_growth_5yr_avg": 94.0
+    },
+    {
+      "year": 1972,
+      "delta_total_ej": 3.95,
+      "delta_fossil_ej": 3.63,
+      "delta_clean_ej": 0.32,
+      "ff_growth_pct": 91.9,
+      "clean_growth_pct": 8.1,
+      "ff_growth_5yr_avg": 93.2
+    },
+    {
+      "year": 1973,
+      "delta_total_ej": 4.34,
+      "delta_fossil_ej": 4.11,
+      "delta_clean_ej": 0.23,
+      "ff_growth_pct": 94.7,
+      "clean_growth_pct": 5.3,
+      "ff_growth_5yr_avg": 93.3
+    },
+    {
+      "year": 1974,
+      "delta_total_ej": 0.6,
+      "delta_fossil_ej": -0.02,
+      "delta_clean_ej": 0.62,
+      "ff_growth_pct": -3.3,
+      "clean_growth_pct": 103.3,
+      "ff_growth_5yr_avg": 73.7
+    },
+    {
+      "year": 1975,
+      "delta_total_ej": 0.54,
+      "delta_fossil_ej": 0.15,
+      "delta_clean_ej": 0.39,
+      "ff_growth_pct": 27.8,
+      "clean_growth_pct": 72.2,
+      "ff_growth_5yr_avg": 60.4
+    },
+    {
+      "year": 1976,
+      "delta_total_ej": 4.42,
+      "delta_fossil_ej": 4.23,
+      "delta_clean_ej": 0.18,
+      "ff_growth_pct": 95.7,
+      "clean_growth_pct": 4.3,
+      "ff_growth_5yr_avg": 61.4
+    },
+    {
+      "year": 1977,
+      "delta_total_ej": 3.11,
+      "delta_fossil_ej": 2.61,
+      "delta_clean_ej": 0.51,
+      "ff_growth_pct": 83.9,
+      "clean_growth_pct": 16.1,
+      "ff_growth_5yr_avg": 59.8
+    },
+    {
+      "year": 1978,
+      "delta_total_ej": 3.51,
+      "delta_fossil_ej": 2.83,
+      "delta_clean_ej": 0.68,
+      "ff_growth_pct": 80.6,
+      "clean_growth_pct": 19.4,
+      "ff_growth_5yr_avg": 56.9
+    },
+    {
+      "year": 1979,
+      "delta_total_ej": 3.38,
+      "delta_fossil_ej": 3.03,
+      "delta_clean_ej": 0.35,
+      "ff_growth_pct": 89.6,
+      "clean_growth_pct": 10.4,
+      "ff_growth_5yr_avg": 75.5
+    },
+    {
+      "year": 1980,
+      "delta_total_ej": -0.62,
+      "delta_fossil_ej": -0.94,
+      "delta_clean_ej": 0.32,
+      "ff_growth_pct": 151.6,
+      "clean_growth_pct": 0,
+      "ff_growth_5yr_avg": 100.3
+    },
+    {
+      "year": 1981,
+      "delta_total_ej": -0.23,
+      "delta_fossil_ej": -0.77,
+      "delta_clean_ej": 0.54,
+      "ff_growth_pct": 334.8,
+      "clean_growth_pct": 0,
+      "ff_growth_5yr_avg": 148.1
+    },
+    {
+      "year": 1982,
+      "delta_total_ej": -0.36,
+      "delta_fossil_ej": -0.69,
+      "delta_clean_ej": 0.34,
+      "ff_growth_pct": 191.7,
+      "clean_growth_pct": 0,
+      "ff_growth_5yr_avg": 169.7
+    },
+    {
+      "year": 1983,
+      "delta_total_ej": 1.65,
+      "delta_fossil_ej": 0.98,
+      "delta_clean_ej": 0.65,
+      "ff_growth_pct": 59.4,
+      "clean_growth_pct": 40.6,
+      "ff_growth_5yr_avg": 165.4
+    },
+    {
+      "year": 1984,
+      "delta_total_ej": 4.76,
+      "delta_fossil_ej": 3.83,
+      "delta_clean_ej": 0.93,
+      "ff_growth_pct": 80.5,
+      "clean_growth_pct": 19.5,
+      "ff_growth_5yr_avg": 163.6
+    },
+    {
+      "year": 1985,
+      "delta_total_ej": 2.74,
+      "delta_fossil_ej": 1.85,
+      "delta_clean_ej": 0.9,
+      "ff_growth_pct": 67.5,
+      "clean_growth_pct": 32.5,
+      "ff_growth_5yr_avg": 146.8
+    },
+    {
+      "year": 1986,
+      "delta_total_ej": 2.15,
+      "delta_fossil_ej": 1.71,
+      "delta_clean_ej": 0.44,
+      "ff_growth_pct": 79.5,
+      "clean_growth_pct": 20.5,
+      "ff_growth_5yr_avg": 95.7
+    },
+    {
+      "year": 1987,
+      "delta_total_ej": 4.06,
+      "delta_fossil_ej": 3.52,
+      "delta_clean_ej": 0.55,
+      "ff_growth_pct": 86.7,
+      "clean_growth_pct": 13.3,
+      "ff_growth_5yr_avg": 74.7
+    },
+    {
+      "year": 1988,
+      "delta_total_ej": 4.27,
+      "delta_fossil_ej": 3.55,
+      "delta_clean_ej": 0.72,
+      "ff_growth_pct": 83.1,
+      "clean_growth_pct": 16.9,
+      "ff_growth_5yr_avg": 79.5
+    },
+    {
+      "year": 1989,
+      "delta_total_ej": 2.5,
+      "delta_fossil_ej": 2.34,
+      "delta_clean_ej": 0.15,
+      "ff_growth_pct": 93.6,
+      "clean_growth_pct": 6.4,
+      "ff_growth_5yr_avg": 82.1
+    },
+    {
+      "year": 1990,
+      "delta_total_ej": 1.89,
+      "delta_fossil_ej": 1.47,
+      "delta_clean_ej": 0.43,
+      "ff_growth_pct": 77.8,
+      "clean_growth_pct": 22.2,
+      "ff_growth_5yr_avg": 84.1
+    },
+    {
+      "year": 1991,
+      "delta_total_ej": 1.05,
+      "delta_fossil_ej": 0.57,
+      "delta_clean_ej": 0.47,
+      "ff_growth_pct": 54.3,
+      "clean_growth_pct": 45.7,
+      "ff_growth_5yr_avg": 79.1
+    },
+    {
+      "year": 1992,
+      "delta_total_ej": 0.67,
+      "delta_fossil_ej": 0.61,
+      "delta_clean_ej": 0.06,
+      "ff_growth_pct": 91.0,
+      "clean_growth_pct": 9.0,
+      "ff_growth_5yr_avg": 80.0
+    },
+    {
+      "year": 1993,
+      "delta_total_ej": 1.01,
+      "delta_fossil_ej": 0.34,
+      "delta_clean_ej": 0.67,
+      "ff_growth_pct": 33.7,
+      "clean_growth_pct": 66.3,
+      "ff_growth_5yr_avg": 70.1
+    },
+    {
+      "year": 1994,
+      "delta_total_ej": 1.43,
+      "delta_fossil_ej": 1.23,
+      "delta_clean_ej": 0.2,
+      "ff_growth_pct": 86.0,
+      "clean_growth_pct": 14.0,
+      "ff_growth_5yr_avg": 68.6
+    },
+    {
+      "year": 1995,
+      "delta_total_ej": 2.88,
+      "delta_fossil_ej": 2.15,
+      "delta_clean_ej": 0.73,
+      "ff_growth_pct": 74.7,
+      "clean_growth_pct": 25.3,
+      "ff_growth_5yr_avg": 67.9
+    },
+    {
+      "year": 1996,
+      "delta_total_ej": 3.97,
+      "delta_fossil_ej": 3.59,
+      "delta_clean_ej": 0.38,
+      "ff_growth_pct": 90.4,
+      "clean_growth_pct": 9.6,
+      "ff_growth_5yr_avg": 75.2
+    },
+    {
+      "year": 1997,
+      "delta_total_ej": 0.98,
+      "delta_fossil_ej": 0.87,
+      "delta_clean_ej": 0.1,
+      "ff_growth_pct": 88.8,
+      "clean_growth_pct": 11.2,
+      "ff_growth_5yr_avg": 74.7
+    },
+    {
+      "year": 1998,
+      "delta_total_ej": 0.89,
+      "delta_fossil_ej": 0.68,
+      "delta_clean_ej": 0.22,
+      "ff_growth_pct": 76.4,
+      "clean_growth_pct": 23.6,
+      "ff_growth_5yr_avg": 83.3
+    },
+    {
+      "year": 1999,
+      "delta_total_ej": 2.36,
+      "delta_fossil_ej": 1.98,
+      "delta_clean_ej": 0.38,
+      "ff_growth_pct": 83.9,
+      "clean_growth_pct": 16.1,
+      "ff_growth_5yr_avg": 82.8
+    },
+    {
+      "year": 2000,
+      "delta_total_ej": 3.7,
+      "delta_fossil_ej": 3.38,
+      "delta_clean_ej": 0.32,
+      "ff_growth_pct": 91.4,
+      "clean_growth_pct": 8.6,
+      "ff_growth_5yr_avg": 86.2
+    },
+    {
+      "year": 2001,
+      "delta_total_ej": 1.52,
+      "delta_fossil_ej": 1.48,
+      "delta_clean_ej": 0.05,
+      "ff_growth_pct": 97.4,
+      "clean_growth_pct": 2.6,
+      "ff_growth_5yr_avg": 87.6
+    },
+    {
+      "year": 2002,
+      "delta_total_ej": 3.28,
+      "delta_fossil_ej": 2.91,
+      "delta_clean_ej": 0.36,
+      "ff_growth_pct": 88.7,
+      "clean_growth_pct": 11.3,
+      "ff_growth_5yr_avg": 87.6
+    },
+    {
+      "year": 2003,
+      "delta_total_ej": 5.01,
+      "delta_fossil_ej": 5.13,
+      "delta_clean_ej": -0.12,
+      "ff_growth_pct": 102.4,
+      "clean_growth_pct": -2.4,
+      "ff_growth_5yr_avg": 92.8
+    },
+    {
+      "year": 2004,
+      "delta_total_ej": 7.48,
+      "delta_fossil_ej": 6.37,
+      "delta_clean_ej": 1.12,
+      "ff_growth_pct": 85.2,
+      "clean_growth_pct": 14.8,
+      "ff_growth_5yr_avg": 93.0
+    },
+    {
+      "year": 2005,
+      "delta_total_ej": 5.19,
+      "delta_fossil_ej": 4.7,
+      "delta_clean_ej": 0.47,
+      "ff_growth_pct": 90.6,
+      "clean_growth_pct": 9.4,
+      "ff_growth_5yr_avg": 92.9
+    },
+    {
+      "year": 2006,
+      "delta_total_ej": 4.56,
+      "delta_fossil_ej": 3.95,
+      "delta_clean_ej": 0.63,
+      "ff_growth_pct": 86.6,
+      "clean_growth_pct": 13.4,
+      "ff_growth_5yr_avg": 90.7
+    },
+    {
+      "year": 2007,
+      "delta_total_ej": 5.48,
+      "delta_fossil_ej": 5.28,
+      "delta_clean_ej": 0.19,
+      "ff_growth_pct": 96.4,
+      "clean_growth_pct": 3.6,
+      "ff_growth_5yr_avg": 92.2
+    },
+    {
+      "year": 2008,
+      "delta_total_ej": 2.39,
+      "delta_fossil_ej": 1.5,
+      "delta_clean_ej": 0.89,
+      "ff_growth_pct": 62.8,
+      "clean_growth_pct": 37.2,
+      "ff_growth_5yr_avg": 84.3
+    },
+    {
+      "year": 2009,
+      "delta_total_ej": -2.83,
+      "delta_fossil_ej": -2.98,
+      "delta_clean_ej": 0.14,
+      "ff_growth_pct": 105.3,
+      "clean_growth_pct": 0,
+      "ff_growth_5yr_avg": 88.3
+    },
+    {
+      "year": 2010,
+      "delta_total_ej": 8.87,
+      "delta_fossil_ej": 7.7,
+      "delta_clean_ej": 1.18,
+      "ff_growth_pct": 86.8,
+      "clean_growth_pct": 13.2,
+      "ff_growth_5yr_avg": 87.6
+    },
+    {
+      "year": 2011,
+      "delta_total_ej": 4.32,
+      "delta_fossil_ej": 4.04,
+      "delta_clean_ej": 0.27,
+      "ff_growth_pct": 93.5,
+      "clean_growth_pct": 6.5,
+      "ff_growth_5yr_avg": 89.0
+    },
+    {
+      "year": 2012,
+      "delta_total_ej": 3.0,
+      "delta_fossil_ej": 2.6,
+      "delta_clean_ej": 0.41,
+      "ff_growth_pct": 86.7,
+      "clean_growth_pct": 13.3,
+      "ff_growth_5yr_avg": 87.0
+    },
+    {
+      "year": 2013,
+      "delta_total_ej": 3.23,
+      "delta_fossil_ej": 2.22,
+      "delta_clean_ej": 1.01,
+      "ff_growth_pct": 68.7,
+      "clean_growth_pct": 31.3,
+      "ff_growth_5yr_avg": 88.2
+    },
+    {
+      "year": 2014,
+      "delta_total_ej": 2.01,
+      "delta_fossil_ej": 1.08,
+      "delta_clean_ej": 0.93,
+      "ff_growth_pct": 53.7,
+      "clean_growth_pct": 46.3,
+      "ff_growth_5yr_avg": 77.9
+    },
+    {
+      "year": 2015,
+      "delta_total_ej": 1.86,
+      "delta_fossil_ej": 1.08,
+      "delta_clean_ej": 0.78,
+      "ff_growth_pct": 58.1,
+      "clean_growth_pct": 41.9,
+      "ff_growth_5yr_avg": 72.1
+    },
+    {
+      "year": 2016,
+      "delta_total_ej": 2.74,
+      "delta_fossil_ej": 1.48,
+      "delta_clean_ej": 1.26,
+      "ff_growth_pct": 54.0,
+      "clean_growth_pct": 46.0,
+      "ff_growth_5yr_avg": 64.2
+    },
+    {
+      "year": 2017,
+      "delta_total_ej": 4.58,
+      "delta_fossil_ej": 3.39,
+      "delta_clean_ej": 1.19,
+      "ff_growth_pct": 74.0,
+      "clean_growth_pct": 26.0,
+      "ff_growth_5yr_avg": 61.7
+    },
+    {
+      "year": 2018,
+      "delta_total_ej": 5.96,
+      "delta_fossil_ej": 4.43,
+      "delta_clean_ej": 1.54,
+      "ff_growth_pct": 74.3,
+      "clean_growth_pct": 25.7,
+      "ff_growth_5yr_avg": 62.8
+    },
+    {
+      "year": 2019,
+      "delta_total_ej": 2.73,
+      "delta_fossil_ej": 1.23,
+      "delta_clean_ej": 1.48,
+      "ff_growth_pct": 45.1,
+      "clean_growth_pct": 54.9,
+      "ff_growth_5yr_avg": 61.1
+    },
+    {
+      "year": 2020,
+      "delta_total_ej": -6.39,
+      "delta_fossil_ej": -7.43,
+      "delta_clean_ej": 1.04,
+      "ff_growth_pct": 116.3,
+      "clean_growth_pct": 0,
+      "ff_growth_5yr_avg": 72.7
+    },
+    {
+      "year": 2021,
+      "delta_total_ej": 10.12,
+      "delta_fossil_ej": 8.39,
+      "delta_clean_ej": 1.74,
+      "ff_growth_pct": 82.9,
+      "clean_growth_pct": 17.1,
+      "ff_growth_5yr_avg": 78.5
+    },
+    {
+      "year": 2022,
+      "delta_total_ej": 3.37,
+      "delta_fossil_ej": 1.88,
+      "delta_clean_ej": 1.49,
+      "ff_growth_pct": 55.8,
+      "clean_growth_pct": 44.2,
+      "ff_growth_5yr_avg": 74.9
+    },
+    {
+      "year": 2023,
+      "delta_total_ej": 3.76,
+      "delta_fossil_ej": 2.0,
+      "delta_clean_ej": 1.76,
+      "ff_growth_pct": 53.2,
+      "clean_growth_pct": 46.8,
+      "ff_growth_5yr_avg": 70.7
+    },
+    {
+      "year": 2024,
+      "delta_total_ej": 6.12,
+      "delta_fossil_ej": 3.13,
+      "delta_clean_ej": 2.99,
+      "ff_growth_pct": 51.1,
+      "clean_growth_pct": 48.9,
+      "ff_growth_5yr_avg": 71.9
+    }
+  ]
+}

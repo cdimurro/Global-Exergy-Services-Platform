@@ -1,0 +1,18 @@
+{
+  "total": 0.015926219975899603,
+  "fossil": 0.011652578661242252,
+  "clean": 0.037056445387269266,
+  "sources": {
+    "coal": 0.005364282481969518,
+    "oil": 0.008372606190822696,
+    "gas": 0.019215082486097934,
+    "nuclear": 0.009747616180314722,
+    "hydro": 0.01450756555163002,
+    "wind": 0.1302599762775709,
+    "solar": 0.2655184488842943,
+    "biomass": 0.003824030116857502,
+    "geothermal": 0.022179634393866055
+  },
+  "calculation_period": "2015-2024",
+  "method": "Compound Annual Growth Rate from recent historical data (captures policy trends)"
+}

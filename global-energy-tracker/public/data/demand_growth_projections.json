@@ -1,0 +1,1616 @@
+{
+  "metadata": {
+    "model": "Improved CAGR Model with S-Curve & Smooth Decline",
+    "version": "3.1",
+    "date_generated": "2025-11-08T18:42:11.538940",
+    "sources": [
+      "Historical data CAGR (2015-2024)",
+      "S-curve for wind/solar saturation",
+      "Smooth fossil decline ramp (C^1 continuous)",
+      "Source-specific decline rates"
+    ],
+    "baseline_year": 2024,
+    "baseline_2024": "229.56 EJ total (186.84 fossil, 42.72 clean)",
+    "projection_years": "2025-2050",
+    "method": "S-curve for renewables, smooth linear ramp for fossil decline",
+    "cagrs": {
+      "calculation_period": "2015-2024",
+      "total_historical": "1.593%/year",
+      "fossil_historical": "1.165%/year",
+      "clean_historical": "3.706%/year",
+      "coal_decline": "-3.0%/year from 2025",
+      "oil_decline": "-1.0%/year from 2030",
+      "gas_decline": "+0.5%/year to 2035, then -1.0%/year"
+    },
+    "scurve_parameters": {
+      "wind": {
+        "saturation": "40 EJ",
+        "midpoint": "2039"
+      },
+      "solar": {
+        "saturation": "50 EJ",
+        "midpoint": "2037"
+      }
+    }
+  },
+  "scenarios": [
+    {
+      "name": "Baseline (STEPS)",
+      "description": "Baseline (STEPS) scenario with S-curve renewables",
+      "data": [
+        {
+          "year": 2025,
+          "scenario": "Baseline",
+          "total_useful_ej": 231.43931626827356,
+          "fossil_useful_ej": 186.12287517868498,
+          "clean_useful_ej": 45.31644108958859,
+          "fossil_share_percent": 80.41973083040918,
+          "clean_share_percent": 19.58026916959083,
+          "sources_useful_ej": {
+            "coal": 51.2354,
+            "oil": 60.21497017868498,
+            "gas": 74.672505,
+            "wind": 7.636578159272725,
+            "solar": 6.9959229303158645,
+            "nuclear": 2.52532,
+            "hydro": 13.792440000000001,
+            "biomass": 14.11778,
+            "geothermal": 0.24839999999999998
+          }
+        },
+        {
+          "year": 2026,
+          "scenario": "Baseline",
+          "total_useful_ej": 233.68151924451803,
+          "fossil_useful_ej": 185.46333193578323,
+          "clean_useful_ej": 48.2181873087348,
+          "fossil_share_percent": 79.36585337829793,
+          "clean_share_percent": 20.634146621702072,
+          "sources_useful_ej": {
+            "coal": 49.698338,
+            "oil": 60.71912641078324,
+            "gas": 75.04586752499998,
+            "wind": 8.641253063739953,
+            "solar": 8.429393844994848,
+            "nuclear": 2.563199799999999,
+            "hydro": 14.0682888,
+            "biomass": 14.2589578,
+            "geothermal": 0.25709399999999993
+          }
+        },
+        {
+          "year": 2027,
+          "scenario": "Baseline",
+          "total_useful_ej": 236.31250651388103,
+          "fossil_useful_ej": 184.8559884670965,
+          "clean_useful_ej": 51.456518046784524,
+          "fossil_share_percent": 78.22522438364388,
+          "clean_share_percent": 21.774775616356116,
+          "sources_useful_ej": {
+            "coal": 48.20738786,
+            "oil": 61.22750374447151,
+            "gas": 75.42109686262498,
+            "wind": 9.765604000089592,
+            "solar": 10.071972005694924,
+            "nuclear": 2.601647796999999,
+            "hydro": 14.349654576000002,
+            "biomass": 14.401547378000002,
+            "geothermal": 0.26609228999999995
+          }
+        },
+        {
+          "year": 2028,
+          "scenario": "Baseline",
+          "total_useful_ej": 239.35543757885517,
+          "fossil_useful_ej": 184.29950609250918,
+          "clean_useful_ej": 55.05593148634599,
+          "fossil_share_percent": 76.9982532909001,
+          "clean_share_percent": 23.0017467090999,
+          "sources_useful_ej": {
+            "coal": 46.7611662242,
+            "oil": 61.74013752137109,
+            "gas": 75.7982023469381,
+            "wind": 11.017366504035925,
+            "solar": 11.940276428905069,
+            "nuclear": 2.640672513954999,
+            "hydro": 14.63664766752,
+            "biomass": 14.54556285178,
+            "geothermal": 0.2754055201499999
+          }
+        },
+        {
+          "year": 2029,
+          "scenario": "Baseline",
+          "total_useful_ej": 242.82877291888366,
+          "fossil_useful_ej": 183.79258797515155,
+          "clean_useful_ej": 59.03618494373212,
+          "fossil_share_percent": 75.68814262243421,
+          "clean_share_percent": 24.311857377565797,
+          "sources_useful_ej": {
+            "coal": 45.358331237474,
+            "oil": 62.25706337900478,
+            "gas": 76.17719335867277,
+            "wind": 12.402943828971047,
+            "solar": 14.047514698573298,
+            "nuclear": 2.6802826016643237,
+            "hydro": 14.9293806208704,
+            "biomass": 14.691018480297801,
+            "geothermal": 0.2850447133552499
+          }
+        },
+        {
+          "year": 2030,
+          "scenario": "Baseline",
+          "total_useful_ej": 246.74404003638114,
+          "fossil_useful_ej": 183.33397787909018,
+          "clean_useful_ej": 63.41006215729095,
+          "fossil_share_percent": 74.30127911177046,
+          "clean_share_percent": 25.69872088822955,
+          "sources_useful_ej": {
+            "coal": 43.99758130034977,
+            "oil": 62.77831725327427,
+            "gas": 76.55807932546614,
+            "wind": 13.926858948619463,
+            "solar": 16.401798191270924,
+            "nuclear": 2.720486840689288,
+            "hydro": 15.22796823328781,
+            "biomass": 14.83792866510078,
+            "geothermal": 0.2950212783226836
+          }
+        },
+        {
+          "year": 2031,
+          "scenario": "Baseline",
+          "total_useful_ej": 249.95007638100788,
+          "fossil_useful_ej": 181.76905766417426,
+          "clean_useful_ej": 68.18101871683362,
+          "fossil_share_percent": 72.72214527636197,
+          "clean_share_percent": 27.27785472363803,
+          "sources_useful_ej": {
+            "coal": 42.67765386133927,
+            "oil": 62.15053408074152,
+            "gas": 76.94086972209347,
+            "wind": 15.591173854121738,
+            "solar": 19.004368146642925,
+            "nuclear": 2.7612941432996276,
+            "hydro": 15.532527597953566,
+            "biomass": 14.986307951751787,
+            "geothermal": 0.3053470230639775
+          }
+        },
+        {
+          "year": 2032,
+          "scenario": "Baseline",
+          "total_useful_ej": 253.5928669000129,
+          "fossil_useful_ej": 180.25192705613713,
+          "clean_useful_ej": 73.34093984387574,
+          "fossil_share_percent": 71.07925757517746,
+          "clean_share_percent": 28.920742424822528,
+          "sources_useful_ej": {
+            "coal": 41.3973242454991,
+            "oil": 61.529028739934105,
+            "gas": 77.32557407070392,
+            "wind": 17.394916334717877,
+            "solar": 21.847926603655583,
+            "nuclear": 2.8027135554491216,
+            "hydro": 15.843178149912637,
+            "biomass": 15.136171031269305,
+            "geothermal": 0.31603416887121666
+          }
+        },
+        {
+          "year": 2033,
+          "scenario": "Baseline",
+          "total_useful_ej": 257.64966154894944,
+          "fossil_useful_ej": 178.7813449117263,
+          "clean_useful_ej": 78.86831663722315,
+          "fossil_share_percent": 69.38931875047723,
+          "clean_share_percent": 30.61068124952277,
+          "sources_useful_ej": {
+            "coal": 40.15540451813413,
+            "oil": 60.91373845253477,
+            "gas": 77.71220194105742,
+            "wind": 19.333567110932627,
+            "solar": 24.915325448235063,
+            "nuclear": 2.844754258780858,
+            "hydro": 16.16004171291089,
+            "biomass": 15.287532741581996,
+            "geothermal": 0.32709536478170925
+          }
+        },
+        {
+          "year": 2034,
+          "scenario": "Baseline",
+          "total_useful_ej": 262.0832890226659,
+          "fossil_useful_ej": 177.35610640136224,
+          "clean_useful_ej": 84.72718262130367,
+          "fossil_share_percent": 67.67165776297315,
+          "clean_share_percent": 32.32834223702686,
+          "sources_useful_ej": {
+            "coal": 38.9507423825901,
+            "oil": 60.30460106800942,
+            "gas": 78.10076295076271,
+            "wind": 21.398669335157336,
+            "solar": 28.178893394767762,
+            "nuclear": 2.8874255726625706,
+            "hydro": 16.48324254716911,
+            "biomass": 15.440408068997817,
+            "geothermal": 0.338543702549069
+          }
+        },
+        {
+          "year": 2035,
+          "scenario": "Baseline",
+          "total_useful_ej": 266.8421681359932,
+          "fossil_useful_ej": 175.97504193395824,
+          "clean_useful_ej": 90.86712620203495,
+          "fossil_share_percent": 65.94723883530826,
+          "clean_share_percent": 34.05276116469175,
+          "sources_useful_ej": {
+            "coal": 37.782220111112395,
+            "oil": 59.70155505732932,
+            "gas": 78.49126676551651,
+            "wind": 23.57762487688118,
+            "solar": 31.600652088962686,
+            "nuclear": 2.9307369562525087,
+            "hydro": 16.81290739811249,
+            "biomass": 15.594812149687794,
+            "geothermal": 0.3503927321382865
+          }
+        },
+        {
+          "year": 2036,
+          "scenario": "Baseline",
+          "total_useful_ej": 270.6842374166432,
+          "fossil_useful_ej": 173.4596471123964,
+          "clean_useful_ej": 97.22459030424679,
+          "fossil_share_percent": 64.08191654152489,
+          "clean_share_percent": 35.918083458475095,
+          "sources_useful_ej": {
+            "coal": 36.64875350777902,
+            "oil": 59.10453950675603,
+            "gas": 77.70635409786135,
+            "wind": 25.853734574858457,
+            "solar": 35.1335754237695,
+            "nuclear": 2.9746980105962963,
+            "hydro": 17.14916554607474,
+            "biomass": 15.750760271184673,
+            "geothermal": 0.3626564777631265
+          }
+        },
+        {
+          "year": 2037,
+          "scenario": "Baseline",
+          "total_useful_ej": 274.71756823970566,
+          "fossil_useful_ej": 170.99207557111686,
+          "clean_useful_ej": 103.72549266858877,
+          "fossil_share_percent": 62.24286152020579,
+          "clean_share_percent": 37.757138479794186,
+          "sources_useful_ej": {
+            "coal": 35.54929090254565,
+            "oil": 58.513494111688466,
+            "gas": 76.92929055688273,
+            "wind": 28.206521188800046,
+            "solar": 38.7238868136559,
+            "nuclear": 3.0193184807552407,
+            "hydro": 17.492148856996238,
+            "biomass": 15.90826787389652,
+            "geothermal": 0.37534945448483586
+          }
+        },
+        {
+          "year": 2038,
+          "scenario": "Baseline",
+          "total_useful_ej": 278.8601493652413,
+          "fossil_useful_ej": 168.5711689973548,
+          "clean_useful_ej": 110.2889803678865,
+          "fossil_share_percent": 60.450074842557065,
+          "clean_share_percent": 39.54992515744293,
+          "sources_useful_ej": {
+            "coal": 34.48281217546928,
+            "oil": 57.92835917057158,
+            "gas": 76.15999765131392,
+            "wind": 30.612344834214163,
+            "solar": 42.314198203542304,
+            "nuclear": 3.0646082579665683,
+            "hydro": 17.84199183413616,
+            "biomass": 16.06735055263549,
+            "geothermal": 0.38848668539180503
+          }
+        },
+        {
+          "year": 2039,
+          "scenario": "Baseline",
+          "total_useful_ej": 283.02772421397617,
+          "fossil_useful_ej": 166.19580106387184,
+          "clean_useful_ej": 116.8319231501043,
+          "fossil_share_percent": 58.72067887533999,
+          "clean_share_percent": 41.279321124659994,
+          "sources_useful_ej": {
+            "coal": 33.4483278102052,
+            "oil": 57.349075578865865,
+            "gas": 75.39839767480076,
+            "wind": 33.04528478155788,
+            "solar": 45.847121538349114,
+            "nuclear": 3.110577381836067,
+            "hydro": 18.198831670818883,
+            "biomass": 16.22802405816184,
+            "geothermal": 0.40208371938051823
+          }
+        },
+        {
+          "year": 2040,
+          "scenario": "Baseline",
+          "total_useful_ej": 287.1384867535758,
+          "fossil_useful_ej": 163.864876497029,
+          "clean_useful_ej": 123.2736102565468,
+          "fossil_share_percent": 57.06823851783371,
+          "clean_share_percent": 42.93176148216629,
+          "sources_useful_ej": {
+            "coal": 32.44487797589905,
+            "oil": 56.77558482307721,
+            "gas": 74.64441369805276,
+            "wind": 35.4782247289016,
+            "solar": 49.268880232544035,
+            "nuclear": 3.1572360425636075,
+            "hydro": 18.56280830423526,
+            "biomass": 16.390304298743462,
+            "geothermal": 0.4161566495588363
+          }
+        },
+        {
+          "year": 2041,
+          "scenario": "Baseline",
+          "total_useful_ej": 291.1174152534795,
+          "fossil_useful_ej": 161.57733017254074,
+          "clean_useful_ej": 129.54008508093878,
+          "fossil_share_percent": 55.50246110554855,
+          "clean_share_percent": 44.49753889445145,
+          "sources_useful_ej": {
+            "coal": 31.471531636622075,
+            "oil": 56.207828974846436,
+            "gas": 73.89796956107223,
+            "wind": 37.88404837431572,
+            "solar": 52.53244817907674,
+            "nuclear": 3.2045945832020615,
+            "hydro": 18.93406447031997,
+            "biomass": 16.554207341730894,
+            "geothermal": 0.4307221322933955
+          }
+        },
+        {
+          "year": 2042,
+          "scenario": "Baseline",
+          "total_useful_ej": 294.89976433374477,
+          "fossil_useful_ej": 159.33212623808288,
+          "clean_useful_ej": 135.56763809566186,
+          "fossil_share_percent": 54.02924841193264,
+          "clean_share_percent": 45.97075158806735,
+          "sources_useful_ej": {
+            "coal": 30.527385687523413,
+            "oil": 55.64575068509797,
+            "gas": 73.1589898654615,
+            "wind": 40.23683498825732,
+            "solar": 55.59984702365622,
+            "nuclear": 3.252663501950092,
+            "hydro": 19.31274575972637,
+            "biomass": 16.719749415148204,
+            "geothermal": 0.4457974069236643
+          }
+        },
+        {
+          "year": 2043,
+          "scenario": "Baseline",
+          "total_useful_ej": 298.43340878372095,
+          "fossil_useful_ej": 157.12825726195157,
+          "clean_useful_ej": 141.30515152176937,
+          "fossil_share_percent": 52.6510278800001,
+          "clean_share_percent": 47.34897211999991,
+          "sources_useful_ej": {
+            "coal": 29.611564116897707,
+            "oil": 55.08929317824699,
+            "gas": 72.42739996680689,
+            "wind": 42.51294468623458,
+            "solar": 58.44340548066887,
+            "nuclear": 3.301453454479343,
+            "hydro": 19.699000674920896,
+            "biomass": 16.886946909299684,
+            "geothermal": 0.4614003161659926
+          }
+        },
+        {
+          "year": 2044,
+          "scenario": "Baseline",
+          "total_useful_ej": 301.6799407213337,
+          "fossil_useful_ej": 154.9647434069941,
+          "clean_useful_ej": 146.7151973143396,
+          "fossil_share_percent": 51.36726791859767,
+          "clean_share_percent": 48.63273208140234,
+          "sources_useful_ej": {
+            "coal": 28.723217193390777,
+            "oil": 54.53840024646452,
+            "gas": 71.70312596713882,
+            "wind": 44.69190022795842,
+            "solar": 61.04597543604087,
+            "nuclear": 3.3509752562965334,
+            "hydro": 20.092980688419317,
+            "biomass": 17.055816378392684,
+            "geothermal": 0.47754932723180227
+          }
+        },
+        {
+          "year": 2045,
+          "scenario": "Baseline",
+          "total_useful_ej": 304.6146112931682,
+          "fossil_useful_ej": 152.84063162905636,
+          "clean_useful_ej": 151.77397966411183,
+          "fossil_share_percent": 50.175082206401115,
+          "clean_share_percent": 49.824917793598885,
+          "sources_useful_ej": {
+            "coal": 27.861520677589052,
+            "oil": 53.993016243999875,
+            "gas": 70.98609470746743,
+            "wind": 46.75700245218314,
+            "solar": 63.4002589287385,
+            "nuclear": 3.401239885140981,
+            "hydro": 20.4948403021877,
+            "biomass": 17.22637454217661,
+            "geothermal": 0.4942635536849153
+          }
+        },
+        {
+          "year": 2046,
+          "scenario": "Baseline",
+          "total_useful_ej": 307.2253419833304,
+          "fossil_useful_ej": 150.754994899214,
+          "clean_useful_ej": 156.4703470841164,
+          "fossil_share_percent": 49.06984362878299,
+          "clean_share_percent": 50.930156371217016,
+          "sources_useful_ej": {
+            "coal": 27.02567505726138,
+            "oil": 53.453086081559874,
+            "gas": 70.27623376039276,
+            "wind": 48.695653228397894,
+            "solar": 65.50749719840672,
+            "nuclear": 3.452258483418095,
+            "hydro": 20.904737108231455,
+            "biomass": 17.398638287598374,
+            "geothermal": 0.5115627780638873
+          }
+        },
+        {
+          "year": 2047,
+          "scenario": "Baseline",
+          "total_useful_ej": 309.5110951365235,
+          "fossil_useful_ej": 148.70693144907665,
+          "clean_useful_ej": 160.80416368744685,
+          "fossil_share_percent": 48.045751440181135,
+          "clean_share_percent": 51.95424855981886,
+          "sources_useful_ej": {
+            "coal": 26.214904805543537,
+            "oil": 52.918555220744274,
+            "gas": 69.57347142278883,
+            "wind": 50.49939570899402,
+            "solar": 67.37580162161689,
+            "nuclear": 3.504042360669366,
+            "hydro": 21.322831850396085,
+            "biomass": 17.572624670474358,
+            "geothermal": 0.5294674752961234
+          }
+        },
+        {
+          "year": 2048,
+          "scenario": "Baseline",
+          "total_useful_ej": 311.47989567288226,
+          "fossil_useful_ej": 146.695564038475,
+          "clean_useful_ej": 164.78433163440727,
+          "fossil_share_percent": 47.09631859917386,
+          "clean_share_percent": 52.90368140082613,
+          "sources_useful_ej": {
+            "coal": 25.42845766137723,
+            "oil": 52.38936966853683,
+            "gas": 68.87773670856093,
+            "wind": 52.1637106144963,
+            "solar": 69.01837978231694,
+            "nuclear": 3.5566029960794063,
+            "hydro": 21.74928848740401,
+            "biomass": 17.748350917179103,
+            "geothermal": 0.5479988369314877
+          }
+        },
+        {
+          "year": 2049,
+          "scenario": "Baseline",
+          "total_useful_ej": 313.146755196751,
+          "fossil_useful_ej": 144.7200392448627,
+          "clean_useful_ej": 168.4267159518883,
+          "fossil_share_percent": 46.21476571070797,
+          "clean_share_percent": 53.78523428929204,
+          "sources_useful_ej": {
+            "coal": 24.665603931535912,
+            "oil": 51.86547597185147,
+            "gas": 68.18895934147533,
+            "wind": 53.687625734144724,
+            "solar": 70.45185069699592,
+            "nuclear": 3.6099520410205965,
+            "hydro": 22.184274257152087,
+            "biomass": 17.925834426350892,
+            "geothermal": 0.5671787962240896
+          }
+        },
+        {
+          "year": 2050,
+          "scenario": "Baseline",
+          "total_useful_ej": 314.5316873488124,
+          "fossil_useful_ej": 142.77952677378335,
+          "clean_useful_ej": 171.75216057502905,
+          "fossil_share_percent": 45.39432194488002,
+          "clean_share_percent": 54.60567805511999,
+          "sources_useful_ej": {
+            "coal": 23.92563581358983,
+            "oil": 51.34682121213295,
+            "gas": 67.50706974806057,
+            "wind": 55.07320305907985,
+            "solar": 71.6947736273118,
+            "nuclear": 3.6641013216359055,
+            "hydro": 22.62795974229513,
+            "biomass": 18.105092770614405,
+            "geothermal": 0.5870300540919328
+          }
+        }
+      ]
+    },
+    {
+      "name": "Accelerated (APS)",
+      "description": "Accelerated (APS) scenario with S-curve renewables",
+      "data": [
+        {
+          "year": 2025,
+          "scenario": "Accelerated",
+          "total_useful_ej": 232.00150097056914,
+          "fossil_useful_ej": 185.06647517868498,
+          "clean_useful_ej": 46.93502579188415,
+          "fossil_share_percent": 79.7695163197077,
+          "clean_share_percent": 20.23048368029229,
+          "sources_useful_ej": {
+            "coal": 50.178999999999995,
+            "oil": 60.21497017868498,
+            "gas": 74.672505,
+            "wind": 8.176470914678983,
+            "solar": 7.9098348772051725,
+            "nuclear": 2.5502,
+            "hydro": 13.86005,
+            "biomass": 14.187669999999999,
+            "geothermal": 0.25079999999999997
+          }
+        },
+        {
+          "year": 2026,
+          "scenario": "Accelerated",
+          "total_useful_ej": 235.19415537933196,
+          "fossil_useful_ej": 183.4350439357832,
+          "clean_useful_ej": 51.75911144354877,
+          "fossil_share_percent": 77.99302820256342,
+          "clean_share_percent": 22.006971797436588,
+          "sources_useful_ej": {
+            "coal": 47.670049999999996,
+            "oil": 60.71912641078324,
+            "gas": 75.04586752499998,
+            "wind": 9.819049075379061,
+            "solar": 10.456985068169724,
+            "nuclear": 2.613955,
+            "hydro": 14.206551249999999,
+            "biomass": 14.400485049999995,
+            "geothermal": 0.26208599999999993
+          }
+        },
+        {
+          "year": 2027,
+          "scenario": "Accelerated",
+          "total_useful_ej": 239.18537127362885,
+          "fossil_useful_ej": 181.9351481070965,
+          "clean_useful_ej": 57.25022316653236,
+          "fossil_share_percent": 76.06449639387105,
+          "clean_share_percent": 23.935503606128954,
+          "sources_useful_ej": {
+            "coal": 45.2865475,
+            "oil": 61.22750374447151,
+            "gas": 75.42109686262498,
+            "wind": 11.687353498589205,
+            "solar": 13.43147856594316,
+            "nuclear": 2.679303874999999,
+            "hydro": 14.561715031249996,
+            "biomass": 14.616492325749995,
+            "geothermal": 0.27387986999999997
+          }
+        },
+        {
+          "year": 2028,
+          "scenario": "Accelerated",
+          "total_useful_ej": 244.00892075106532,
+          "fossil_useful_ej": 180.5605599933092,
+          "clean_useful_ej": 63.44836075775612,
+          "fossil_share_percent": 73.99752412229006,
+          "clean_share_percent": 26.00247587770994,
+          "sources_useful_ej": {
+            "coal": 43.022220125,
+            "oil": 61.74013752137109,
+            "gas": 75.7982023469381,
+            "wind": 13.794591768257435,
+            "solar": 16.8597804358062,
+            "nuclear": 2.7462864718749986,
+            "hydro": 14.925757907031244,
+            "biomass": 14.835739710636245,
+            "geothermal": 0.2862044641499999
+          }
+        },
+        {
+          "year": 2029,
+          "scenario": "Accelerated",
+          "total_useful_ej": 247.9256579975526,
+          "fossil_useful_ej": 177.5536372483664,
+          "clean_useful_ej": 70.3720207491862,
+          "fossil_share_percent": 71.61567652272566,
+          "clean_share_percent": 28.384323477274336,
+          "sources_useful_ej": {
+            "coal": 40.871109118749985,
+            "oil": 60.50533477094367,
+            "gas": 76.17719335867277,
+            "wind": 16.14887526095506,
+            "solar": 20.75194052851972,
+            "nuclear": 2.8149436336718736,
+            "hydro": 15.298901854707024,
+            "biomass": 15.058275806295786,
+            "geothermal": 0.29908366503674993
+          }
+        },
+        {
+          "year": 2030,
+          "scenario": "Accelerated",
+          "total_useful_ej": 252.6914192577472,
+          "fossil_useful_ej": 174.68086106380343,
+          "clean_useful_ej": 78.01055819394378,
+          "fossil_share_percent": 69.12813326899224,
+          "clean_share_percent": 30.871866731007753,
+          "sources_useful_ej": {
+            "coal": 38.82755366281249,
+            "oil": 59.29522807552479,
+            "gas": 76.55807932546614,
+            "wind": 18.751445216327063,
+            "solar": 25.095728978674728,
+            "nuclear": 2.88531722451367,
+            "hydro": 15.681374401074699,
+            "biomass": 15.28414994339022,
+            "geothermal": 0.31254242996340365
+          }
+        },
+        {
+          "year": 2031,
+          "scenario": "Accelerated",
+          "total_useful_ej": 258.2541630800932,
+          "fossil_useful_ej": 171.93636921577962,
+          "clean_useful_ej": 86.31779386431356,
+          "fossil_share_percent": 66.57641726474569,
+          "clean_share_percent": 33.42358273525432,
+          "sources_useful_ej": {
+            "coal": 36.88617597967186,
+            "oil": 58.10932351401429,
+            "gas": 76.94086972209347,
+            "wind": 21.59500367333972,
+            "solar": 29.851912242892944,
+            "nuclear": 2.957450155126512,
+            "hydro": 16.073408761101568,
+            "biomass": 15.513412192541074,
+            "geothermal": 0.32660683931175677
+          }
+        },
+        {
+          "year": 2032,
+          "scenario": "Accelerated",
+          "total_useful_ej": 264.52307673806916,
+          "fossil_useful_ej": 169.31457829512618,
+          "clean_useful_ej": 95.208498442943,
+          "fossil_share_percent": 64.0074886406911,
+          "clean_share_percent": 35.99251135930892,
+          "sources_useful_ej": {
+            "coal": 35.04186718068827,
+            "oil": 56.947137043734,
+            "gas": 77.32557407070392,
+            "wind": 24.662402517919197,
+            "solar": 34.95204801338004,
+            "nuclear": 3.031386409004674,
+            "hydro": 16.4752439801291,
+            "biomass": 15.74611337542919,
+            "geothermal": 0.34130414708078577
+          }
+        },
+        {
+          "year": 2033,
+          "scenario": "Accelerated",
+          "total_useful_ej": 269.4362928141871,
+          "fossil_useful_ej": 164.877030713803,
+          "clean_useful_ej": 104.55926210038407,
+          "fossil_share_percent": 61.19332662712521,
+          "clean_share_percent": 38.80667337287478,
+          "sources_useful_ej": {
+            "coal": 33.28977382165385,
+            "oil": 55.80819430285933,
+            "gas": 75.77906258928984,
+            "wind": 27.9259704644519,
+            "solar": 40.30002757731001,
+            "nuclear": 3.107171069229791,
+            "hydro": 16.88712507963233,
+            "biomass": 15.982305076060625,
+            "geothermal": 0.3566628336994211
+          }
+        },
+        {
+          "year": 2034,
+          "scenario": "Accelerated",
+          "total_useful_ej": 274.79538299755677,
+          "fossil_useful_ej": 160.58079688487734,
+          "clean_useful_ej": 114.21458611267941,
+          "fossil_share_percent": 58.43649741608107,
+          "clean_share_percent": 41.563502583918925,
+          "sources_useful_ej": {
+            "coal": 31.62528513057116,
+            "oil": 54.69203041680214,
+            "gas": 74.26348133750405,
+            "wind": 31.34772915864682,
+            "solar": 45.777951088031486,
+            "nuclear": 3.1848503459605353,
+            "hydro": 17.309303206623134,
+            "biomass": 16.22203965220153,
+            "geothermal": 0.372712661215895
+          }
+        },
+        {
+          "year": 2035,
+          "scenario": "Accelerated",
+          "total_useful_ej": 280.41831185482266,
+          "fossil_useful_ej": 156.42042239326267,
+          "clean_useful_ej": 123.99788946156,
+          "fossil_share_percent": 55.78110122645777,
+          "clean_share_percent": 44.21889877354223,
+          "sources_useful_ej": {
+            "coal": 30.0440208740426,
+            "oil": 53.598189808466095,
+            "gas": 72.77821171075396,
+            "wind": 34.88065249345363,
+            "solar": 51.25587459875297,
+            "nuclear": 3.2644716046095485,
+            "hydro": 17.742035786788712,
+            "biomass": 16.465370246984552,
+            "geothermal": 0.3894847309706103
+          }
+        },
+        {
+          "year": 2036,
+          "scenario": "Accelerated",
+          "total_useful_ej": 286.11654378593585,
+          "fossil_useful_ej": 152.3906933191761,
+          "clean_useful_ej": 133.72585046675977,
+          "fossil_share_percent": 53.261755263334386,
+          "clean_share_percent": 46.73824473666563,
+          "sources_useful_ej": {
+            "coal": 28.54181983034047,
+            "oil": 52.526226012296775,
+            "gas": 71.32264747653888,
+            "wind": 38.47096388334003,
+            "solar": 56.60385416268292,
+            "nuclear": 3.346083394724787,
+            "hydro": 18.185586681458428,
+            "biomass": 16.71235080068932,
+            "geothermal": 0.40701154386428773
+          }
+        },
+        {
+          "year": 2037,
+          "scenario": "Accelerated",
+          "total_useful_ej": 291.7102150184045,
+          "fossil_useful_ej": 148.4866248578824,
+          "clean_useful_ej": 143.22359016052212,
+          "fossil_share_percent": 50.90209982825391,
+          "clean_share_percent": 49.0979001717461,
+          "sources_useful_ej": {
+            "coal": 27.114728838823446,
+            "oil": 51.47570149205084,
+            "gas": 69.8961945270081,
+            "wind": 42.061275273226435,
+            "solar": 61.703989933170035,
+            "nuclear": 3.4297354795929063,
+            "hydro": 18.64022634849489,
+            "biomass": 16.96303606269966,
+            "geothermal": 0.4253270633381806
+          }
+        },
+        {
+          "year": 2038,
+          "scenario": "Accelerated",
+          "total_useful_ej": 297.0414815596,
+          "fossil_useful_ej": 144.70345049556002,
+          "clean_useful_ej": 152.33803106404002,
+          "fossil_share_percent": 48.714896564547985,
+          "clean_share_percent": 51.28510343545203,
+          "sources_useful_ej": {
+            "coal": 25.75899239688227,
+            "oil": 50.446187462209814,
+            "gas": 68.49827063646794,
+            "wind": 45.594198608033246,
+            "solar": 66.46017319738824,
+            "nuclear": 3.515478866582729,
+            "hydro": 19.10623200720726,
+            "biomass": 17.21748160364015,
+            "geothermal": 0.4444667811883987
+          }
+        },
+        {
+          "year": 2039,
+          "scenario": "Accelerated",
+          "total_useful_ej": 301.98399592318515,
+          "fossil_useful_ej": 141.03661171374236,
+          "clean_useful_ej": 160.94738420944276,
+          "fossil_share_percent": 46.70333978546912,
+          "clean_share_percent": 53.296660214530874,
+          "sources_useful_ej": {
+            "coal": 24.471042777038157,
+            "oil": 49.437263712965624,
+            "gas": 67.12830522373858,
+            "wind": 49.015957302228166,
+            "solar": 70.80396164754325,
+            "nuclear": 3.6033658382472966,
+            "hydro": 19.583887807387438,
+            "biomass": 17.475743827694753,
+            "geothermal": 0.4644677863418767
+          }
+        },
+        {
+          "year": 2040,
+          "scenario": "Accelerated",
+          "total_useful_ej": 306.44757899378703,
+          "fossil_useful_ej": 137.48174819615636,
+          "clean_useful_ej": 168.9658307976307,
+          "fossil_share_percent": 44.86305574596942,
+          "clean_share_percent": 55.13694425403058,
+          "sources_useful_ej": {
+            "coal": 23.247490638186246,
+            "oil": 48.44851843870631,
+            "gas": 65.78573911926381,
+            "wind": 52.27952524876087,
+            "solar": 74.69612174025679,
+            "nuclear": 3.693449984203479,
+            "hydro": 20.073485002572124,
+            "biomass": 17.737879985110172,
+            "geothermal": 0.4853688367272611
+          }
+        },
+        {
+          "year": 2041,
+          "scenario": "Accelerated",
+          "total_useful_ej": 310.3783031972596,
+          "fossil_useful_ej": 134.03468851308764,
+          "clean_useful_ej": 176.34361468417197,
+          "fossil_share_percent": 43.18429707630126,
+          "clean_share_percent": 56.815702923698744,
+          "sources_useful_ej": {
+            "coal": 22.08511610627693,
+            "oil": 47.47954806993218,
+            "gas": 64.47002433687854,
+            "wind": 55.346924093340355,
+            "solar": 78.12442361011982,
+            "nuclear": 3.7857862338085653,
+            "hydro": 20.575322127636422,
+            "biomass": 18.00394818488682,
+            "geothermal": 0.5072104343799877
+          }
+        },
+        {
+          "year": 2042,
+          "scenario": "Accelerated",
+          "total_useful_ej": 313.75501929995215,
+          "fossil_useful_ej": 130.69144125963757,
+          "clean_useful_ej": 183.06357804031458,
+          "fossil_share_percent": 41.65397626187314,
+          "clean_share_percent": 58.34602373812685,
+          "sources_useful_ej": {
+            "coal": 20.980860300963084,
+            "oil": 46.52995710853353,
+            "gas": 63.180623850140954,
+            "wind": 58.190482550353,
+            "solar": 81.09891710789324,
+            "nuclear": 3.880430889653779,
+            "hydro": 21.089705180827334,
+            "biomass": 18.27400740766012,
+            "geothermal": 0.5300349039270872
+          }
+        },
+        {
+          "year": 2043,
+          "scenario": "Accelerated",
+          "total_useful_ej": 316.5836998956207,
+          "fossil_useful_ej": 127.44818662541594,
+          "clean_useful_ej": 189.13551327020477,
+          "fossil_share_percent": 40.25734321363869,
+          "clean_share_percent": 59.7426567863613,
+          "sources_useful_ej": {
+            "coal": 19.931817285914928,
+            "oil": 45.59935796636287,
+            "gas": 61.917011373138145,
+            "wind": 60.79305250572501,
+            "solar": 83.64606729885779,
+            "nuclear": 3.9774416618951234,
+            "hydro": 21.616947810348012,
+            "biomass": 18.548117518775022,
+            "geothermal": 0.553886474603806
+          }
+        },
+        {
+          "year": 2044,
+          "scenario": "Accelerated",
+          "total_useful_ej": 318.89090640538257,
+          "fossil_useful_ej": 124.30126837433016,
+          "clean_useful_ej": 194.58963803105243,
+          "fossil_share_percent": 38.97924521444807,
+          "clean_share_percent": 61.02075478555194,
+          "sources_useful_ej": {
+            "coal": 18.93522642161918,
+            "oil": 44.687370807035606,
+            "gas": 60.678671145675374,
+            "wind": 63.14733599842264,
+            "solar": 85.80290217606297,
+            "nuclear": 4.076877703442501,
+            "hydro": 22.15737150560671,
+            "biomass": 18.82633928155665,
+            "geothermal": 0.5788113659609774
+          }
+        },
+        {
+          "year": 2045,
+          "scenario": "Accelerated",
+          "total_useful_ej": 320.7173837116425,
+          "fossil_useful_ej": 121.24718621419498,
+          "clean_useful_ej": 199.47019749744754,
+          "fossil_share_percent": 37.80499354634562,
+          "clean_share_percent": 62.19500645365438,
+          "sources_useful_ej": {
+            "coal": 17.988465100538225,
+            "oil": 43.79362339089489,
+            "gas": 59.46509772276186,
+            "wind": 65.25457426809086,
+            "solar": 87.61192554187203,
+            "nuclear": 4.178799646028564,
+            "hydro": 22.71130579324688,
+            "biomass": 19.108734370779995,
+            "geothermal": 0.6048578774292213
+          }
+        },
+        {
+          "year": 2046,
+          "scenario": "Accelerated",
+          "total_useful_ej": 322.1124147022309,
+          "fossil_useful_ej": 118.28258853689493,
+          "clean_useful_ej": 203.829826165336,
+          "fossil_share_percent": 36.72090336730375,
+          "clean_share_percent": 63.27909663269625,
+          "sources_useful_ej": {
+            "coal": 17.08904184551131,
+            "oil": 42.917750923076994,
+            "gas": 58.27579576830662,
+            "wind": 67.12287869130101,
+            "solar": 89.11714753052242,
+            "nuclear": 4.283269637179277,
+            "hydro": 23.27908843807805,
+            "biomass": 19.39536538634169,
+            "geothermal": 0.6320764819135362
+          }
+        },
+        {
+          "year": 2047,
+          "scenario": "Accelerated",
+          "total_useful_ej": 323.1292362205759,
+          "fossil_useful_ej": 115.40426551079169,
+          "clean_useful_ej": 207.72497070978417,
+          "fossil_share_percent": 35.71458493220772,
+          "clean_share_percent": 64.28541506779227,
+          "sources_useful_ej": {
+            "coal": 16.234589753235745,
+            "oil": 42.05939590461545,
+            "gas": 57.110279852940494,
+            "wind": 68.76545685200108,
+            "solar": 90.36128103990788,
+            "nuclear": 4.390351378108758,
+            "hydro": 23.86106564903,
+            "biomass": 19.686295867136817,
+            "geothermal": 0.6605199235996453
+          }
+        },
+        {
+          "year": 2048,
+          "scenario": "Accelerated",
+          "total_useful_ej": 323.8215759011989,
+          "fossil_useful_ej": 112.60914250797879,
+          "clean_useful_ej": 211.21243339322015,
+          "fossil_share_percent": 34.77505851627902,
+          "clean_share_percent": 65.22494148372098,
+          "sources_useful_ej": {
+            "coal": 15.422860265573958,
+            "oil": 41.21820798652315,
+            "gas": 55.96807425588168,
+            "wind": 70.19892776668006,
+            "solar": 91.38396954841737,
+            "nuclear": 4.500110162561477,
+            "hydro": 24.457592290255743,
+            "biomass": 19.981590305143868,
+            "geothermal": 0.6902433201616291
+          }
+        },
+        {
+          "year": 2049,
+          "scenario": "Accelerated",
+          "total_useful_ej": 324.2412201510433,
+          "fossil_useful_ej": 109.89427384985198,
+          "clean_useful_ej": 214.34694630119134,
+          "fossil_share_percent": 33.892752376967756,
+          "clean_share_percent": 66.10724762303225,
+          "sources_useful_ej": {
+            "coal": 14.65171725229526,
+            "oil": 40.393843826792676,
+            "gas": 54.848712770764045,
+            "wind": 71.44185069699594,
+            "solar": 92.22083216076787,
+            "nuclear": 4.612612916625514,
+            "hydro": 25.069032097512135,
+            "biomass": 20.28131415972102,
+            "geothermal": 0.7213042695689026
+          }
+        },
+        {
+          "year": 2050,
+          "scenario": "Accelerated",
+          "total_useful_ej": 324.4364495940288,
+          "fossil_useful_ej": 107.25683685528608,
+          "clean_useful_ej": 217.17961273874266,
+          "fossil_share_percent": 33.059428738508835,
+          "clean_share_percent": 66.94057126149116,
+          "sources_useful_ej": {
+            "coal": 13.919131389680494,
+            "oil": 39.585966950256825,
+            "gas": 53.75173851534876,
+            "wind": 72.51352827005779,
+            "solar": 92.90310149537748,
+            "nuclear": 4.727928239541151,
+            "hydro": 25.695757899949935,
+            "biomass": 20.585533872116837,
+            "geothermal": 0.7537629616995031
+          }
+        }
+      ]
+    },
+    {
+      "name": "Net-Zero (NZE)",
+      "description": "Net-Zero (NZE) scenario with S-curve renewables",
+      "data": [
+        {
+          "year": 2025,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 232.8979659371345,
+          "fossil_useful_ej": 183.481875178685,
+          "clean_useful_ej": 49.41609075844952,
+          "fossil_share_percent": 78.78208572599202,
+          "clean_share_percent": 21.21791427400799,
+          "sources_useful_ej": {
+            "coal": 48.5944,
+            "oil": 60.21497017868498,
+            "gas": 74.672505,
+            "wind": 8.899834877205173,
+            "solar": 9.50275588124435,
+            "nuclear": 2.57508,
+            "hydro": 13.927660000000001,
+            "biomass": 14.25756,
+            "geothermal": 0.2532
+          }
+        },
+        {
+          "year": 2026,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 237.711300035904,
+          "fossil_useful_ej": 180.47184193578323,
+          "clean_useful_ej": 57.239458100120764,
+          "fossil_share_percent": 75.9205986036527,
+          "clean_share_percent": 24.07940139634729,
+          "sources_useful_ej": {
+            "coal": 44.706848,
+            "oil": 60.71912641078324,
+            "gas": 75.04586752499998,
+            "wind": 11.446985068169724,
+            "solar": 13.971938231951045,
+            "nuclear": 2.6652077999999997,
+            "hydro": 14.3454898,
+            "biomass": 14.5427112,
+            "geothermal": 0.267126
+          }
+        },
+        {
+          "year": 2027,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 244.05774543845453,
+          "fossil_useful_ej": 177.7789007670965,
+          "clean_useful_ej": 66.27884467135803,
+          "fossil_share_percent": 72.84296609710674,
+          "clean_share_percent": 27.157033902893264,
+          "sources_useful_ej": {
+            "coal": 41.130300160000004,
+            "oil": 61.22750374447151,
+            "gas": 75.42109686262498,
+            "wind": 14.42147856594316,
+            "solar": 19.20763818441487,
+            "nuclear": 2.7584900729999995,
+            "hydro": 14.775854494,
+            "biomass": 14.833565424000001,
+            "geothermal": 0.28181792999999994
+          }
+        },
+        {
+          "year": 2028,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 251.9487233695445,
+          "fossil_useful_ej": 175.3782160155092,
+          "clean_useful_ej": 76.5705073540353,
+          "fossil_share_percent": 69.60869405092166,
+          "clean_share_percent": 30.39130594907834,
+          "sources_useful_ej": {
+            "coal": 37.8398761472,
+            "oil": 61.74013752137109,
+            "gas": 75.7982023469381,
+            "wind": 17.849780435806203,
+            "solar": 25.21900491522409,
+            "nuclear": 2.8550372255549994,
+            "hydro": 15.219130128820002,
+            "biomass": 15.13023673248,
+            "geothermal": 0.2973179161499999
+          }
+        },
+        {
+          "year": 2029,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 254.93200153164605,
+          "fossil_useful_ej": 166.84949232900084,
+          "clean_useful_ej": 88.08250920264523,
+          "fossil_share_percent": 65.44862603618202,
+          "clean_share_percent": 34.55137396381799,
+          "sources_useful_ej": {
+            "coal": 34.81268605542401,
+            "oil": 59.27053202051624,
+            "gas": 72.76627425306057,
+            "wind": 21.74194052851972,
+            "solar": 31.96338924432363,
+            "nuclear": 2.9549635284494236,
+            "hydro": 15.675704032684601,
+            "biomass": 15.4328414671296,
+            "geothermal": 0.31367040153824993
+          }
+        },
+        {
+          "year": 2030,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 259.4824242288875,
+          "fossil_useful_ej": 158.78300519362384,
+          "clean_useful_ej": 100.69941903526369,
+          "fossil_share_percent": 61.19220046039131,
+          "clean_share_percent": 38.807799539608695,
+          "sources_useful_ej": {
+            "coal": 32.02767117099009,
+            "oil": 56.89971073969559,
+            "gas": 69.85562328293815,
+            "wind": 26.08572897867473,
+            "solar": 39.33690708088363,
+            "nuclear": 3.0583872519451534,
+            "hydro": 16.14597515366514,
+            "biomass": 15.741498296472193,
+            "geothermal": 0.3309222736228536
+          }
+        },
+        {
+          "year": 2031,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 265.36740187901523,
+          "fossil_useful_ej": 151.15057813903925,
+          "clean_useful_ej": 114.21682373997601,
+          "fossil_share_percent": 56.95898481455192,
+          "clean_share_percent": 43.04101518544809,
+          "sources_useful_ej": {
+            "coal": 29.465457477310885,
+            "oil": 54.623722310107766,
+            "gas": 67.06139835162061,
+            "wind": 30.841912242892946,
+            "solar": 47.17367502197097,
+            "nuclear": 3.165430805763233,
+            "hydro": 16.630354408275096,
+            "biomass": 16.056328262401635,
+            "geothermal": 0.34912299867211055
+          }
+        },
+        {
+          "year": 2032,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 272.27587038062705,
+          "fossil_useful_ej": 143.92593671438524,
+          "clean_useful_ej": 128.3499336662418,
+          "fossil_share_percent": 52.86033481894099,
+          "clean_share_percent": 47.13966518105901,
+          "sources_useful_ej": {
+            "coal": 27.108220879126012,
+            "oil": 52.43877341770345,
+            "gas": 64.37894241755579,
+            "wind": 35.942048013380045,
+            "solar": 55.25662013712472,
+            "nuclear": 3.2762208839649465,
+            "hydro": 17.12926504052335,
+            "biomass": 16.37745482764967,
+            "geothermal": 0.3683247635990766
+          }
+        },
+        {
+          "year": 2033,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 279.84178139667574,
+          "fossil_useful_ej": 137.0845704106448,
+          "clean_useful_ej": 142.75721098603094,
+          "fossil_share_percent": 48.98645574883881,
+          "clean_share_percent": 51.01354425116119,
+          "sources_useful_ej": {
+            "coal": 24.93956320879593,
+            "oil": 50.34122248099531,
+            "gas": 61.80378472085356,
+            "wind": 41.29002757731001,
+            "solar": 63.33956525227847,
+            "nuclear": 3.3908886149037194,
+            "hydro": 17.64314299173905,
+            "biomass": 16.705003924202664,
+            "geothermal": 0.3885826255970258
+          }
+        },
+        {
+          "year": 2034,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 287.6789550178726,
+          "fossil_useful_ej": 130.60360506586719,
+          "clean_useful_ej": 157.07534995200544,
+          "fossil_share_percent": 45.39908213228638,
+          "clean_share_percent": 54.60091786771362,
+          "sources_useful_ej": {
+            "coal": 22.94439815209226,
+            "oil": 48.3275735817555,
+            "gas": 59.331633332019415,
+            "wind": 46.76795108803149,
+            "solar": 71.1763331933658,
+            "nuclear": 3.509569716425349,
+            "hydro": 18.17243728149122,
+            "biomass": 17.039104002686717,
+            "geothermal": 0.4099546700048622
+          }
+        },
+        {
+          "year": 2035,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 295.41981388185934,
+          "fossil_useful_ej": 124.4616849371488,
+          "clean_useful_ej": 170.95812894471055,
+          "fossil_share_percent": 42.130445924294705,
+          "clean_share_percent": 57.869554075705295,
+          "sources_useful_ej": {
+            "coal": 21.10884629992488,
+            "oil": 46.39447063848528,
+            "gas": 56.95836799873864,
+            "wind": 52.24587459875297,
+            "solar": 78.54985102992579,
+            "nuclear": 3.6324046565002366,
+            "hydro": 18.717610399935957,
+            "biomass": 17.37988608274045,
+            "geothermal": 0.4325021768551296
+          }
+        },
+        {
+          "year": 2036,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 302.7494043417633,
+          "fossil_useful_ej": 118.63886368766583,
+          "clean_useful_ej": 184.11054065409746,
+          "fossil_share_percent": 39.18715015991857,
+          "clean_share_percent": 60.81284984008143,
+          "sources_useful_ej": {
+            "coal": 19.42013859593089,
+            "oil": 44.53869181294586,
+            "gas": 54.68003327878908,
+            "wind": 57.59385416268292,
+            "solar": 85.29423535902535,
+            "nuclear": 3.7595388194777444,
+            "hydro": 19.27913871193404,
+            "biomass": 17.72748380439526,
+            "geothermal": 0.4562897965821617
+          }
+        },
+        {
+          "year": 2037,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 309.42815038665543,
+          "fossil_useful_ej": 113.11650359632198,
+          "clean_useful_ej": 196.31164679033347,
+          "fossil_share_percent": 36.556629852511406,
+          "clean_share_percent": 63.4433701474886,
+          "sources_useful_ej": {
+            "coal": 17.86652750825642,
+            "oil": 42.75714414042803,
+            "gas": 52.49283194763752,
+            "wind": 62.69398993317004,
+            "solar": 91.30560208983457,
+            "nuclear": 3.891122678159465,
+            "hydro": 19.85751287329206,
+            "biomass": 18.08203348048317,
+            "geothermal": 0.48138573539418056
+          }
+        },
+        {
+          "year": 2038,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 315.300743924145,
+          "fossil_useful_ej": 107.87718235213883,
+          "clean_useful_ej": 207.42356157200618,
+          "fossil_share_percent": 34.21405893609052,
+          "clean_share_percent": 65.78594106390948,
+          "sources_useful_ej": {
+            "coal": 16.437205307595907,
+            "oil": 41.0468583748109,
+            "gas": 50.39311866973202,
+            "wind": 67.45017319738824,
+            "solar": 96.54130204229838,
+            "nuclear": 4.027311971895045,
+            "hydro": 20.453238259490824,
+            "biomass": 18.44367415009283,
+            "geothermal": 0.5078619508408604
+          }
+        },
+        {
+          "year": 2039,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 320.29249817571645,
+          "fossil_useful_ej": 102.90460684574944,
+          "clean_useful_ej": 217.38789132996703,
+          "fossil_share_percent": 32.12832252764618,
+          "clean_share_percent": 67.87167747235384,
+          "sources_useful_ej": {
+            "coal": 15.122228882988237,
+            "oil": 39.40498403981847,
+            "gas": 48.37739392294274,
+            "wind": 71.79396164754324,
+            "solar": 101.01048439300509,
+            "nuclear": 4.168267890911372,
+            "hydro": 21.066835407275548,
+            "biomass": 18.812547633094688,
+            "geothermal": 0.5357943581371077
+          }
+        },
+        {
+          "year": 2040,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 324.39695480128444,
+          "fossil_useful_ej": 98.18353341659993,
+          "clean_useful_ej": 226.21342138468452,
+          "fossil_share_percent": 30.266478141493074,
+          "clean_share_percent": 69.73352185850693,
+          "sources_useful_ej": {
+            "coal": 13.912450572349178,
+            "oil": 37.82878467822572,
+            "gas": 46.442298166025026,
+            "wind": 75.68612174025678,
+            "solar": 104.76024027424941,
+            "nuclear": 4.31415726709327,
+            "hydro": 21.698840469493813,
+            "biomass": 19.18879858575658,
+            "geothermal": 0.5652630478346486
+          }
+        },
+        {
+          "year": 2041,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 327.6591928953597,
+          "fossil_useful_ej": 93.69969405704197,
+          "clean_useful_ej": 233.95949883831773,
+          "fossil_share_percent": 28.596693176548733,
+          "clean_share_percent": 71.40330682345127,
+          "sources_useful_ej": {
+            "coal": 12.799454526561243,
+            "oil": 36.3156332910967,
+            "gas": 44.58460623938402,
+            "wind": 79.11442361011981,
+            "solar": 107.86118970024049,
+            "nuclear": 4.4651527714415336,
+            "hydro": 22.349805683578627,
+            "biomass": 19.572574557471714,
+            "geothermal": 0.5963525154655542
+          }
+        },
+        {
+          "year": 2042,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 330.15861288091946,
+          "fossil_useful_ej": 89.43972811369784,
+          "clean_useful_ej": 240.7188847672216,
+          "fossil_share_percent": 27.089927272609625,
+          "clean_share_percent": 72.91007272739036,
+          "sources_useful_ej": {
+            "coal": 11.775498164436344,
+            "oil": 34.86300795945283,
+            "gas": 42.80122198980866,
+            "wind": 82.08891710789324,
+            "solar": 110.39505673436305,
+            "nuclear": 4.6214331184419875,
+            "hydro": 23.02029985408599,
+            "biomass": 19.96402604862115,
+            "geothermal": 0.6291519038161598
+          }
+        },
+        {
+          "year": 2043,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 331.99369593134963,
+          "fossil_useful_ej": 85.39111906257247,
+          "clean_useful_ej": 246.60257686877713,
+          "fossil_share_percent": 25.720704973937163,
+          "clean_share_percent": 74.27929502606283,
+          "sources_useful_ej": {
+            "coal": 10.833458311281438,
+            "oil": 33.46848764107472,
+            "gas": 41.089173110216315,
+            "wind": 84.63606729885778,
+            "solar": 112.44535561450373,
+            "nuclear": 4.783183277587456,
+            "hydro": 23.71090884970857,
+            "biomass": 20.363306569593572,
+            "geothermal": 0.6637552585260484
+          }
+        },
+        {
+          "year": 2044,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 333.2699600739556,
+          "fossil_useful_ej": 81.54213596761831,
+          "clean_useful_ej": 251.72782410633727,
+          "fossil_share_percent": 24.46729250650835,
+          "clean_share_percent": 75.53270749349164,
+          "sources_useful_ej": {
+            "coal": 9.966781646378923,
+            "oil": 32.129748135431726,
+            "gas": 39.44560618580766,
+            "wind": 86.79290217606297,
+            "solar": 114.09125662404104,
+            "nuclear": 4.950594692303017,
+            "hydro": 24.422236115199826,
+            "biomass": 20.770572700985444,
+            "geothermal": 0.7002617977449811
+          }
+        },
+        {
+          "year": 2045,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.09135864413383,
+          "fossil_useful_ej": 77.8817792630584,
+          "clean_useful_ej": 256.20957938107546,
+          "fossil_share_percent": 23.311521608679566,
+          "clean_share_percent": 76.68847839132044,
+          "sources_useful_ej": {
+            "coal": 9.16943911466861,
+            "oil": 30.84455821001445,
+            "gas": 37.867781938375344,
+            "wind": 88.60192554187202,
+            "solar": 115.4041247823879,
+            "nuclear": 5.1238655065336225,
+            "hydro": 25.15490319865582,
+            "biomass": 21.18598415500515,
+            "geothermal": 0.7387761966209551
+          }
+        },
+        {
+          "year": 2046,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.5547720173383,
+          "fossil_useful_ej": 74.39973052794932,
+          "clean_useful_ej": 260.15504148938896,
+          "fossil_share_percent": 22.23843052045707,
+          "clean_share_percent": 77.76156947954294,
+          "sources_useful_ej": {
+            "coal": 8.43588398549512,
+            "oil": 29.610775881613872,
+            "gas": 36.35307066084033,
+            "wind": 90.10714753052241,
+            "solar": 116.44603013944838,
+            "nuclear": 5.3032007992622985,
+            "hydro": 25.9095502946155,
+            "biomass": 21.609703838105254,
+            "geothermal": 0.7794088874351075
+          }
+        },
+        {
+          "year": 2047,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.7469729579426,
+          "fossil_useful_ej": 71.08630594741155,
+          "clean_useful_ej": 263.6606670105311,
+          "fossil_share_percent": 21.235832342042652,
+          "clean_share_percent": 78.76416765795736,
+          "sources_useful_ej": {
+            "coal": 7.761013266655512,
+            "oil": 28.42634484634932,
+            "gas": 34.89894783440672,
+            "wind": 91.35128103990787,
+            "solar": 117.26956204882137,
+            "nuclear": 5.488812827236479,
+            "hydro": 26.686836803453964,
+            "biomass": 22.041897914867363,
+            "geothermal": 0.8222763762440384
+          }
+        },
+        {
+          "year": 2048,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.7433962031686,
+          "fossil_useful_ej": 67.93241317884886,
+          "clean_useful_ej": 266.8109830243197,
+          "fossil_share_percent": 20.29387702621565,
+          "clean_share_percent": 79.70612297378435,
+          "sources_useful_ej": {
+            "coal": 7.140132205323071,
+            "oil": 27.289291052495344,
+            "gas": 33.50298992103045,
+            "wind": 92.37396954841736,
+            "solar": 117.9184128420528,
+            "nuclear": 5.680921276189755,
+            "hydro": 27.487441907557585,
+            "biomass": 22.48273587316471,
+            "geothermal": 0.8675015769374604
+          }
+        },
+        {
+          "year": 2049,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.60811558569037,
+          "fossil_useful_ej": 64.92951136348198,
+          "clean_useful_ej": 269.6786042222084,
+          "fossil_share_percent": 19.40464332427528,
+          "clean_share_percent": 80.59535667572472,
+          "sources_useful_ej": {
+            "coal": 6.568921628897225,
+            "oil": 26.19771941039553,
+            "gas": 32.16287032418923,
+            "wind": 93.21083216076786,
+            "solar": 118.42834862150278,
+            "nuclear": 5.879753520856396,
+            "hydro": 28.31206516478431,
+            "biomass": 22.932390590628003,
+            "geothermal": 0.9152141636690206
+          }
+        },
+        {
+          "year": 2050,
+          "scenario": "Net-Zero",
+          "total_useful_ej": 334.39455449323754,
+          "fossil_useful_ej": 62.069574043786815,
+          "clean_useful_ej": 272.3249804494507,
+          "fossil_share_percent": 18.561777759165647,
+          "clean_share_percent": 81.43822224083436,
+          "sources_useful_ej": {
+            "coal": 6.043407898585448,
+            "oil": 25.14981063397971,
+            "gas": 30.876355511221657,
+            "wind": 93.89310149537748,
+            "solar": 118.82831759514761,
+            "nuclear": 6.08554489408637,
+            "hydro": 29.161427119727843,
+            "biomass": 23.391038402440564,
+            "geothermal": 0.9655509426708168
+          }
+        }
+      ]
+    }
+  ]
+}
