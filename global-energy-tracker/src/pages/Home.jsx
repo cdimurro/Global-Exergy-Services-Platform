@@ -1,20 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 import { ENERGY_COLORS, getSourceName } from '../utils/colors';
 import InteractiveChart from '../components/InteractiveChart';
 import PageLayout from '../components/PageLayout';
 import AIChatbot from '../components/AIChatbot';
+import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons } from '../utils/chartExport';
 
 export default function Home() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Force scroll to top on mount
-  useEffect(() => {
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-  }, []);
 
   useEffect(() => {
     fetch('/data/useful_energy_timeseries.json')
@@ -72,6 +66,53 @@ export default function Home() {
     return `${entry.name}: ${entry.value.toFixed(1)} EJ (${entry.percentage.toFixed(1)}%)`;
   };
 
+  // Refs for charts
+  const globalEnergyChartRef = useRef(null);
+  const fossilBreakdownChartRef = useRef(null);
+  const cleanBreakdownChartRef = useRef(null);
+
+  // Download functions for Global Energy Services chart
+  const downloadGlobalEnergyPNG = () => {
+    downloadChartAsPNG(globalEnergyChartRef, `global_energy_services_${year}`);
+  };
+
+  const downloadGlobalEnergyCSV = () => {
+    const csvData = pieData.map(item => ({
+      'Energy Type': item.name,
+      'Energy Services (EJ)': item.value.toFixed(2),
+      'Share (%)': item.percentage.toFixed(2)
+    }));
+    downloadDataAsCSV(csvData, `global_energy_services_${year}`);
+  };
+
+  // Download functions for Fossil Breakdown chart
+  const downloadFossilBreakdownPNG = () => {
+    downloadChartAsPNG(fossilBreakdownChartRef, `fossil_fuel_breakdown_${year}`);
+  };
+
+  const downloadFossilBreakdownCSV = () => {
+    const csvData = fossilSources.map(([source, ej]) => ({
+      'Source': getSourceName(source),
+      'Energy Services (EJ)': ej.toFixed(2),
+      'Share of Fossil (%)': ((ej / fossil_useful_ej) * 100).toFixed(2)
+    }));
+    downloadDataAsCSV(csvData, `fossil_fuel_breakdown_${year}`);
+  };
+
+  // Download functions for Clean Breakdown chart
+  const downloadCleanBreakdownPNG = () => {
+    downloadChartAsPNG(cleanBreakdownChartRef, `clean_energy_breakdown_${year}`);
+  };
+
+  const downloadCleanBreakdownCSV = () => {
+    const csvData = cleanSources.map(([source, ej]) => ({
+      'Source': getSourceName(source),
+      'Energy Services (EJ)': ej.toFixed(2),
+      'Share of Clean (%)': ((ej / clean_useful_ej) * 100).toFixed(2)
+    }));
+    downloadDataAsCSV(csvData, `clean_energy_breakdown_${year}`);
+  };
+
   return (
     <PageLayout>
       {/* Page Header */}
@@ -91,9 +132,15 @@ export default function Home() {
 
       {/* Global Energy Services */}
       <div className="metric-card mb-8 bg-white">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-          Global Energy Services for {year}
-        </h2>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Global Energy Services for {year}
+          </h2>
+          <ChartExportButtons
+            onDownloadPNG={downloadGlobalEnergyPNG}
+            onDownloadCSV={downloadGlobalEnergyCSV}
+          />
+        </div>
 
         {/* Total Display */}
         <div className="text-center mb-3 sm:mb-6">
@@ -107,16 +154,16 @@ export default function Home() {
         </div>
 
         {/* Pie Chart */}
-        <div className="mb-3 sm:mb-6">
-          <ResponsiveContainer width="100%" height={250}>
+        <div className="mb-3 sm:mb-6" ref={globalEnergyChartRef}>
+          <ResponsiveContainer width="100%" height={350}>
               <PieChart>
                 <Pie
                   data={pieData}
                   cx="50%"
                   cy="50%"
-                  labelLine={false}
-                  label={false}
-                  outerRadius={75}
+                  labelLine={true}
+                  label={(entry) => `${entry.name}: ${entry.value.toFixed(1)} EJ (${entry.percentage.toFixed(1)}%)`}
+                  outerRadius={120}
                   fill="#8884d8"
                   dataKey="value"
                   isAnimationActive={false}
@@ -165,11 +212,17 @@ export default function Home() {
 
         {/* Fossil Fuel Breakdown */}
         <div className="metric-card mb-8 bg-white">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-            Fossil Fuel Breakdown for {year}
-          </h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">
+              Fossil Fuel Breakdown for {year}
+            </h2>
+            <ChartExportButtons
+              onDownloadPNG={downloadFossilBreakdownPNG}
+              onDownloadCSV={downloadFossilBreakdownCSV}
+            />
+          </div>
 
-          <div className="mb-6">
+          <div className="mb-6" ref={fossilBreakdownChartRef}>
             <ResponsiveContainer width="100%" height={350}>
               <PieChart>
                 <Pie
@@ -228,11 +281,17 @@ export default function Home() {
 
         {/* Clean Energy Breakdown */}
         <div className="metric-card mb-8 bg-white">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
-            Clean Energy Breakdown for {year}
-          </h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">
+              Clean Energy Breakdown for {year}
+            </h2>
+            <ChartExportButtons
+              onDownloadPNG={downloadCleanBreakdownPNG}
+              onDownloadCSV={downloadCleanBreakdownCSV}
+            />
+          </div>
 
-          <div className="mb-6">
+          <div className="mb-6" ref={cleanBreakdownChartRef}>
             <ResponsiveContainer width="100%" height={350}>
               <PieChart>
                 <Pie
