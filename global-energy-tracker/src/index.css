@@ -64,10 +64,10 @@
     @apply text-base;
   }
 
-  /* Reduce chart heights on mobile */
+  /* Reduce chart heights on mobile but leave room for legends */
   .recharts-responsive-container {
-    min-height: 200px !important;
-    max-height: 250px !important;
+    min-height: 250px !important;
+    max-height: 300px !important;
   }
 
   /* Ensure charts don't overflow their containers */
@@ -129,6 +129,28 @@
     flex-wrap: wrap !important;
     gap: 4px !important;
     max-width: 100% !important;
+  }
+
+  /* Position legends below charts, not overlapping */
+  .recharts-legend-wrapper {
+    position: relative !important;
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+  }
+
+  /* Ensure stacked area charts have space for legends */
+  .recharts-wrapper .recharts-legend-wrapper {
+    bottom: -40px !important;
+  }
+
+  /* Add bottom margin to chart containers to prevent overlap with next section */
+  .recharts-responsive-container {
+    margin-bottom: 50px !important;
+  }
+
+  /* Reduce spacing in metric cards on mobile */
+  .metric-card {
+    margin-bottom: 16px !important;
   }
 }
 
