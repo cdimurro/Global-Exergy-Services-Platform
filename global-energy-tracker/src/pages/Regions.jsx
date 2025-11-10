@@ -676,6 +676,9 @@ export default function Regions() {
             )}
           </LineChart>
         </ResponsiveContainer>
+        <div className="text-xs text-gray-500 text-center mt-4">
+          Data sources: Our World in Data, BP Statistical Review
+        </div>
       </div>
 
       {/* Chart 2: Regional Clean Energy Transition Comparison (2024) */}
@@ -738,6 +741,9 @@ export default function Regions() {
             <Bar dataKey="efficiency" name="Overall Efficiency (%)" fill="#3498DB" />
           </BarChart>
         </ResponsiveContainer>
+        <div className="text-xs text-gray-500 text-center mt-4">
+          Data sources: Our World in Data, BP Statistical Review
+        </div>
       </div>
 
       {/* Chart 3: Energy Mix Evolution for Selected Region */}
@@ -872,6 +878,9 @@ export default function Regions() {
             ))}
           </AreaChart>
         </ResponsiveContainer>
+        <div className="text-xs text-gray-500 text-center mt-4">
+          Data sources: Our World in Data, BP Statistical Review
+        </div>
       </div>
 
       {/* Understanding Regional Energy Transitions */}

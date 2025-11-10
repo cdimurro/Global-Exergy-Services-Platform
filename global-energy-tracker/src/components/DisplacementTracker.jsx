@@ -375,6 +375,9 @@ export default function DisplacementTracker() {
           When clean energy displacement (D) meets or exceeds fossil fuel growth for a sustained period,
           fossil fuel consumption peaks and begins to decline. Net Change shows the actual change in fossil consumption.
         </div>
+        <div className="text-xs text-gray-500 text-center mt-4">
+          Data sources: Our World in Data, BP Statistical Review
+        </div>
       </div>
     </div>
   );

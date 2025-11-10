@@ -174,6 +174,9 @@ export default function Home() {
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
+          <div className="text-xs text-gray-500 text-center mt-2">
+            Data sources: Our World in Data, BP Statistical Review
+          </div>
           </div>
 
           {/* Fossil vs Clean Split */}
@@ -246,6 +249,9 @@ export default function Home() {
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
+            <div className="text-xs text-gray-500 text-center mt-2">
+              Data sources: Our World in Data, BP Statistical Review
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -315,6 +321,9 @@ export default function Home() {
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
+            <div className="text-xs text-gray-500 text-center mt-2">
+              Data sources: Our World in Data, BP Statistical Review
+            </div>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">

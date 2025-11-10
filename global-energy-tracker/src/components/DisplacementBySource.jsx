@@ -341,6 +341,9 @@ export default function DisplacementBySource() {
           </table>
         </div>
       </div>
+      <div className="text-xs text-gray-500 text-center mt-4">
+        Data sources: Our World in Data, BP Statistical Review
+      </div>
     </div>
   );
 }
