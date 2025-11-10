@@ -26,19 +26,6 @@ export default function App() {
           <Route path="/reality-check" element={<RealityCheck />} />
           <Route path="/methodology" element={<Methodology />} />
         </Routes>
-
-        {/* Footer */}
-        <footer className="bg-gray-800 text-white py-12 mt-20">
-          <div className="max-w-7xl mx-auto px-4 text-center">
-            <div className="text-2xl font-bold mb-4">Global Energy Services Tracker</div>
-            <div className="text-gray-400 mb-4">
-              Showing the true picture of the world's energy system
-            </div>
-            <div className="text-sm text-gray-500">
-              Data sources: Our World in Data, IEA, RMI, EEI | Validated with expert analysis
-            </div>
-          </div>
-        </footer>
       </div>
     </Router>
   );
