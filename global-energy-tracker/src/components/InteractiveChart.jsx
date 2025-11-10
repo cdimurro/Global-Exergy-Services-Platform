@@ -117,12 +117,15 @@ export default function InteractiveChart() {
   // Tooltips
   const AbsoluteTooltip = ({ active, payload, label }) => {
     if (!active || !payload) return null;
-    const total = payload.reduce((sum, entry) => sum + entry.value, 0);
+
+    // Get the actual total for this year from the original data
+    const yearData = energyData.data.find(d => d.year === label);
+    const actualTotal = yearData ? yearData.total_useful_ej : 0;
 
     return (
       <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
         <div className="font-bold text-2xl mb-3">{label}</div>
-        {!showRelative && <div className="text-lg font-semibold mb-3">Total: {total.toFixed(1)} EJ</div>}
+        {!showRelative && <div className="text-lg font-semibold mb-3">Total: {actualTotal.toFixed(1)} EJ</div>}
         {showRelative && <div className="text-lg font-semibold mb-3">Total: 100%</div>}
         <div className="space-y-2">
           {payload
@@ -140,7 +143,8 @@ export default function InteractiveChart() {
                   </div>
                 );
               } else {
-                const percentage = ((entry.value / total) * 100).toFixed(1);
+                // Calculate percentage based on actual total energy services for this year
+                const percentage = actualTotal > 0 ? ((entry.value / actualTotal) * 100).toFixed(1) : '0.0';
                 return (
                   <div key={index} className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2">

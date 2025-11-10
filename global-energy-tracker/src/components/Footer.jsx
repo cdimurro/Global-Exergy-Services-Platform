@@ -6,11 +6,11 @@ export default function Footer() {
           <h3 className="text-xl sm:text-2xl font-bold mb-3">
             Global Energy Services Tracker
           </h3>
-          <p className="text-sm sm:text-base text-blue-100 mb-2">
+          <p className="text-sm sm:text-base text-white-100 mb-2">
             Measuring the true state of the energy transition through useful energy services
           </p>
-          <p className="text-xs sm:text-sm text-blue-200 mt-4">
-            Data sources: Our World in Data, IEA, BP Statistical Review
+          <p className="text-xs sm:text-sm text-white-200 mt-4">
+            Data sources: Our World in Data, IEA, EEI, RMI, BP Statistical Review
           </p>
         </div>
       </div>

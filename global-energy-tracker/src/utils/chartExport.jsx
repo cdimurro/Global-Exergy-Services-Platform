@@ -128,14 +128,14 @@ export const ChartExportButtons = ({ onDownloadPNG, onDownloadCSV, className = '
         className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
         title="Download chart as PNG image"
       >
-        📊 PNG
+        Download PNG
       </button>
       <button
         onClick={onDownloadCSV}
         className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
         title="Download chart data as CSV"
       >
-        📄 CSV
+        Download CSV
       </button>
     </div>
   );
