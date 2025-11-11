@@ -25,7 +25,7 @@ export async function loadProjectContext() {
     const projectionsData = await projectionsResponse.json();
 
     // Load efficiency factors
-    const efficiencyResponse = await fetch('/data-pipeline/efficiency_factors_corrected.json');
+    const efficiencyResponse = await fetch('/data/efficiency_factors_corrected.json');
     const efficiencyData = await efficiencyResponse.json();
 
     return {

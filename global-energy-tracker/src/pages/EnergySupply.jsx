@@ -34,7 +34,7 @@ export default function EnergySupply() {
     Promise.all([
       fetch('/data/useful_energy_timeseries.json').then(r => r.json()),
       fetch('/data/demand_growth_projections.json').then(r => r.json()),
-      fetch('/data-pipeline/efficiency_factors_corrected.json').then(r => r.json())
+      fetch('/data/efficiency_factors_corrected.json').then(r => r.json())
     ]).then(([useful, projections, efficiency]) => {
       setHistoricalData(useful);
       setProjectionsData(projections);
