@@ -3,6 +3,8 @@ import { useWindowSize } from '@react-hook/window-size';
 import { AreaChart, Area, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { ENERGY_COLORS, getSourceName } from '../utils/colors';
 import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons, ChartSources } from '../utils/chartExport';
+import ChartFullscreenModal from './ChartFullscreenModal';
+import FullscreenButton from './FullscreenButton';
 
 const ENERGY_SOURCES = ['coal', 'oil', 'gas', 'nuclear', 'hydro', 'wind', 'solar', 'biomass', 'geothermal', 'other'];
 
@@ -14,6 +16,7 @@ export default function InteractiveChart() {
   const [selectedSources, setSelectedSources] = useState(['fossil', 'clean']);
   const [viewMode, setViewMode] = useState('grouped'); // 'grouped' or 'individual'
   const [showRelative, setShowRelative] = useState(false); // toggle for percentage view
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     fetch('/data/useful_energy_timeseries.json')
@@ -387,10 +390,13 @@ export default function InteractiveChart() {
         <h2 className="text-3xl font-bold text-gray-800">
           Interactive Energy Services Explorer
         </h2>
-        <ChartExportButtons
-          onDownloadPNG={handleDownloadPNG}
-          onDownloadCSV={handleDownloadCSV}
-        />
+        <div className="flex gap-2">
+          <FullscreenButton onClick={() => setIsFullscreen(true)} />
+          <ChartExportButtons
+            onDownloadPNG={handleDownloadPNG}
+            onDownloadCSV={handleDownloadCSV}
+          />
+        </div>
       </div>
 
       {/* Controls */}
