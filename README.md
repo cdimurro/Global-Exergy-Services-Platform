@@ -1,18 +1,18 @@
-# Global Energy Services Tracker
+# Global Energy Services Tracker v1.1
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.4-purple.svg)](https://vitejs.dev/)
+[![React](https://img.shields.io/badge/React-19.1-blue.svg)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.1-purple.svg)](https://vitejs.dev/)
 
 > **Revealing the true state of the global energy transition by measuring what actually matters: useful energy services delivered to end users.**
 
-🔗 **[Live Demo](#)** | 📊 **[Documentation](./PROJECT_OVERVIEW.md)** | 📈 **[Data & Assumptions](./DATA_AND_ASSUMPTIONS.md)**
+🔗 **[Live Demo](https://energy-services.vercel.app/)** | 📊 **[Documentation](./PROJECT_OVERVIEW.md)** | 📈 **[Data & Assumptions](./DATA_AND_ASSUMPTIONS.md)**
 
 ---
 
 ## Executive Summary
 
-The Global Energy Services Tracker is a data visualization platform that reveals the **true state of the global energy transition** by measuring what actually matters: **useful energy services** delivered to end users, not just primary energy production.
+The Global Energy Services Tracker is a data visualization platform that reveals the **true state of the global energy transition** by measuring what actually matters: **useful energy services** delivered to end users, not just primary energy consumption.
 
 ### The Core Insight
 
@@ -81,12 +81,12 @@ Useful Energy = Primary Energy × Efficiency Factor
 
 ## Technology Stack
 
-- **Frontend**: React 18.3 + Vite 5.4
+- **Frontend**: React 19.1 + Vite 7.1
 - **Styling**: Tailwind CSS 3.4
-- **Charts**: Recharts 2.12
+- **Charts**: Recharts 3.3
 - **Data Pipeline**: Python + Pandas
 - **Data Sources**: Our World in Data (OWID) Energy Dataset
-- **Deployment**: Static site (Vercel/Netlify ready)
+- **Deployment**: Vercel (https://energy-services.vercel.app/)
 
 ---
 
