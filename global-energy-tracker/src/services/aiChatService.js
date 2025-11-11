@@ -9,22 +9,37 @@
  */
 export async function loadProjectContext() {
   try {
-    // Load historical timeseries
-    const historicalResponse = await fetch('/data/useful_energy_timeseries.json');
+    // Load all available data files in parallel for maximum context
+    const [
+      historicalResponse,
+      projectionsResponse,
+      efficiencyResponse,
+      regionalResponse,
+      sectoralResponse,
+      ffGrowthResponse
+    ] = await Promise.all([
+      fetch('/data/useful_energy_timeseries.json'),
+      fetch('/data/demand_growth_projections.json'),
+      fetch('/data/efficiency_factors_corrected.json'),
+      fetch('/data/regional_energy_timeseries.json'),
+      fetch('/data/sectoral_energy_breakdown.json').catch(() => null),
+      fetch('/data/ff_growth_timeseries.json').catch(() => null)
+    ]);
+
     const historicalData = await historicalResponse.json();
-
-    // Load projections
-    const projectionsResponse = await fetch('/data/demand_growth_projections.json');
     const projectionsData = await projectionsResponse.json();
-
-    // Load efficiency factors
-    const efficiencyResponse = await fetch('/data/efficiency_factors_corrected.json');
     const efficiencyData = await efficiencyResponse.json();
+    const regionalData = await regionalResponse.json();
+    const sectoralData = sectoralResponse ? await sectoralResponse.json() : null;
+    const ffGrowthData = ffGrowthResponse ? await ffGrowthResponse.json() : null;
 
     return {
       historical: historicalData,
       projections: projectionsData,
-      efficiency: efficiencyData
+      efficiency: efficiencyData,
+      regional: regionalData,
+      sectoral: sectoralData,
+      ffGrowth: ffGrowthData
     };
   } catch (error) {
     console.error('Error loading project context:', error);
@@ -36,7 +51,7 @@ export async function loadProjectContext() {
  * Build comprehensive system prompt with dataset context
  */
 function buildSystemPrompt(projectData) {
-  const { historical, projections, efficiency } = projectData;
+  const { historical, projections, efficiency, regional, sectoral, ffGrowth } = projectData;
 
   // Get latest data point and previous year for YoY calculations
   const latest = historical.data[historical.data.length - 1];
@@ -102,6 +117,29 @@ ${projections.scenarios
 - All data uses consistent v1.6 efficiency factors
 - Fossil peak projected: 2030 at ~191 EJ useful
 
+## Regional Data Available:
+You have access to detailed regional breakdowns for ${regional ? Object.keys(regional.regions || {}).length : 0} regions covering 1965-${latest.year}:
+${regional && regional.regions ?
+  `- Regions tracked: ${Object.keys(regional.regions).slice(0, 10).join(', ')}${Object.keys(regional.regions).length > 10 ? ', and more' : ''}
+- Each region includes: total useful energy, fossil/clean split, source breakdown, efficiency percentage
+- Can answer questions like "What is China's clean energy share?" or "How has Europe's energy mix changed since 1990?"`
+  : '- Regional data loading...'}
+
+${sectoral ?
+  `## Sectoral Energy Breakdown Available:
+You have access to energy consumption by sector (industrial, transport, residential, etc.)
+- Can answer questions about which sectors consume the most energy
+- Can show sectoral trends over time`
+  : ''}
+
+${ffGrowth ?
+  `## Fossil Fuel Growth Tracking Available:
+You have access to detailed fossil fuel growth patterns and displacement dynamics
+- Year-by-year fossil fuel consumption changes
+- Displacement effectiveness metrics
+- Phase analysis (growth vs. decline)`
+  : ''}
+
 # RESPONSE GUIDELINES (CRITICAL - FOLLOW EXACTLY)
 
 1. ALWAYS use the exact numbers from the dataset provided above. Do NOT make up numbers or estimates.
@@ -112,6 +150,25 @@ ${projections.scenarios
 6. Explain thermal accounting when relevant (why nuclear is 25% efficient, coal is 28%, etc).
 7. Always specify which scenario when discussing projections.
 8. Explain concepts clearly for non-experts.
+
+## Historical Data Queries (1965-${latest.year}):
+- You have access to the FULL ${historical.data.length}-year dataset
+- Can answer questions about ANY year from 1965 to ${latest.year}
+- When asked about historical years (e.g., "What was the energy mix in 1980?"), reference the historical data array
+- Can calculate trends between any two years in this range
+- Example: "In 1965, total useful energy was ${historical.data[0].total_useful_ej.toFixed(1)} EJ with ${historical.data[0].clean_share_percent.toFixed(1)}% clean"
+
+## When Dataset Cannot Answer:
+If a question is about:
+- Energy policy or political decisions
+- Specific companies, technologies, or products not in aggregate data
+- Current events or news after ${latest.year}
+- Detailed technical specifications beyond efficiency factors
+- Future events beyond 2050 projection horizon
+
+Then clearly state: "This question is outside the scope of our energy services dataset. Based on general knowledge: [provide answer with appropriate caveats]" OR "I don't have specific data on this topic in the dataset, but I can explain the general concept..."
+
+NEVER claim to have data you don't have. Be honest about dataset limitations.
 
 # FORMATTING RULES (CRITICAL - FOLLOW EXACTLY)
 
@@ -140,10 +197,13 @@ This pattern shows we are still in the "Displacement < Fossil Fuel Growth" phase
 # DATA ACCESS
 
 You have access to:
-- Full historical timeseries (1965-${latest.year})
+- Full historical timeseries (1965-${latest.year}) - ALL 60 years of data
 - Three projection scenarios (2025-2050): Baseline (STEPS), Accelerated (APS), Net-Zero (NZE)
 - Efficiency factors and rationale
 - Displacement calculations and peak projections
+- Regional breakdowns for ${regional ? Object.keys(regional.regions || {}).length : '27'} regions
+- Sectoral energy consumption data (if available)
+- Fossil fuel growth tracking and displacement dynamics
 
 # EXAMPLE RESPONSES
 

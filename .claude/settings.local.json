@@ -29,7 +29,12 @@
       "Bash(git add:*)",
       "Bash(del /F nul)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git cherry-pick:*)",
+      "Bash(for file in \"CHANGELOG.md\" \"DATA_AND_ASSUMPTIONS.md\" \"PROJECT_OVERVIEW.md\" \"data-pipeline/calculate_regional_useful_energy.py\" \"global-energy-tracker/README.md\" \"global-energy-tracker/package.json\" \"global-energy-tracker/public/data/regional_energy_timeseries.json\" \"global-energy-tracker/public/data/useful_energy_timeseries.json\" \"global-energy-tracker/src/pages/Methodology.jsx\")",
+      "Bash(do git checkout 3f72f4b -- \"$file\")",
+      "Bash(done)",
+      "Bash(git restore:*)"
     ],
     "deny": [],
     "ask": []
