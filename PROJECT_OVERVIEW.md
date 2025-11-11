@@ -21,9 +21,10 @@ The Global Energy Services Tracker is a data visualization platform that reveals
 Most energy analysis focuses on **primary energy** (total energy extracted from sources like coal, oil, wind, etc.). But this misses a critical fact: **fossil fuels waste 60-70% of their energy as heat**, while clean energy sources are 75-85% efficient.
 
 When we measure **useful energy services** (the actual work/heat/light delivered after accounting for conversion losses), the energy transition looks dramatically different:
-- **Fossil fuel dominance persists** - despite inherent inefficiency, fossils still provide 81% of global useful energy services (2024)
-- **Clean energy's efficiency advantage is masked** by primary energy accounting, which overstates fossil input
+- **Fossil fuel dominance persists** - despite inherent inefficiency, fossils still provide 81.4% of global useful energy services (2024: 186.84 EJ of 229.56 EJ total)
+- **Clean energy's efficiency advantage is masked** by primary energy accounting, which overstates fossil input (2024: clean sources provide 42.72 EJ, 18.6% of total)
 - **Demand growth is accelerating**, requiring even more clean energy deployment to offset fossil use
+- **Interactive visualizations with fullscreen mode** - maximize any of 12 charts for detailed analysis, with PNG/CSV export capabilities
 
 **Understanding the Primary Energy Fallacy**: Primary energy accounting overstates fossil fuel input because it counts all the energy that gets wasted as heat. When measuring useful energy services delivered, clean energy's efficiency advantage becomes clear - a unit of clean electricity delivers far more useful work than a unit of fossil fuel. However, this doesn't mean fossils are less dominant in absolute terms; it means they require more primary input to deliver the same services.
 
@@ -51,6 +52,14 @@ global-energy-tracker/
 ├── data-pipeline/       # Python scripts to process OWID data
 └── PROJECT_OVERVIEW.md + DATA_AND_ASSUMPTIONS.md
 ```
+
+### Interactive Visualization Features (v1.3)
+
+- **Fullscreen Mode**: All 12 Recharts visualizations support fullscreen viewing for enhanced data exploration
+- **Export Capabilities**: PNG image export and CSV data download available for all charts
+- **Responsive Design**: Charts adapt to mobile (400-500px), tablet (600-700px), desktop (750-850px) screen sizes
+- **Keyboard Support**: Press Escape to exit fullscreen mode
+- **User Controls**: All interactive filters and controls remain functional in fullscreen mode
 
 ---
 
@@ -120,7 +129,7 @@ Where:
 Clean Share = (Clean Useful Energy / Total Useful Energy) × 100
 ```
 
-**Current Status (2024)**: Approximately **16-18%** globally in useful energy terms.
+**Current Status (2024)**: **18.6%** (42.72 EJ clean / 229.56 EJ total) globally in useful energy terms.
 
 ### 3. Efficiency Factor
 
@@ -140,6 +149,23 @@ Clean Share = (Clean Useful Energy / Total Useful Energy) × 100
 **Overall Efficiency by Region**: Weighted average efficiency of a region's energy mix
 
 **Total Energy Services**: Total useful energy delivered to end users in a region (in PJ)
+
+### 5. 2024 Global Energy Services Breakdown (Exact Values)
+
+**Total Useful Energy: 229.56 EJ**
+
+**Fossil Fuels: 186.84 EJ (81.4%)**
+- Gas: 74.30 EJ (32.4%)
+- Oil: 59.72 EJ (26.0%)
+- Coal: 52.82 EJ (23.0%)
+
+**Clean Energy: 42.72 EJ (18.6%)**
+- Biomass: 13.98 EJ (6.1%)
+- Hydro: 13.52 EJ (5.9%)
+- Wind: 6.74 EJ (2.9%)
+- Solar: 5.75 EJ (2.5%)
+- Nuclear: 2.49 EJ (1.1%)
+- Geothermal: 0.24 EJ (0.1%)
 
 ---
 
@@ -181,33 +207,48 @@ Clean Share = (Clean Useful Energy / Total Useful Energy) × 100
 ### 1. Home Page
 - **Purpose**: High-level snapshot of global energy transition
 - **Key Metrics**:
-  - 2024 total useful energy (~230 EJ)
-  - Current clean share (~16-18%)
-  - Fossil share (~82-84%)
+  - 2024 total useful energy (229.56 EJ)
+  - Current clean share (18.6%, 42.72 EJ)
+  - Fossil share (81.4%, 186.84 EJ)
 - **Visualization**: Interactive energy services explorer showing historical trends
+- **Fullscreen Features**:
+  - Maximize chart for detailed analysis
+  - Export to PNG or download data as CSV
+  - Responsive chart height: 500px (mobile), 700px (tablet), 850px (desktop)
 
 ### 2. Displacement Analysis
 - **Purpose**: Track how much clean energy actually displaces fossil fuels
 - **Key Charts**:
-  - Displacement tracker (annual displacement rates)
-  - Net change timeline (fossil vs clean growth)
-  - Displacement by source (which clean sources displace which fossil fuels)
+  - Fossil Fuel Displacement Tracker (2024) - annual displacement rates
+  - Historical Displacement & Net Change Timeline - fossil vs clean growth
+  - Displacement by Source Analysis - which clean sources displace which fossil fuels
+- **Fullscreen Features**: All 3 charts support fullscreen mode with PNG/CSV export
+- **Responsive Heights**:
+  - Displacement Tracker: 450px (mobile), 650px (tablet), 800px (desktop)
+  - Timeline & Source Analysis: 400px (mobile), 600px (tablet), 750px (desktop)
 
 ### 3. Energy Supply
 - **Purpose**: Compare total energy supply vs useful energy delivery
 - **Key Insight**: Shows massive waste from fossil fuel inefficiency
 - **Charts**:
-  - Primary vs useful energy comparison (2024 snapshot)
-  - Historical trends (1965-2024)
-  - Efficiency factors by source
+  - Wasted Energy Over Time by Source (1965-2024)
+  - Global Energy System Efficiency Over Time
+  - Primary vs. Useful Energy by Source (2024 snapshot)
+- **Fullscreen Features**: All 3 charts support fullscreen mode with PNG/CSV export
+- **Responsive Heights**:
+  - Simple charts (Efficiency Timeline, 2024 Snapshot): 500px (mobile), 700px (tablet), 850px (desktop)
+  - Moderate controls (Wasted Energy): 450px (mobile), 650px (tablet), 800px (desktop)
 
 ### 4. Demand Growth
 - **Purpose**: Show how rapid demand growth undermines displacement
 - **Key Charts** (displayed in order):
-  1. Sectoral energy growth (Transport, Industry, Buildings) - **at top of page**
-  2. Total useful energy demand projections (Baseline, Accelerated, Net Zero)
-  3. Fossil vs. Clean energy mix by scenario (stacked area chart)
+  1. Sectoral Energy Growth (Transport, Industry, Buildings) - **at top of page**
+  2. Total Useful Energy Demand Projections (Baseline, Accelerated, Net Zero)
+  3. Fossil vs. Clean Energy Mix by Scenario (stacked area chart)
 - **Key Insight**: Sectoral breakdown shows where energy demand is growing fastest
+- **Fullscreen Features**: All 2 charts (Sectoral Growth & Demand Projections) support fullscreen mode with PNG/CSV export
+- **Note**: The scenario mix chart is embedded in explanatory text, not a standalone fullscreen chart
+- **Responsive Heights**: 450px (mobile), 650px (tablet), 800px (desktop) for interactive scenario charts
 
 ### 5. Regions
 - **Purpose**: Analyze energy transition progress by geography
@@ -229,6 +270,11 @@ Clean Share = (Clean Useful Energy / Total Useful Energy) × 100
   3. **Regional Energy Mix Evolution** (stacked area chart, 1965-2024)
      - Shows how a selected region's energy mix evolved over time
      - All energy sources displayed as stacked areas
+- **Fullscreen Features**: All 3 charts support fullscreen mode with PNG/CSV export
+- **Responsive Heights**:
+  - Regional Energy Services (dual modes): 400px (mobile), 600px (tablet), 750px (desktop) - complex controls
+  - Clean Energy Comparison: 500px (mobile), 700px (tablet), 850px (desktop) - simple chart
+  - Energy Mix Evolution: 450px (mobile), 650px (tablet), 800px (desktop) - moderate controls
 
 ### 6. Parameter Status
 - **Purpose**: Year-by-year breakdown of all key metrics
@@ -242,6 +288,67 @@ Clean Share = (Clean Useful Energy / Total Useful Energy) × 100
 ### 8. Methodology
 - **Purpose**: Explain the useful energy methodology in depth
 - **Content**: Technical documentation of calculations and assumptions
+
+---
+
+## Interactive Features (v1.3)
+
+### Fullscreen Visualization Mode
+
+All 12 Recharts visualizations across the platform now support fullscreen viewing for detailed analysis:
+
+**How to Use**:
+- Click the fullscreen button (expand icon) in the top-right corner of any chart
+- Press **Escape** key or click the **X** button to exit fullscreen
+- All interactive controls remain functional in fullscreen mode
+- Export buttons (PNG/CSV) available in fullscreen mode
+
+**Chart List with Fullscreen**:
+1. **Home Page**: Interactive Energy Services Explorer
+2. **Displacement Page**:
+   - Fossil Fuel Displacement Tracker (2024)
+   - Historical Displacement & Net Change Timeline
+   - Displacement by Source Analysis
+3. **Energy Supply Page** (3 charts):
+   - Wasted Energy Over Time by Source
+   - Global Energy System Efficiency Over Time
+   - Primary vs. Useful Energy by Source (2024)
+4. **Demand Growth Page** (2 charts):
+   - Sectoral Energy Growth (Transport, Industry, Buildings)
+   - Total Useful Energy Demand Projections
+5. **Regions Page** (3 charts):
+   - Regional Energy Services Over Time (dual view modes)
+   - Regional Clean Energy & Efficiency Comparison (2024)
+   - Regional Energy Mix Evolution
+
+### Responsive Chart Heights
+
+Charts are optimized for different screen sizes and control complexity:
+
+**Simple Charts** (no interactive controls):
+- Mobile: 500px | Tablet: 700px | Desktop: 850px
+- Examples: Global Efficiency Timeline, Regional Comparison Bar Chart
+
+**Moderate Controls** (1-2 filters):
+- Mobile: 450px | Tablet: 650px | Desktop: 800px
+- Examples: Scenario-based projections, single dropdown filters
+
+**Complex Controls** (multiple filters/toggles):
+- Mobile: 400px | Tablet: 600px | Desktop: 750px
+- Examples: Regional dual-view mode, source selection matrices
+
+### Export Capabilities
+
+**PNG Image Export**:
+- Downloads chart as high-resolution PNG image
+- Includes all visible data, labels, and legends
+- Filename format: `chart-name-YYYY-MM-DD.png`
+
+**CSV Data Export**:
+- Downloads underlying chart data in CSV format
+- Includes all data points, not just visible range
+- Easy import into Excel, Python, R for further analysis
+- Filename format: `chart-name-YYYY-MM-DD.csv`
 
 ---
 
@@ -290,11 +397,12 @@ The companion document contains all the numerical values and assumptions used in
    - [ ] Are they consistent with peer-reviewed literature?
 
 2. **Key Results Cross-Check**
-   - [ ] Does 2024 global useful energy (~230 EJ) seem reasonable?
-   - [ ] Does ~16-18% clean share match rough calculations from other sources?
+   - [ ] Does 2024 global useful energy (229.56 EJ) seem reasonable?
+   - [ ] Does 18.6% clean share (42.72 EJ) match rough calculations from other sources?
    - [ ] Do displacement rates (~28% 10-year average) align with observable trends?
-   - [ ] Do regional totals sum correctly to global totals? (~229.6 EJ)
+   - [ ] Do regional totals sum correctly to global totals? (229.56 EJ)
    - [ ] Are regional values in correct units (PJ, not EJ)?
+   - [ ] Does fossil breakdown match: Gas (74.30 EJ), Oil (59.72 EJ), Coal (52.82 EJ)?
 
 3. **Data Integrity**
    - [ ] Can we trace all numbers back to OWID source data?
@@ -385,6 +493,14 @@ The companion document contains all the numerical values and assumptions used in
 - **Developed economies**: Overall efficiency ~48-50% vs. developing economies ~38-42%
 - **Source**: IEA Energy Efficiency Indicators (EEI) 2024
 
+### 7. Mobile Fullscreen Performance
+
+**Issue**: On small screens (<640px), fullscreen charts may still require some scrolling for charts with many controls.
+
+**Impact**: User experience on mobile devices is slightly constrained by screen size limitations.
+
+**Mitigation**: Charts prioritize showing the visualization itself; controls are accessible via scrolling. Desktop/tablet experience is optimal.
+
 ---
 
 ## Success Criteria
@@ -396,6 +512,7 @@ This project succeeds if:
 3. **Impact**: The visualization changes how people understand the energy transition
 4. **Honesty**: We present uncomfortable truths without exaggeration or cherry-picking
 5. **Usability**: Charts are intuitive and insights are actionable
+6. **Interactivity**: Visualizations are explorable, with fullscreen mode enhancing detailed analysis
 
 ---
 
