@@ -18,11 +18,7 @@ The Global Energy Services Tracker is a data visualization platform that reveals
 
 Most energy analysis focuses on **primary energy** (total energy extracted from sources like coal, oil, wind, etc.). But this misses a critical fact: **fossil fuels waste 60-70% of their energy as heat**, while clean energy sources are 90%+ efficient.
 
-When we measure **useful energy services** (the actual work/heat/light delivered after accounting for conversion losses), the energy transition looks dramatically different:
-
-- 🔴 **Fossil fuel dominance is even stronger** than it appears in primary energy terms
-- 🟡 **Clean energy displacement is much slower** than headlines suggest
-- 🟠 **Demand growth is accelerating**, making displacement even harder
+When we measure **useful energy services** (the actual work/heat/light delivered after accounting for conversion losses), the energy transition looks dramatically different.
 
 This platform provides the first comprehensive, public-facing visualization of this reality.
 
