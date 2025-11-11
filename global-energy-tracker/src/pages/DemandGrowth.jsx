@@ -5,12 +5,18 @@ import PageLayout from '../components/PageLayout';
 import AIChatbot from '../components/AIChatbot';
 import SectoralEnergyGrowth from '../components/SectoralEnergyGrowth';
 import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons, ChartSources } from '../utils/chartExport';
+import ChartFullscreenModal from '../components/ChartFullscreenModal';
+import FullscreenButton from '../components/FullscreenButton';
 
 export default function DemandGrowth() {
   const [width] = useWindowSize();  // Dynamic window size for responsive charts
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedScenario, setSelectedScenario] = useState('Baseline (STEPS)');
+
+  // Fullscreen states
+  const [isFullscreenChart1, setIsFullscreenChart1] = useState(false);
+  const [isFullscreenChart2, setIsFullscreenChart2] = useState(false);
 
   // Force scroll to top on mount
   useEffect(() => {
@@ -101,6 +107,23 @@ export default function DemandGrowth() {
     downloadDataAsCSV(csvData, filename);
   };
 
+  // Chart height functions
+  const getChart1Height = () => {
+    if (isFullscreenChart1) {
+      // Chart 1 has scenario dropdown control
+      return width < 640 ? 300 : width < 1024 ? 450 : 600;
+    }
+    return width < 640 ? 280 : width < 768 ? 350 : 400;
+  };
+
+  const getChart2Height = () => {
+    if (isFullscreenChart2) {
+      // Chart 2 has scenario dropdown control
+      return width < 640 ? 300 : width < 1024 ? 450 : 600;
+    }
+    return width < 640 ? 280 : width < 768 ? 350 : 400;
+  };
+
   return (
     <PageLayout>
       {/* Page Header */}
@@ -122,13 +145,16 @@ export default function DemandGrowth() {
           <h2 className="text-2xl font-bold text-gray-800">
             Total Useful Energy Demand Projections
           </h2>
-          <ChartExportButtons
-            onDownloadPNG={handleDownloadTotalPNG}
-            onDownloadCSV={handleDownloadTotalCSV}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={handleDownloadTotalPNG}
+              onDownloadCSV={handleDownloadTotalCSV}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart1(true)} />
+          </div>
         </div>
         <div id="total-demand-chart">
-          <ResponsiveContainer width="100%" height={width < 640 ? 280 : width < 768 ? 350 : 400}>
+          <ResponsiveContainer width="100%" height={getChart1Height()}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
@@ -162,16 +188,65 @@ export default function DemandGrowth() {
         </div>
       </div>
 
+      {/* Chart 1 Fullscreen Modal */}
+      <ChartFullscreenModal
+        isOpen={isFullscreenChart1}
+        onClose={() => setIsFullscreenChart1(false)}
+        title="Total Useful Energy Demand Projections"
+        description="Projected global useful energy demand by scenario (2025-2050)"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={handleDownloadTotalPNG}
+            onDownloadCSV={handleDownloadTotalCSV}
+          />
+        }
+      >
+        <ResponsiveContainer width="100%" height={getChart1Height()}>
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="year" />
+            <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="Baseline (STEPS)_total"
+              stroke={COLORS['Baseline (STEPS)']}
+              strokeWidth={2}
+              name="Baseline (STEPS)"
+            />
+            <Line
+              type="monotone"
+              dataKey="Accelerated (APS)_total"
+              stroke={COLORS['Accelerated (APS)']}
+              strokeWidth={2}
+              name="Accelerated (APS)"
+            />
+            <Line
+              type="monotone"
+              dataKey="Net-Zero (NZE)_total"
+              stroke={COLORS['Net-Zero (NZE)']}
+              strokeWidth={2}
+              name="Net-Zero (NZE)"
+            />
+          </LineChart>
+        </ResponsiveContainer>
+        <ChartSources sources={sources} />
+      </ChartFullscreenModal>
+
       {/* Fossil vs Clean Stacked Area Chart */}
       <div className="metric-card bg-white mb-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-gray-800">
             Fossil vs. Clean Energy Mix by Scenario
           </h2>
-          <ChartExportButtons
-            onDownloadPNG={handleDownloadMixPNG}
-            onDownloadCSV={handleDownloadMixCSV}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={handleDownloadMixPNG}
+              onDownloadCSV={handleDownloadMixCSV}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart2(true)} />
+          </div>
         </div>
         <div className="mb-4">
           <label className="text-sm font-semibold text-gray-700 mr-2">Select Scenario:</label>
@@ -186,7 +261,7 @@ export default function DemandGrowth() {
           </select>
         </div>
         <div id="energy-mix-chart">
-          <ResponsiveContainer width="100%" height={width < 640 ? 280 : width < 768 ? 350 : 400}>
+          <ResponsiveContainer width="100%" height={getChart2Height()}>
             <AreaChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
@@ -214,6 +289,60 @@ export default function DemandGrowth() {
           <ChartSources sources={sources} />
         </div>
       </div>
+
+      {/* Chart 2 Fullscreen Modal */}
+      <ChartFullscreenModal
+        isOpen={isFullscreenChart2}
+        onClose={() => setIsFullscreenChart2(false)}
+        title="Fossil vs. Clean Energy Mix by Scenario"
+        description="Projected fossil and clean energy mix over time"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={handleDownloadMixPNG}
+            onDownloadCSV={handleDownloadMixCSV}
+          />
+        }
+      >
+        <div className="mb-4">
+          <label className="text-sm font-semibold text-gray-700 mr-2">Select Scenario:</label>
+          <select
+            value={selectedScenario}
+            onChange={(e) => setSelectedScenario(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-1 text-sm"
+          >
+            <option value="Baseline (STEPS)">Baseline (STEPS)</option>
+            <option value="Accelerated (APS)">Accelerated (APS)</option>
+            <option value="Net-Zero (NZE)">Net-Zero (NZE)</option>
+          </select>
+        </div>
+
+        <ResponsiveContainer width="100%" height={getChart2Height()}>
+          <AreaChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="year" />
+            <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+            <Tooltip />
+            <Legend />
+            <Area
+              type="monotone"
+              dataKey={`${selectedScenario}_fossil`}
+              stackId="1"
+              stroke="#DC2626"
+              fill="#DC2626"
+              name="Fossil Fuels"
+            />
+            <Area
+              type="monotone"
+              dataKey={`${selectedScenario}_clean`}
+              stackId="1"
+              stroke="#16A34A"
+              fill="#16A34A"
+              name="Clean Energy"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+        <ChartSources sources={sources} />
+      </ChartFullscreenModal>
 
       {/* Understanding Demand Growth */}
       <div className="metric-card bg-white mb-8 border-2 border-blue-200">

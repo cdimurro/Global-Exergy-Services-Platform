@@ -4,6 +4,8 @@ import PageLayout from '../components/PageLayout';
 import { BarChart, Bar, LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { ENERGY_COLORS, getSourceName } from '../utils/colors';
 import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons, ChartSources } from '../utils/chartExport';
+import ChartFullscreenModal from '../components/ChartFullscreenModal';
+import FullscreenButton from '../components/FullscreenButton';
 import AIChatbot from '../components/AIChatbot';
 
 const ENERGY_SOURCES = ['coal', 'oil', 'gas', 'nuclear', 'hydro', 'wind', 'solar', 'biomass', 'geothermal'];
@@ -21,6 +23,11 @@ export default function EnergySupply() {
   const [selectedSources, setSelectedSources] = useState(ENERGY_SOURCES);
   const [selectedScenario, setSelectedScenario] = useState('Baseline (STEPS)');
   const [viewMode, setViewMode] = useState('allSources'); // 'allSources', 'grouped', 'allFossil', 'allClean', 'individual'
+
+  // Fullscreen states
+  const [isFullscreenChart1, setIsFullscreenChart1] = useState(false);
+  const [isFullscreenChart2, setIsFullscreenChart2] = useState(false);
+  const [isFullscreenChart3, setIsFullscreenChart3] = useState(false);
 
   // Force scroll to top on mount
   useEffect(() => {
@@ -242,6 +249,31 @@ export default function EnergySupply() {
     downloadDataAsCSV(data, filename);
   };
 
+  // Chart height functions
+  const getChart1Height = () => {
+    if (isFullscreenChart1) {
+      // Chart 1 has many controls (source selection, scenario dropdown)
+      return width < 640 ? 250 : width < 1024 ? 350 : 450;
+    }
+    return width < 640 ? 300 : width < 768 ? 400 : 500;
+  };
+
+  const getChart2Height = () => {
+    if (isFullscreenChart2) {
+      // Chart 2 is simpler (no controls), can be taller
+      return width < 640 ? 350 : width < 1024 ? 500 : 650;
+    }
+    return width < 640 ? 300 : width < 768 ? 400 : 500;
+  };
+
+  const getChart3Height = () => {
+    if (isFullscreenChart3) {
+      // Chart 3 is simpler (no controls), can be taller
+      return width < 640 ? 350 : width < 1024 ? 500 : 650;
+    }
+    return width < 640 ? 300 : width < 768 ? 400 : 500;
+  };
+
   if (loading) {
     return (
       <PageLayout>
@@ -285,20 +317,23 @@ export default function EnergySupply() {
               Energy lost during conversion from primary to useful services
             </p>
           </div>
-          <ChartExportButtons
-              onDownloadPNG={() => handleDownloadPNG('chart-waste-time', 'waste_over_time.png')}
-              onDownloadCSV={() => {
-                const csvData = processedData.map(yearData => {
-                  const row = { Year: yearData.year };
-                  selectedSources.forEach(source => {
-                    row[getSourceName(source)] = yearData.sources[source]?.waste.toFixed(2) || '0';
+          <div className="flex gap-2">
+            <ChartExportButtons
+                onDownloadPNG={() => handleDownloadPNG('chart-waste-time', 'waste_over_time.png')}
+                onDownloadCSV={() => {
+                  const csvData = processedData.map(yearData => {
+                    const row = { Year: yearData.year };
+                    selectedSources.forEach(source => {
+                      row[getSourceName(source)] = yearData.sources[source]?.waste.toFixed(2) || '0';
+                    });
+                    row['Total Waste'] = yearData.totals.waste.toFixed(2);
+                    return row;
                   });
-                  row['Total Waste'] = yearData.totals.waste.toFixed(2);
-                  return row;
-                });
-                handleDownloadCSV(csvData, 'waste_over_time.csv');
-              }}
-            />
+                  handleDownloadCSV(csvData, 'waste_over_time.csv');
+                }}
+              />
+            <FullscreenButton onClick={() => setIsFullscreenChart1(true)} />
+          </div>
           </div>
 
         {/* Source Selection Buttons */}
@@ -389,7 +424,7 @@ export default function EnergySupply() {
           </select>
         </div>
 
-        <ResponsiveContainer width="100%" height={width < 640 ? 300 : width < 768 ? 400 : 500}>
+        <ResponsiveContainer width="100%" height={getChart1Height()}>
             <AreaChart
               data={processedData}
               margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
@@ -468,6 +503,196 @@ export default function EnergySupply() {
         <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023', 'IEA World Energy Outlook 2024']} />
       </div>
 
+      {/* Chart 1 Fullscreen Modal */}
+      <ChartFullscreenModal
+        isOpen={isFullscreenChart1}
+        onClose={() => setIsFullscreenChart1(false)}
+        title="Wasted Energy Over Time by Source"
+        description="Energy lost during conversion from primary to useful services"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={() => handleDownloadPNG('chart-waste-time', 'waste_over_time.png')}
+            onDownloadCSV={() => {
+              const csvData = processedData.map(yearData => {
+                const row = { Year: yearData.year };
+                selectedSources.forEach(source => {
+                  row[getSourceName(source)] = yearData.sources[source]?.waste.toFixed(2) || '0';
+                });
+                row['Total Waste'] = yearData.totals.waste.toFixed(2);
+                return row;
+              });
+              handleDownloadCSV(csvData, 'waste_over_time.csv');
+            }}
+          />
+        }
+      >
+        {/* Source Selection Buttons */}
+        <div className="mb-6">
+          <label className="block text-lg font-semibold mb-3 text-gray-700">
+            Select Energy Sources
+          </label>
+          <div className="flex flex-wrap gap-2 mb-2">
+            <button
+              onClick={selectAllSources}
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                viewMode === 'allSources'
+                  ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All Sources
+            </button>
+            <button
+              onClick={selectGrouped}
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                viewMode === 'grouped'
+                  ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Fossil vs Clean
+            </button>
+            <button
+              onClick={selectAllFossil}
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                viewMode === 'allFossil'
+                  ? 'bg-red-600 text-white ring-2 ring-red-600 ring-offset-2'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All Fossil Sources
+            </button>
+            <button
+              onClick={selectAllClean}
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                viewMode === 'allClean'
+                  ? 'bg-green-600 text-white ring-2 ring-green-600 ring-offset-2'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              All Clean Sources
+            </button>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {ENERGY_SOURCES.map(source => (
+              <button
+                key={source}
+                onClick={() => toggleSource(source)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                  selectedSources.includes(source) && viewMode === 'individual'
+                    ? 'text-white ring-2 ring-offset-2'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+                style={{
+                  backgroundColor: (selectedSources.includes(source) && viewMode === 'individual') ? ENERGY_COLORS[source] : undefined,
+                  ringColor: ENERGY_COLORS[source]
+                }}
+              >
+                {getSourceName(source)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Projection Scenario Dropdown */}
+        <div className="mb-6">
+          <label className="block text-lg font-semibold mb-1 text-gray-700">
+            Projection Scenario (2025-2050)
+          </label>
+          <p className="text-sm text-gray-600 mb-3">
+            Based on International Energy Agency scenarios
+          </p>
+          <select
+            value={selectedScenario}
+            onChange={(e) => setSelectedScenario(e.target.value)}
+            className="border border-gray-300 rounded-lg px-4 py-2 text-base"
+          >
+            <option value="Baseline (STEPS)">Baseline (STEPS)</option>
+            <option value="Accelerated (APS)">Accelerated (APS)</option>
+            <option value="Net-Zero (NZE)">Net-Zero (NZE)</option>
+          </select>
+        </div>
+
+        <ResponsiveContainer width="100%" height={getChart1Height()}>
+            <AreaChart
+              data={processedData}
+              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis
+                dataKey="year"
+                domain={['dataMin', 'dataMax']}
+              />
+              <YAxis label={{ value: 'Waste Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+              <Tooltip content={({ active, payload, label }) => {
+                if (!active || !payload || payload.length === 0) return null;
+                const total = payload.reduce((sum, entry) => sum + (entry.value || 0), 0);
+                return (
+                  <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                    <div className="font-bold text-lg mb-2">{label}</div>
+                    <div className="space-y-1 text-sm">
+                      {payload.reverse().map((entry, index) => (
+                        <div key={index} className="flex items-center justify-between gap-4">
+                          <div className="flex items-center gap-2">
+                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.color }} />
+                            <span>{entry.name}:</span>
+                          </div>
+                          <span className="font-semibold">{entry.value.toFixed(2)} EJ</span>
+                        </div>
+                      ))}
+                      <div className="flex justify-between gap-4 pt-2 border-t border-gray-200 font-bold">
+                        <span>Total Waste:</span>
+                        <span>{total.toFixed(2)} EJ</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }} />
+              <Legend />
+              {viewMode === 'grouped' ? (
+                <>
+                  {selectedSources.includes('fossil') && (
+                    <Area
+                      type="monotone"
+                      dataKey="fossil.waste"
+                      name="Fossil Fuels"
+                      stackId="1"
+                      stroke="#DC2626"
+                      fill="#DC2626"
+                    />
+                  )}
+                  {selectedSources.includes('clean') && (
+                    <Area
+                      type="monotone"
+                      dataKey="clean.waste"
+                      name="Clean Energy"
+                      stackId="1"
+                      stroke="#000000"
+                      fill="#000000"
+                    />
+                  )}
+                </>
+              ) : (
+                selectedSources.map(source => (
+                  <Area
+                    key={source}
+                    type="monotone"
+                    dataKey={`sources.${source}.waste`}
+                    name={getSourceName(source)}
+                    stackId="1"
+                    stroke={ENERGY_COLORS[source]}
+                    fill={ENERGY_COLORS[source]}
+                  />
+                ))
+              )}
+            </AreaChart>
+        </ResponsiveContainer>
+
+        {/* Data Sources */}
+        <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023', 'IEA World Energy Outlook 2024']} />
+      </ChartFullscreenModal>
+
       {/* Chart 2: Global Energy System Efficiency Over Time */}
       <div className="metric-card bg-white mb-8 pb-8" id="chart-efficiency-time">
         <div className="flex justify-between items-center mb-6">
@@ -479,19 +704,22 @@ export default function EnergySupply() {
               End to end conversion efficiency from primary energy to useful energy services
             </p>
           </div>
-          <ChartExportButtons
-            onDownloadPNG={() => handleDownloadPNG('chart-efficiency-time', 'global_efficiency_over_time.png')}
-            onDownloadCSV={() => {
-              const csvData = processedData.map(yearData => ({
-                Year: yearData.year,
-                'Global Efficiency (%)': ((yearData.totals.useful / yearData.totals.primary) * 100).toFixed(1)
-              }));
-              handleDownloadCSV(csvData, 'global_efficiency_over_time.csv');
-            }}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={() => handleDownloadPNG('chart-efficiency-time', 'global_efficiency_over_time.png')}
+              onDownloadCSV={() => {
+                const csvData = processedData.map(yearData => ({
+                  Year: yearData.year,
+                  'Global Efficiency (%)': ((yearData.totals.useful / yearData.totals.primary) * 100).toFixed(1)
+                }));
+                handleDownloadCSV(csvData, 'global_efficiency_over_time.csv');
+              }}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart2(true)} />
+          </div>
         </div>
 
-        <ResponsiveContainer width="100%" height={width < 640 ? 300 : width < 768 ? 400 : 500}>
+        <ResponsiveContainer width="100%" height={getChart2Height()}>
           <LineChart
             data={processedData.map(yearData => ({
               year: yearData.year,
@@ -541,6 +769,75 @@ export default function EnergySupply() {
         <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023']} />
       </div>
 
+      {/* Chart 2 Fullscreen Modal */}
+      <ChartFullscreenModal
+        isOpen={isFullscreenChart2}
+        onClose={() => setIsFullscreenChart2(false)}
+        title="Global Energy System Efficiency Over Time"
+        description="End to end conversion efficiency from primary energy to useful energy services"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={() => handleDownloadPNG('chart-efficiency-time', 'global_efficiency_over_time.png')}
+            onDownloadCSV={() => {
+              const csvData = processedData.map(yearData => ({
+                Year: yearData.year,
+                'Global Efficiency (%)': ((yearData.totals.useful / yearData.totals.primary) * 100).toFixed(1)
+              }));
+              handleDownloadCSV(csvData, 'global_efficiency_over_time.csv');
+            }}
+          />
+        }
+      >
+        <ResponsiveContainer width="100%" height={getChart2Height()}>
+          <LineChart
+            data={processedData.map(yearData => ({
+              year: yearData.year,
+              globalEfficiency: (yearData.totals.useful / yearData.totals.primary) * 100
+            }))}
+            margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="year"
+              domain={['dataMin', 'dataMax']}
+            />
+            <YAxis
+              label={{ value: 'Global Efficiency (%)', angle: -90, position: 'insideLeft' }}
+              domain={[0, 100]}
+            />
+            <Tooltip content={({ active, payload, label }) => {
+              if (!active || !payload || payload.length === 0) return null;
+              const efficiency = payload[0].value;
+              return (
+                <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                  <div className="font-bold text-lg mb-2">{label}</div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-gray-600">Global Efficiency:</span>
+                      <span className="font-bold text-red-600 text-lg">{efficiency.toFixed(1)}%</span>
+                    </div>
+                    <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
+                      Efficiency = Useful Energy ÷ Primary Energy
+                    </div>
+                  </div>
+                </div>
+              );
+            }} />
+            <Line
+              type="monotone"
+              dataKey="globalEfficiency"
+              name="Global Efficiency"
+              stroke="#dc2626"
+              strokeWidth={3}
+              dot={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+
+        {/* Data Sources */}
+        <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023']} />
+      </ChartFullscreenModal>
+
       {/* Chart 1: Primary vs. Useful Bar Chart (2024 Snapshot) */}
       <div className="metric-card bg-white mb-8 pb-8" id="chart-primary-useful-2024">
         <div className="flex justify-between items-center mb-6">
@@ -552,23 +849,26 @@ export default function EnergySupply() {
               Useful energy (colored by source) stacked with waste energy (red) shows total primary energy
             </p>
           </div>
-          <ChartExportButtons
-            onDownloadPNG={() => handleDownloadPNG('chart-primary-useful-2024', 'primary_vs_useful_2024.png')}
-            onDownloadCSV={() => {
-              if (!data2024) return;
-              const csvData = ENERGY_SOURCES.map(source => ({
-                Source: getSourceName(source),
-                'Primary Energy (EJ)': data2024.sources[source]?.primary.toFixed(2) || '0',
-                'Useful Energy (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
-                'Waste Energy (EJ)': data2024.sources[source]?.waste.toFixed(2) || '0',
-                'Efficiency (%)': data2024.sources[source]?.efficiency.toFixed(1) || '0'
-              }));
-              handleDownloadCSV(csvData, 'primary_vs_useful_2024.csv');
-            }}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={() => handleDownloadPNG('chart-primary-useful-2024', 'primary_vs_useful_2024.png')}
+              onDownloadCSV={() => {
+                if (!data2024) return;
+                const csvData = ENERGY_SOURCES.map(source => ({
+                  Source: getSourceName(source),
+                  'Primary Energy (EJ)': data2024.sources[source]?.primary.toFixed(2) || '0',
+                  'Useful Energy (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
+                  'Waste Energy (EJ)': data2024.sources[source]?.waste.toFixed(2) || '0',
+                  'Efficiency (%)': data2024.sources[source]?.efficiency.toFixed(1) || '0'
+                }));
+                handleDownloadCSV(csvData, 'primary_vs_useful_2024.csv');
+              }}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart3(true)} />
+          </div>
         </div>
 
-        <ResponsiveContainer width="100%" height={width < 640 ? 300 : width < 768 ? 400 : 500}>
+        <ResponsiveContainer width="100%" height={getChart3Height()}>
           <BarChart
             data={ENERGY_SOURCES.map(source => ({
               source: getSourceName(source),
@@ -634,6 +934,96 @@ export default function EnergySupply() {
         {/* Data Sources */}
         <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023']} />
       </div>
+
+      {/* Chart 3 Fullscreen Modal */}
+      <ChartFullscreenModal
+        isOpen={isFullscreenChart3}
+        onClose={() => setIsFullscreenChart3(false)}
+        title="Primary Energy vs. Useful Energy by Source (2024)"
+        description="Useful energy (colored by source) stacked with waste energy (red) shows total primary energy"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={() => handleDownloadPNG('chart-primary-useful-2024', 'primary_vs_useful_2024.png')}
+            onDownloadCSV={() => {
+              if (!data2024) return;
+              const csvData = ENERGY_SOURCES.map(source => ({
+                Source: getSourceName(source),
+                'Primary Energy (EJ)': data2024.sources[source]?.primary.toFixed(2) || '0',
+                'Useful Energy (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
+                'Waste Energy (EJ)': data2024.sources[source]?.waste.toFixed(2) || '0',
+                'Efficiency (%)': data2024.sources[source]?.efficiency.toFixed(1) || '0'
+              }));
+              handleDownloadCSV(csvData, 'primary_vs_useful_2024.csv');
+            }}
+          />
+        }
+      >
+        <ResponsiveContainer width="100%" height={getChart3Height()}>
+          <BarChart
+            data={ENERGY_SOURCES.map(source => ({
+              source: getSourceName(source),
+              sourceKey: source,
+              primary: data2024?.sources[source]?.primary || 0,
+              useful: data2024?.sources[source]?.useful || 0,
+              waste: data2024?.sources[source]?.waste || 0,
+              efficiency: data2024?.sources[source]?.efficiency || 0
+            }))}
+            margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="source"
+              angle={-45}
+              textAnchor="end"
+              height={100}
+            />
+            <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+            <Tooltip content={({ active, payload }) => {
+              if (!active || !payload || payload.length === 0) return null;
+              const data = payload[0].payload;
+              const usefulPercent = (data.useful / data.primary) * 100;
+              const wastePercent = (data.waste / data.primary) * 100;
+              return (
+                <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                  <div className="font-bold text-lg mb-2">{data.source}</div>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Primary Energy:</span>
+                      <span className="font-semibold">{data.primary.toFixed(2)} EJ</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Useful Energy:</span>
+                      <span className="font-semibold">{data.useful.toFixed(2)} EJ ({usefulPercent.toFixed(1)}%)</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Waste Energy:</span>
+                      <span className="font-semibold text-red-600">{data.waste.toFixed(2)} EJ ({wastePercent.toFixed(1)}%)</span>
+                    </div>
+                    <div className="flex justify-between gap-4 pt-2 border-t border-gray-200">
+                      <span className="text-gray-600">Efficiency:</span>
+                      <span className="font-bold">{data.efficiency.toFixed(1)}%</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            }} />
+            <Legend />
+            <Bar dataKey="useful" name="Useful Energy" stackId="a" fill="#000000">
+              {ENERGY_SOURCES.map(source => (
+                <Cell key={source} fill={ENERGY_COLORS[source]} />
+              ))}
+            </Bar>
+            <Bar dataKey="waste" name="Waste Energy" stackId="a" fill="#dc2626">
+              {ENERGY_SOURCES.map(source => (
+                <Cell key={source} fill="#dc2626" />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+
+        {/* Data Sources */}
+        <ChartSources sources={['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023']} />
+      </ChartFullscreenModal>
 
       {/* Understanding Energy Supply Section */}
       <div className="metric-card bg-white mb-8 border-2 border-blue-200">

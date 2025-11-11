@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useWindowSize } from '@react-hook/window-size';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ENERGY_COLORS, getSourceName } from '../utils/colors';
 import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons, ChartSources } from '../utils/chartExport';
+import ChartFullscreenModal from './ChartFullscreenModal';
+import FullscreenButton from './FullscreenButton';
 
 // Color palette for sectors (professional spectrum: reds, oranges, yellows, greens, blues, greys)
 const SECTOR_COLORS = {
@@ -64,6 +67,7 @@ const getSectorName = (sectorKey) => {
 };
 
 export default function SectoralEnergyGrowth() {
+  const [width] = useWindowSize();  // Dynamic window size for responsive charts
   const [sectoralData, setSectoralData] = useState(null);
   const [historicalData, setHistoricalData] = useState(null);
   const [projectionsData, setProjectionsData] = useState(null);
@@ -72,6 +76,7 @@ export default function SectoralEnergyGrowth() {
   const [showRelative, setShowRelative] = useState(false);
   const [selectedSectors, setSelectedSectors] = useState(ALL_SECTORS);
   const [chartData, setChartData] = useState([]);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -405,23 +410,19 @@ export default function SectoralEnergyGrowth() {
     'IEA World Energy Outlook 2024'
   ];
 
-  return (
-    <div className="metric-card bg-white mb-16">
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h2 className="text-3xl font-bold text-gray-800 mb-1">
-            Energy Services Growth by Sector
-          </h2>
-          <p className="text-sm text-gray-600">
-            2015-2024 historical data • 2025-2050 projections
-          </p>
-        </div>
-        <ChartExportButtons
-          onDownloadPNG={handleDownloadPNG}
-          onDownloadCSV={handleDownloadCSV}
-        />
-      </div>
+  // Responsive chart heights: reduced for fullscreen to fit all content without scrolling
+  // This chart has many controls, legend, and analysis cards
+  const getChartHeight = () => {
+    if (isFullscreen) {
+      return width < 640 ? 250 : width < 1024 ? 350 : 450;
+    }
+    return 700;
+  };
 
+  // Render all chart content (controls, chart, legend, analysis)
+  // Used in both normal and fullscreen views - height adjusts automatically via getChartHeight()
+  const renderContent = () => (
+    <>
       {/* Controls */}
       <div className="mb-8">
         {/* Show Relative Toggle */}
@@ -505,38 +506,41 @@ export default function SectoralEnergyGrowth() {
 
         {/* Sector Selection */}
         <div>
-          <label className="block text-lg font-semibold mb-3 text-gray-700">Select Sectors</label>
-
-          {/* Sector Presets */}
-          <div className="flex flex-wrap gap-2 mb-3">
+          <label className="block text-lg font-semibold mb-3 text-gray-700">
+            Select Sectors
+          </label>
+          <div className="flex gap-3 mb-3">
             <button
-              onClick={selectAllSectors}
-              className="px-4 py-2 rounded-lg font-medium transition-all text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
+              onClick={() => setSelectedSectors(ALL_SECTORS)}
+              className="px-4 py-2 rounded-lg font-medium transition-all text-sm bg-blue-600 text-white hover:bg-blue-700"
             >
-              Select All
+              All Sectors
             </button>
             <button
-              onClick={clearAllSectors}
-              className="px-4 py-2 rounded-lg font-medium transition-all text-sm bg-gray-200 text-gray-700 hover:bg-gray-300"
+              onClick={() => setSelectedSectors([])}
+              className="px-4 py-2 rounded-lg font-medium transition-all text-sm bg-gray-300 text-gray-700 hover:bg-gray-400"
             >
               Clear All
             </button>
           </div>
-
-          {/* Individual Sector Buttons */}
           <div className="flex flex-wrap gap-2">
             {ALL_SECTORS.map(sector => (
               <button
                 key={sector}
-                onClick={() => toggleSector(sector)}
-                className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                onClick={() => {
+                  setSelectedSectors(prev =>
+                    prev.includes(sector)
+                      ? prev.filter(s => s !== sector)
+                      : [...prev, sector]
+                  );
+                }}
+                className={`px-3 py-2 rounded-lg font-medium transition-all text-sm ${
                   selectedSectors.includes(sector)
                     ? 'text-white ring-2 ring-offset-2'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
                 style={{
-                  backgroundColor: selectedSectors.includes(sector) ? SECTOR_COLORS[sector] : undefined,
-                  ringColor: SECTOR_COLORS[sector]
+                  backgroundColor: selectedSectors.includes(sector) ? SECTOR_COLORS[sector] : undefined
                 }}
               >
                 {getSectorName(sector)}
@@ -548,7 +552,7 @@ export default function SectoralEnergyGrowth() {
 
       {/* Chart */}
       <div id="sectoral-chart-container" className="mb-8">
-        <ResponsiveContainer width="100%" height={700}>
+        <ResponsiveContainer width="100%" height={getChartHeight()}>
           <AreaChart
             data={displayData}
             margin={{ top: 10, right: 40, left: 20, bottom: 20 }}
@@ -577,7 +581,7 @@ export default function SectoralEnergyGrowth() {
                 value: showRelative ? 'Share of Total Energy (%)' : 'Useful Energy (EJ)',
                 angle: -90,
                 position: 'insideLeft',
-                style: { fontSize: 17, fontWeight: 600 }
+                style={{ fontSize: 17, fontWeight: 600 }
               }}
             />
             <Tooltip content={<CustomTooltip />} />
@@ -636,17 +640,15 @@ export default function SectoralEnergyGrowth() {
                     />
                     <strong>{getSectorName(item.sector)}</strong>
                   </div>
-                  <span className="text-green-600 font-semibold">
-                    +{item.growth.toFixed(1)}%
-                  </span>
+                  <span className="text-green-600 font-semibold">+{item.growth.toFixed(1)}%</span>
                 </div>
               ))}
           </div>
         </div>
 
         {/* Slowest Growing Sectors */}
-        <div className="p-6 bg-red-50 rounded-lg border-l-4 border-red-600">
-          <h3 className="text-lg font-bold text-red-800 mb-3">Slowest Growing Sectors (2024-2050)</h3>
+        <div className="p-6 bg-gray-50 rounded-lg border-l-4 border-gray-600">
+          <h3 className="text-lg font-bold text-gray-800 mb-3">Slowest Growing Sectors (2024-2050)</h3>
           <div className="space-y-3 text-sm text-gray-700">
             {Object.keys(sectoralData.sector_shares)
               .map(sector => {
@@ -674,6 +676,49 @@ export default function SectoralEnergyGrowth() {
           </div>
         </div>
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Normal View */}
+      <div className="metric-card bg-white mb-16">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-1">
+              Energy Services Growth by Sector
+            </h2>
+            <p className="text-sm text-gray-600">
+              2015-2024 historical data • 2025-2050 projections
+            </p>
+          </div>
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={handleDownloadPNG}
+              onDownloadCSV={handleDownloadCSV}
+            />
+            <FullscreenButton onClick={() => setIsFullscreen(true)} />
+          </div>
+        </div>
+
+        {renderContent()}
+      </div>
+
+      {/* Fullscreen View */}
+      <ChartFullscreenModal
+        isOpen={isFullscreen}
+        onClose={() => setIsFullscreen(false)}
+        title="Energy Services Growth by Sector"
+        description="Historical data (2015-2024) and projections (2025-2050)"
+        exportButtons={
+          <ChartExportButtons
+            onDownloadPNG={handleDownloadPNG}
+            onDownloadCSV={handleDownloadCSV}
+          />
+        }
+      >
+        {renderContent()}
+      </ChartFullscreenModal>
+    </>
   );
 }

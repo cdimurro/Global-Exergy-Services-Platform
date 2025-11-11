@@ -3,6 +3,9 @@ import PageLayout from '../components/PageLayout';
 import { AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import { ENERGY_COLORS, getSourceName, REGION_COLORS, getRegionColor } from '../utils/colors';
 import { downloadChartAsPNG, downloadDataAsCSV, ChartExportButtons } from '../utils/chartExport';
+import ChartFullscreenModal from '../components/ChartFullscreenModal';
+import FullscreenButton from '../components/FullscreenButton';
+import { useWindowSize } from '@react-hook/window-size';
 import AIChatbot from '../components/AIChatbot';
 
 const ENERGY_SOURCES = ['coal', 'oil', 'gas', 'nuclear', 'hydro', 'wind', 'solar', 'biofuels', 'other_renewables'];
@@ -21,8 +24,14 @@ const AVAILABLE_REGIONS = [
 ];
 
 export default function Regions() {
+  const [width] = useWindowSize();  // Dynamic window size for responsive charts
   const [regionalData, setRegionalData] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  // Fullscreen states
+  const [isFullscreenChart1, setIsFullscreenChart1] = useState(false);
+  const [isFullscreenChart2, setIsFullscreenChart2] = useState(false);
+  const [isFullscreenChart3, setIsFullscreenChart3] = useState(false);
 
   // Filter states
   const [selectedRegions, setSelectedRegions] = useState(['United States']);
@@ -231,6 +240,31 @@ export default function Regions() {
   const selectAllRegions = () => setSelectedRegions(AVAILABLE_REGIONS);
   const clearRegions = () => setSelectedRegions([]);
 
+  // Chart height functions
+  const getChart1Height = () => {
+    if (isFullscreenChart1) {
+      // Chart 1 has many controls (region selection, source filter, view mode toggle)
+      return width < 640 ? 250 : width < 1024 ? 350 : 450;
+    }
+    return 500;
+  };
+
+  const getChart2Height = () => {
+    if (isFullscreenChart2) {
+      // Chart 2 is simpler (no controls)
+      return width < 640 ? 350 : width < 1024 ? 500 : 650;
+    }
+    return 500;
+  };
+
+  const getChart3Height = () => {
+    if (isFullscreenChart3) {
+      // Chart 3 has controls (region selection, source selection, relative toggle)
+      return width < 640 ? 250 : width < 1024 ? 350 : 450;
+    }
+    return 500;
+  };
+
   if (loading) {
     return (
       <PageLayout>
@@ -291,12 +325,15 @@ export default function Regions() {
               Compare energy service demand evolution across selected regions
             </p>
           </div>
-          <ChartExportButtons
-            onDownloadPNG={() => downloadChartAsPNG('#chart-regional-timeseries', 'regional_energy_timeseries.png')}
-            onDownloadCSV={() => {
-              downloadDataAsCSV(chart1Data, 'regional_energy_timeseries.csv');
-            }}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={() => downloadChartAsPNG('#chart-regional-timeseries', 'regional_energy_timeseries.png')}
+              onDownloadCSV={() => {
+                downloadDataAsCSV(chart1Data, 'regional_energy_timeseries.csv');
+              }}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart1(true)} />
+          </div>
         </div>
 
         {/* Filter Controls */}
@@ -538,7 +575,7 @@ export default function Regions() {
           )}
         </div>
 
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width="100%" height={getChart1Height()}>
           <LineChart
             data={chart1Data}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
