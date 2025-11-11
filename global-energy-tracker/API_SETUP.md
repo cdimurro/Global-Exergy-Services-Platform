@@ -27,13 +27,13 @@ This application uses a secure backend proxy to protect the Anthropic API key fr
 2. Navigate to Settings → Environment Variables
 
 3. Add a new environment variable:
-   - **Name**: `ANTHROPIC_API_KEY`
+   - **Name**: `ANTHROPIC_API_KEY` (no VITE_ prefix!)
    - **Value**: Your Anthropic API key
    - **Environments**: Production, Preview, Development (check all)
 
 4. **Important**: Do NOT use the `VITE_` prefix for this variable. The API key should be server-side only.
 
-5. Redeploy your application for the changes to take effect
+5. After saving the environment variable, Vercel will automatically redeploy your application
 
 ### How It Works
 
