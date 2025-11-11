@@ -91,31 +91,27 @@ export default function InteractiveChart() {
 
     // If clicking an individual energy source (not fossil/clean), switch to individual mode
     if (sourceKey !== 'fossil' && sourceKey !== 'clean') {
-      // Use functional updates to avoid stale closure issues
-      setViewMode(currentMode => {
-        console.log('Current viewMode:', currentMode);
-        if (currentMode !== 'individual') {
-          // Switching from category to individual - replace selection
-          console.log('Replacing selection with:', [sourceKey]);
-          setSelectedSources([sourceKey]);
-          return 'individual';
-        } else {
-          // Already in individual mode - toggle sources
-          setSelectedSources(prev => {
-            if (prev.includes(sourceKey)) {
-              const newSources = prev.filter(s => s !== sourceKey);
-              const result = newSources.length > 0 ? newSources : [sourceKey];
-              console.log('Toggling off, new selection:', result);
-              return result;
-            } else {
-              const result = [...prev, sourceKey];
-              console.log('Toggling on, new selection:', result);
-              return result;
-            }
-          });
-          return currentMode; // Keep individual mode
-        }
-      });
+      if (viewMode !== 'individual') {
+        // Switching from category to individual - replace selection
+        console.log('Replacing selection with:', [sourceKey]);
+        setViewMode('individual');
+        setSelectedSources([sourceKey]);
+      } else {
+        // Already in individual mode - toggle sources
+        console.log('Already in individual mode, toggling source');
+        setSelectedSources(prev => {
+          if (prev.includes(sourceKey)) {
+            const newSources = prev.filter(s => s !== sourceKey);
+            const result = newSources.length > 0 ? newSources : [sourceKey];
+            console.log('Toggling off, new selection:', result);
+            return result;
+          } else {
+            const result = [...prev, sourceKey];
+            console.log('Toggling on, new selection:', result);
+            return result;
+          }
+        });
+      }
     } else {
       // For grouped fossil/clean mode
       setSelectedSources(prev =>
