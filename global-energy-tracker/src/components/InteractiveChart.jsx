@@ -87,25 +87,35 @@ export default function InteractiveChart() {
 
   // Toggle source selection
   const toggleSource = (sourceKey) => {
+    console.log('toggleSource called:', sourceKey, 'viewMode:', viewMode);
+
     // If clicking an individual energy source (not fossil/clean), switch to individual mode
     if (sourceKey !== 'fossil' && sourceKey !== 'clean') {
-      // If switching from a category mode to individual mode, replace selection
-      if (viewMode !== 'individual') {
-        setViewMode('individual');
-        setSelectedSources([sourceKey]);
-      } else {
-        // Already in individual mode, toggle the source
-        setSelectedSources(prev => {
-          if (prev.includes(sourceKey)) {
-            // If removing and it's the last one, keep at least one source
-            const newSources = prev.filter(s => s !== sourceKey);
-            return newSources.length > 0 ? newSources : [sourceKey];
-          } else {
-            // Add the source to existing selections
-            return [...prev, sourceKey];
-          }
-        });
-      }
+      // Use functional updates to avoid stale closure issues
+      setViewMode(currentMode => {
+        console.log('Current viewMode:', currentMode);
+        if (currentMode !== 'individual') {
+          // Switching from category to individual - replace selection
+          console.log('Replacing selection with:', [sourceKey]);
+          setSelectedSources([sourceKey]);
+          return 'individual';
+        } else {
+          // Already in individual mode - toggle sources
+          setSelectedSources(prev => {
+            if (prev.includes(sourceKey)) {
+              const newSources = prev.filter(s => s !== sourceKey);
+              const result = newSources.length > 0 ? newSources : [sourceKey];
+              console.log('Toggling off, new selection:', result);
+              return result;
+            } else {
+              const result = [...prev, sourceKey];
+              console.log('Toggling on, new selection:', result);
+              return result;
+            }
+          });
+          return currentMode; // Keep individual mode
+        }
+      });
     } else {
       // For grouped fossil/clean mode
       setSelectedSources(prev =>
@@ -193,8 +203,9 @@ export default function InteractiveChart() {
     const currentYear = changeData.find(d => d.year === label);
     if (!currentYear) return null;
 
-    // Calculate total absolute change across all sources shown
-    const totalAbsoluteChange = payload.reduce((sum, entry) => sum + Math.abs(entry.value), 0);
+    // Get the actual total energy services for this year from absoluteData
+    const yearAbsoluteData = absoluteData.find(d => d.year === label);
+    const totalEnergyServices = yearAbsoluteData ? yearAbsoluteData.total : 0;
 
     return (
       <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
@@ -205,9 +216,10 @@ export default function InteractiveChart() {
             const pctKey = `${sourceKey}_pct`;
             const pctValue = currentYear[pctKey];
 
-            // Calculate share based on absolute value
-            const sharePercent = totalAbsoluteChange > 0
-              ? (Math.abs(entry.value) / totalAbsoluteChange * 100)
+            // Calculate share of total energy services (not share of changes)
+            const currentSourceValue = yearAbsoluteData ? (yearAbsoluteData[sourceKey] || 0) : 0;
+            const sharePercent = totalEnergyServices > 0
+              ? (currentSourceValue / totalEnergyServices * 100)
               : 0;
 
             return (
