@@ -89,19 +89,23 @@ export default function InteractiveChart() {
   const toggleSource = (sourceKey) => {
     // If clicking an individual energy source (not fossil/clean), switch to individual mode
     if (sourceKey !== 'fossil' && sourceKey !== 'clean') {
-      setViewMode('individual');
-
-      // Toggle the source in selectedSources (allow multiple selections)
-      setSelectedSources(prev => {
-        if (prev.includes(sourceKey)) {
-          // If removing and it's the last one, keep at least one source
-          const newSources = prev.filter(s => s !== sourceKey);
-          return newSources.length > 0 ? newSources : [sourceKey];
-        } else {
-          // Add the source to existing selections
-          return [...prev, sourceKey];
-        }
-      });
+      // If switching from a category mode to individual mode, replace selection
+      if (viewMode !== 'individual') {
+        setViewMode('individual');
+        setSelectedSources([sourceKey]);
+      } else {
+        // Already in individual mode, toggle the source
+        setSelectedSources(prev => {
+          if (prev.includes(sourceKey)) {
+            // If removing and it's the last one, keep at least one source
+            const newSources = prev.filter(s => s !== sourceKey);
+            return newSources.length > 0 ? newSources : [sourceKey];
+          } else {
+            // Add the source to existing selections
+            return [...prev, sourceKey];
+          }
+        });
+      }
     } else {
       // For grouped fossil/clean mode
       setSelectedSources(prev =>
