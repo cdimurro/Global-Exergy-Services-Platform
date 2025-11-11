@@ -234,14 +234,6 @@ This is an open, data-driven project. We welcome contributions:
 - 📊 **Data updates**: Help keep the dataset current
 - 📝 **Documentation**: Improve explanations and methodology
 
-### Development Guidelines
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ---
 
 ## Known Limitations
@@ -308,14 +300,6 @@ Data Sources: Our World in Data Energy Dataset (2024)
 - **Rocky Mountain Institute (RMI)** for pioneering useful energy analysis
 - **Energy Institute** for primary energy statistics
 - **Recharts** team for excellent React charting library
-
----
-
-## Contact & Support
-
-- 📧 **Questions**: Open a GitHub issue
-- 💬 **Discussion**: Use GitHub Discussions
-- 🐦 **Updates**: Follow development progress in commit history
 
 ---
 
