@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine, Area, ComposedChart } from 'recharts';
 import { downloadChartAsPNG, ChartExportButtons } from '../utils/chartExport';
+import ChartFullscreenModal from './ChartFullscreenModal';
+import FullscreenButton from './FullscreenButton';
 
 export default function NetChangeTimeline() {
   const [timelineData, setTimelineData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const chartRef = useRef(null);
 
   useEffect(() => {
@@ -190,20 +193,10 @@ export default function NetChangeTimeline() {
     document.body.removeChild(link);
   };
 
-  return (
-    <div className="metric-card bg-white mb-16">
-      <div className="flex justify-between items-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800">
-          Historical Displacement & Net Change Timeline
-        </h2>
-        <ChartExportButtons
-          onDownloadPNG={downloadPNG}
-          onDownloadCSV={downloadCSV}
-        />
-      </div>
-
-      <div ref={chartRef}>
-        <ResponsiveContainer width="100%" height={500}>
+  // Render chart content (used in both normal and fullscreen modes)
+  const renderChartContent = () => (
+    <>
+      <ResponsiveContainer width="100%" height={isFullscreen ? 600 : 500}>
         <ComposedChart
           data={timelineData}
           margin={{ top: 20, right: 30, left: 30, bottom: 30 }}
@@ -284,7 +277,6 @@ export default function NetChangeTimeline() {
 
         </ComposedChart>
       </ResponsiveContainer>
-      </div>
 
       {/* Explanation */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -310,6 +302,46 @@ export default function NetChangeTimeline() {
       <div className="text-xs text-gray-500 text-center mt-4">
         Data sources: Our World in Data, BP Statistical Review
       </div>
-    </div>
+    </>
+  );
+
+  return (
+    <>
+      {/* Normal View */}
+      <div className="metric-card bg-white mb-16">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="text-3xl font-bold text-gray-800">
+            Historical Displacement & Net Change Timeline
+          </h2>
+          <div className="flex gap-2">
+            <FullscreenButton onClick={() => setIsFullscreen(true)} />
+            <ChartExportButtons
+              onDownloadPNG={downloadPNG}
+              onDownloadCSV={downloadCSV}
+            />
+          </div>
+        </div>
+
+        <div ref={chartRef}>
+          {renderChartContent()}
+        </div>
+      </div>
+
+      {/* Fullscreen View */}
+      <ChartFullscreenModal
+        isOpen={isFullscreen}
+        onClose={() => setIsFullscreen(false)}
+        title="Historical Displacement & Net Change Timeline"
+        description="Annual changes in energy services delivery"
+      >
+        <div className="flex justify-end mb-4">
+          <ChartExportButtons
+            onDownloadPNG={downloadPNG}
+            onDownloadCSV={downloadCSV}
+          />
+        </div>
+        {renderChartContent()}
+      </ChartFullscreenModal>
+    </>
   );
 }
