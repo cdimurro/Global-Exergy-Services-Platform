@@ -18,12 +18,14 @@ The Global Energy Services Tracker is a data visualization platform that reveals
 
 ### The Core Insight
 
-Most energy analysis focuses on **primary energy** (total energy extracted from sources like coal, oil, wind, etc.). But this misses a critical fact: **fossil fuels waste 60-70% of their energy as heat**, while clean energy sources are 90%+ efficient.
+Most energy analysis focuses on **primary energy** (total energy extracted from sources like coal, oil, wind, etc.). But this misses a critical fact: **fossil fuels waste 60-70% of their energy as heat**, while clean energy sources are 75-85% efficient.
 
 When we measure **useful energy services** (the actual work/heat/light delivered after accounting for conversion losses), the energy transition looks dramatically different:
-- **Fossil fuel dominance is even stronger** than it appears in primary energy terms
-- **Clean energy displacement is much slower** than headlines suggest
-- **Demand growth is accelerating**, making displacement even harder
+- **Fossil fuel dominance persists** - despite inherent inefficiency, fossils still provide 81% of global useful energy services (2024)
+- **Clean energy's efficiency advantage is masked** by primary energy accounting, which overstates fossil input
+- **Demand growth is accelerating**, requiring even more clean energy deployment to offset fossil use
+
+**Understanding the Primary Energy Fallacy**: Primary energy accounting overstates fossil fuel input because it counts all the energy that gets wasted as heat. When measuring useful energy services delivered, clean energy's efficiency advantage becomes clear - a unit of clean electricity delivers far more useful work than a unit of fossil fuel. However, this doesn't mean fossils are less dominant in absolute terms; it means they require more primary input to deliver the same services.
 
 This platform provides the first comprehensive, public-facing visualization of this reality.
 

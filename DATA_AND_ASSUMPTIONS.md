@@ -37,12 +37,12 @@ EFFICIENCY_FACTORS = {
     'coal': 0.32,              # 32% - Thermal power plants + conversion losses
     'oil': 0.30,               # 30% - Internal combustion engines, refining
     'gas': 0.50,               # 50% - Combined cycle plants, direct heating
-    'nuclear': 0.90,           # 90% - Modern reactors, minimal transmission loss
-    'hydro': 0.90,             # 90% - Direct mechanical → electrical conversion
-    'wind': 0.90,              # 90% - Direct electrical generation
-    'solar': 0.90,             # 90% - Direct electrical generation
+    'nuclear': 0.25,           # 25% - Thermal plant (33%) × T&D (90%) × end-use (85%)
+    'hydro': 0.85,             # 85% - Minimal conversion losses, some T&D
+    'wind': 0.75,              # 75% - Direct electrical generation with T&D losses
+    'solar': 0.75,             # 75% - Direct electrical generation with T&D losses
     'biofuels': 0.28,          # 28% - Similar to oil (combustion engines)
-    'other_renewables': 0.90   # 90% - Geothermal, wave, tidal (mostly thermal/electric)
+    'geothermal': 0.75         # 75% - Direct heat/electricity with minimal losses
 }
 ```
 
@@ -90,53 +90,58 @@ EFFICIENCY_FACTORS = {
 
 #### Clean Energy (High Efficiency)
 
-**Nuclear: 90%**
-- Modern reactors: 33-37% thermal efficiency
-- BUT: IEA methodology counts nuclear as **electrical output**, not thermal input
-- Since we're measuring useful energy (electricity), nuclear is ~90% efficient
-- Transmission losses: ~6-8%
-- Net: ~90%
+**Nuclear: 25%**
+- Thermal accounting methodology:
+  - Modern reactors: 33% thermal-to-electric efficiency (heat to electricity)
+  - Transmission & distribution losses: 10% (90% × 0.33 = 0.297)
+  - End-use losses: 15% (85% × 0.297 = 0.252)
+  - Net system efficiency: **25%**
+- **Rationale**: Unlike wind/solar (which convert renewable flows), nuclear is a thermal plant that must obey Carnot cycle limits. Proper thermal accounting treats it like fossil thermal plants.
 - **Sources**:
-  - IEA direct equivalent methodology for nuclear
-  - World Nuclear Association efficiency data
+  - IEA Energy Efficiency Indicators (EEI) 2024
+  - World Nuclear Association thermal efficiency data
 
-**Hydro: 90%**
-- Turbine efficiency: 85-90%
-- Minimal conversion losses (mechanical → electrical)
-- Transmission losses: ~6-8%
-- Net: ~90%
+**Hydro: 85%**
+- Turbine efficiency: 85-95% (mechanical → electrical)
+- Minimal conversion losses (direct mechanical energy)
+- Transmission & distribution losses: 10%
+- Net: 85% × 90% = **85%** (rounded)
 - **Sources**:
   - U.S. Bureau of Reclamation: Hydro turbine efficiency
-  - Direct electrical generation
+  - IEA EEI 2024
 
-**Wind: 90%**
-- Modern turbines: 35-45% of wind energy captured
-- Direct electrical generation
-- Transmission losses: ~6-8%
-- Net to end user: ~90% of electricity generated
+**Wind: 75%**
+- Direct electrical generation from wind turbines
+- Inverter/converter losses: ~5%
+- Transmission & distribution losses: ~10%
+- End-use appliance losses: ~15%
+- Net: 95% × 90% × 85% = **75%** (rounded)
 - **Sources**:
   - NREL (National Renewable Energy Laboratory)
-  - Wind turbine manufacturer specs
+  - IEA EEI 2024
 
-**Solar: 90%**
-- Panel efficiency: 15-22% of solar irradiance
-- Inverter losses: ~3-5%
-- Transmission losses: ~6-8%
-- Net to end user: ~90% of electricity generated
+**Solar: 75%**
+- Direct electrical generation from solar panels
+- Inverter losses: ~5%
+- Transmission & distribution losses: ~10%
+- End-use appliance losses: ~15%
+- Net: 95% × 90% × 85% = **75%** (rounded)
 - **Sources**:
   - NREL PV efficiency data
-  - Similar to wind in direct electrical generation
+  - IEA EEI 2024
 
-**Other Renewables (Geothermal, etc.): 90%**
-- Geothermal power: ~10-20% thermal efficiency, but similar methodology to nuclear
-- Direct heat applications: ~80-90% efficiency
-- Weighted conservative estimate: 90%
-- **Sources**: Geothermal Energy Association data
+**Geothermal: 75%**
+- Direct heat/electricity generation
+- Conversion losses: ~10-15%
+- Transmission losses: ~10-15%
+- Net: **75%** (conservative estimate)
+- **Sources**: Geothermal Energy Association, IEA EEI 2024
 
 ### Key Insight: The Efficiency Gap
 
-- **Fossil fuels average**: ~32-35% efficient (68% wasted as heat)
-- **Clean electricity**: ~90% efficient (10% transmission losses)
+- **Fossil fuels average**: ~32-35% efficient (65-68% wasted as heat)
+- **Clean electricity (wind/solar/hydro)**: ~75-85% efficient (15-25% losses)
+- **Nuclear (thermal)**: ~25% efficient (75% wasted as heat, like fossils)
 - **Ratio**: Clean energy is **2.5-3× more efficient** per unit of primary energy
 
 This is why primary energy statistics **systematically overstate** the fossil fuel challenge and **understate** clean energy's effectiveness.

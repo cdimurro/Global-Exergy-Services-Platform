@@ -48,19 +48,24 @@ export default function Methodology() {
               Why Efficiency Changes Everything
             </h2>
             <p className="mb-4">
-              Fossil fuels are incredibly inefficient. Most of the energy they contain is lost as waste heat during combustion and conversion. Clean electricity, on the other hand, delivers nearly all its energy as useful work.
+              Fossil fuels are incredibly inefficient. Most of the energy they contain is lost as waste heat during combustion and conversion. Clean electricity delivers far more useful energy, though transmission and end-use losses still apply.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4">
-              <p className="font-semibold text-gray-800 mb-2">Efficiency by Source:</p>
+              <p className="font-semibold text-gray-800 mb-2">Efficiency by Source (System-Wide):</p>
               <ul className="space-y-2 ml-4">
-                <li>• Oil (cars, trucks, planes): <strong>~30% efficient</strong></li>
-                <li>• Natural Gas (heating, power): <strong>~50% efficient</strong></li>
                 <li>• Coal (power plants): <strong>~32% efficient</strong></li>
-                <li>• Electricity (all clean sources): <strong>~90% efficient</strong></li>
+                <li>• Oil (combustion engines): <strong>~30% efficient</strong></li>
+                <li>• Natural Gas (heating, power): <strong>~50% efficient</strong></li>
+                <li>• Nuclear (thermal plants): <strong>~25% efficient</strong></li>
+                <li>• Hydro (mechanical): <strong>~85% efficient</strong></li>
+                <li>• Wind & Solar (direct electricity): <strong>~75% efficient</strong></li>
               </ul>
             </div>
+            <p className="mb-4">
+              <strong>Note on Nuclear:</strong> Nuclear power plants are thermal systems that obey Carnot cycle limits (~33% thermal efficiency), similar to coal plants. After accounting for transmission and end-use losses, the system-wide efficiency is ~25%. This is why useful energy accounting treats nuclear differently from wind/solar, which convert renewable flows directly to electricity.
+            </p>
             <p>
-              This efficiency gap is why electrification is so powerful. When we replace a fossil fuel service with an electric one, we need 3x less energy to accomplish the same work. This is the secret weapon of the energy transition.
+              This efficiency gap is why electrification is so powerful. When we replace a fossil fuel service with renewable electricity (wind/solar), we need 2-3x less primary energy to accomplish the same work. This is the efficiency advantage of the energy transition.
             </p>
           </section>
 

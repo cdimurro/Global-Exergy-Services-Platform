@@ -2,18 +2,28 @@ import pandas as pd
 import json
 from pathlib import Path
 
-# Define efficiency factors (same as global calculations)
-EFFICIENCY_FACTORS = {
-    'coal': 0.32,
-    'oil': 0.30,
-    'gas': 0.50,
-    'nuclear': 0.90,
-    'hydro': 0.90,
-    'wind': 0.90,
-    'solar': 0.90,
-    'biofuels': 0.28,
-    'other_renewables': 0.90
-}
+def load_efficiency_factors():
+    """Load efficiency factors from corrected JSON file"""
+    efficiency_path = Path('../global-energy-tracker/data-pipeline/efficiency_factors_corrected.json')
+    with open(efficiency_path, 'r') as f:
+        factors_data = json.load(f)
+
+    # Map JSON keys to expected source names
+    system_factors = factors_data['system_wide_efficiency']
+    return {
+        'coal': system_factors['coal'],
+        'oil': system_factors['oil'],
+        'gas': system_factors['gas'],
+        'nuclear': system_factors['nuclear'],
+        'hydro': system_factors['hydro'],
+        'wind': system_factors['wind'],
+        'solar': system_factors['solar'],
+        'biofuels': system_factors['biomass'],  # biomass -> biofuels
+        'other_renewables': system_factors.get('geothermal', 0.75)  # Use geothermal as default
+    }
+
+# Load efficiency factors from corrected file (nuclear: 0.25, wind/solar: 0.75, hydro: 0.85)
+EFFICIENCY_FACTORS = load_efficiency_factors()
 
 # Define regions and their constituent countries
 # Using major world regions + economic groupings + key countries
