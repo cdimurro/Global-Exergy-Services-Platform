@@ -751,15 +751,18 @@ export default function Regions() {
               Clean energy share and overall efficiency across all regions
             </p>
           </div>
-          <ChartExportButtons
-            onDownloadPNG={() => downloadChartAsPNG('#chart-regional-comparison', 'regional_comparison_2024.png')}
-            onDownloadCSV={() => {
-              downloadDataAsCSV(chart2Data, 'regional_comparison_2024.csv');
-            }}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={() => downloadChartAsPNG('#chart-regional-comparison', 'regional_comparison_2024.png')}
+              onDownloadCSV={() => {
+                downloadDataAsCSV(chart2Data, 'regional_comparison_2024.csv');
+              }}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart2(true)} />
+          </div>
         </div>
 
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width="100%" height={getChart2Height()}>
           <BarChart
             data={chart2Data}
             margin={{ top: 20, right: 30, left: 20, bottom: 80 }}
@@ -816,12 +819,15 @@ export default function Regions() {
               Detailed energy source breakdown over time for selected region
             </p>
           </div>
-          <ChartExportButtons
-            onDownloadPNG={() => downloadChartAsPNG('#chart-energy-mix', `${selectedRegionForMix}_energy_mix.png`)}
-            onDownloadCSV={() => {
-              downloadDataAsCSV(chart3Data, `${selectedRegionForMix}_energy_mix.csv`);
-            }}
-          />
+          <div className="flex gap-2">
+            <ChartExportButtons
+              onDownloadPNG={() => downloadChartAsPNG('#chart-energy-mix', `${selectedRegionForMix}_energy_mix.png`)}
+              onDownloadCSV={() => {
+                downloadDataAsCSV(chart3Data, `${selectedRegionForMix}_energy_mix.csv`);
+              }}
+            />
+            <FullscreenButton onClick={() => setIsFullscreenChart3(true)} />
+          </div>
         </div>
 
         <div className="flex items-center justify-between mb-4">
@@ -858,7 +864,7 @@ export default function Regions() {
           </div>
         </div>
 
-        <ResponsiveContainer width="100%" height={500}>
+        <ResponsiveContainer width="100%" height={getChart3Height()}>
           <AreaChart
             data={chart3Data}
             margin={{ top: 20, right: 30, left: 20, bottom: 20 }}

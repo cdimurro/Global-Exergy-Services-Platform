@@ -581,7 +581,7 @@ export default function SectoralEnergyGrowth() {
                 value: showRelative ? 'Share of Total Energy (%)' : 'Useful Energy (EJ)',
                 angle: -90,
                 position: 'insideLeft',
-                style={{ fontSize: 17, fontWeight: 600 }
+                style: { fontSize: 17, fontWeight: 600 }
               }}
             />
             <Tooltip content={<CustomTooltip />} />

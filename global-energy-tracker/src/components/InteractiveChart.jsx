@@ -90,28 +90,20 @@ export default function InteractiveChart() {
 
   // Toggle source selection
   const toggleSource = (sourceKey) => {
-    console.log('toggleSource called:', sourceKey, 'viewMode:', viewMode);
-
     // If clicking an individual energy source (not fossil/clean), switch to individual mode
     if (sourceKey !== 'fossil' && sourceKey !== 'clean') {
       if (viewMode !== 'individual') {
         // Switching from category to individual - replace selection
-        console.log('Replacing selection with:', [sourceKey]);
         setViewMode('individual');
         setSelectedSources([sourceKey]);
       } else {
         // Already in individual mode - toggle sources
-        console.log('Already in individual mode, toggling source');
         setSelectedSources(prev => {
           if (prev.includes(sourceKey)) {
             const newSources = prev.filter(s => s !== sourceKey);
-            const result = newSources.length > 0 ? newSources : [sourceKey];
-            console.log('Toggling off, new selection:', result);
-            return result;
+            return newSources.length > 0 ? newSources : [sourceKey];
           } else {
-            const result = [...prev, sourceKey];
-            console.log('Toggling on, new selection:', result);
-            return result;
+            return [...prev, sourceKey];
           }
         });
       }

@@ -184,13 +184,10 @@ export default function EnergySupply() {
 
   // Filter toggle functions
   const toggleSource = (source) => {
-    console.log('toggleSource called with:', source, 'current viewMode:', viewMode, 'current selectedSources:', selectedSources);
-
     // If clicking an individual energy source (not fossil/clean), switch to individual mode
     if (source !== 'fossil' && source !== 'clean') {
       // If switching from a category mode to individual mode, replace selection
       if (viewMode !== 'individual') {
-        console.log('Switching to individual mode, setting selectedSources to:', [source]);
         setViewMode('individual');
         setSelectedSources([source]);
       } else {
@@ -199,14 +196,10 @@ export default function EnergySupply() {
           if (prev.includes(source)) {
             // If removing and it's the last one, keep at least one source
             const newSources = prev.filter(s => s !== source);
-            const result = newSources.length > 0 ? newSources : [source];
-            console.log('Removing source, new selectedSources:', result);
-            return result;
+            return newSources.length > 0 ? newSources : [source];
           } else {
             // Add the source
-            const result = [...prev, source];
-            console.log('Adding source, new selectedSources:', result);
-            return result;
+            return [...prev, source];
           }
         });
       }
