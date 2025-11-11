@@ -280,7 +280,7 @@ export default function InteractiveChart() {
             domain={showRelative ? [0, 100] : [0, 'auto']}
             ticks={showRelative ? [0, 25, 50, 75, 100] : undefined}
             label={{
-              value: showRelative ? 'Share of Total Energy (%)' : 'Useful Energy (EJ)',
+              value: showRelative ? 'Share of Total Energy (%)' : 'Global Useful Energy (EJ)',
               angle: -90,
               position: 'insideLeft',
               style: { fontSize: 17, fontWeight: 600 }
@@ -308,10 +308,10 @@ export default function InteractiveChart() {
       const yAxisMin = -yAxisMax;
 
       return (
-        <LineChart data={chartData} margin={{ top: 20, right: 40, left: 20, bottom: 20 }}>
+        <LineChart data={chartData} margin={{ top: 20, right: 40, left: 60, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
           <XAxis dataKey="year" tick={{ fontSize: 15 }} interval="preserveStartEnd" height={60} />
-          <YAxis tick={{ fontSize: 15 }} width={80} domain={[yAxisMin, yAxisMax]} label={{ value: 'Change in Energy Services (EJ)', angle: -90, position: 'insideLeft', style: { fontSize: 17, fontWeight: 600 } }} />
+          <YAxis tick={{ fontSize: 15 }} width={80} domain={[yAxisMin, yAxisMax]} label={{ value: 'Change in Global Energy Services (EJ)', angle: -90, position: 'insideLeft', style: { fontSize: 17, fontWeight: 600 } }} />
           <Tooltip content={<ChangeTooltip />} />
           <ReferenceLine y={0} stroke="#000" strokeWidth={2} />
           {viewMode === 'grouped' ? (
@@ -513,13 +513,13 @@ export default function InteractiveChart() {
       </div>
 
       {/* Chart Display */}
-      <div id="interactive-chart-container" className="w-full">
+      <div id="interactive-chart-container" className="w-full pb-8">
         <ResponsiveContainer width="100%" height={width < 640 ? 300 : width < 768 ? 450 : 600}>
           {renderChart()}
         </ResponsiveContainer>
 
         {/* Data Sources */}
-        <ChartSources sources={sources} />
+        <ChartSources sources={sources} className="mt-2" />
       </div>
 
       {/* Selected Sources Legend */}

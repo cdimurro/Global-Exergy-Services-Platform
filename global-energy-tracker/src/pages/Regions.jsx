@@ -281,7 +281,7 @@ export default function Regions() {
       </div>
 
       {/* Chart 1: Regional Energy Services Over Time */}
-      <div className="metric-card bg-white mb-8" id="chart-regional-timeseries">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-regional-timeseries">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
@@ -704,7 +704,7 @@ export default function Regions() {
       </div>
 
       {/* Chart 2: Regional Clean Energy Transition Comparison (2024) */}
-      <div className="metric-card bg-white mb-8" id="chart-regional-comparison">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-regional-comparison">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
@@ -769,7 +769,7 @@ export default function Regions() {
       </div>
 
       {/* Chart 3: Energy Mix Evolution for Selected Region */}
-      <div className="metric-card bg-white mb-8" id="chart-energy-mix">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-energy-mix">
         <div className="flex justify-between items-center mb-6">
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-800 mb-1">

@@ -111,7 +111,7 @@ export const ChartSources = ({ sources, className = '' }) => {
     : `Sources: ${sources.join(', ')}`;
 
   return (
-    <div className={`text-xs text-gray-500 mt-4 ${className}`}>
+    <div className={`text-xs text-gray-500 mt-2 ${className}`}>
       {sourceText}
     </div>
   );

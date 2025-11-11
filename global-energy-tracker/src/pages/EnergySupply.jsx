@@ -275,7 +275,7 @@ export default function EnergySupply() {
       </div>
 
       {/* Chart 1: Wasted Energy Over Time by Source */}
-      <div className="metric-card bg-white mb-8" id="chart-waste-time">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-waste-time">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
@@ -469,7 +469,7 @@ export default function EnergySupply() {
       </div>
 
       {/* Chart 2: Global Energy System Efficiency Over Time */}
-      <div className="metric-card bg-white mb-8" id="chart-efficiency-time">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-efficiency-time">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
@@ -542,7 +542,7 @@ export default function EnergySupply() {
       </div>
 
       {/* Chart 1: Primary vs. Useful Bar Chart (2024 Snapshot) */}
-      <div className="metric-card bg-white mb-8" id="chart-primary-useful-2024">
+      <div className="metric-card bg-white mb-8 pb-8" id="chart-primary-useful-2024">
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
