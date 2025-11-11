@@ -306,43 +306,43 @@ export default function EnergySupply() {
           <label className="block text-lg font-semibold mb-3 text-gray-700">
             Select Energy Sources
           </label>
-          <div className="flex flex-wrap gap-2 mb-3">
+          <div className="flex flex-wrap gap-2 mb-2">
             <button
               onClick={selectAllSources}
-              className={`px-4 py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                 viewMode === 'allSources'
                   ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
               All Sources
             </button>
             <button
               onClick={selectGrouped}
-              className={`px-4 py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                 viewMode === 'grouped'
                   ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
               Fossil vs Clean
             </button>
             <button
               onClick={selectAllFossil}
-              className={`px-4 py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                 viewMode === 'allFossil'
                   ? 'bg-red-600 text-white ring-2 ring-red-600 ring-offset-2'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
               All Fossil Sources
             </button>
             <button
               onClick={selectAllClean}
-              className={`px-4 py-2.5 rounded-lg font-medium transition-all text-sm md:text-base ${
+              className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                 viewMode === 'allClean'
                   ? 'bg-green-600 text-white ring-2 ring-green-600 ring-offset-2'
-                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
               All Clean Sources
@@ -354,7 +354,7 @@ export default function EnergySupply() {
               <button
                 key={source}
                 onClick={() => toggleSource(source)}
-                className={`px-4 py-2.5 rounded-lg font-medium transition-all text-sm ${
+                className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                   selectedSources.includes(source) && viewMode === 'individual'
                     ? 'text-white ring-2 ring-offset-2'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
