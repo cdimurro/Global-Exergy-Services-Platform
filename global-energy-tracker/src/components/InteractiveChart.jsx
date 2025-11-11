@@ -383,10 +383,11 @@ export default function InteractiveChart() {
 
   const sources = ['Energy Institute Statistical Review 2024', 'RMI Inefficiency Trap 2023'];
 
-  // Responsive chart heights: 500px (mobile), 700px (tablet), 1000px (desktop)
+  // Responsive chart heights: adjusted for fullscreen to fit without scrolling
+  // In fullscreen, account for controls, title, and legend taking up ~250-300px
   const getChartHeight = () => {
     if (isFullscreen) {
-      return width < 640 ? 500 : width < 1024 ? 700 : 1000;
+      return width < 640 ? 350 : width < 1024 ? 450 : 550;
     }
     return width < 640 ? 300 : width < 768 ? 450 : 600;
   };
