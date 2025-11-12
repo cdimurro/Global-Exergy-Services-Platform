@@ -66,6 +66,8 @@ export default function NetChangeTimeline() {
         fossilGrowth,
         netChange,
         cleanGrowth,
+        totalEnergyGrowth,
+        efficiencySavings,
         totalFossil: curr.fossil_services_ej,
         totalClean: curr.clean_services_ej,
         isPeak: displacement >= fossilGrowth,
@@ -95,6 +97,16 @@ export default function NetChangeTimeline() {
         <div className="font-bold text-lg mb-3 text-gray-900">{label}</div>
 
         <div className="space-y-2">
+          {/* Energy Services Demand */}
+          <div className="flex justify-between items-center gap-6">
+            <span className="text-xs font-semibold text-red-700">Energy Services Demand</span>
+            <div className="text-right">
+              <div className="text-sm font-bold text-red-700">
+                {data.totalEnergyGrowth > 0 ? '+' : ''}{data.totalEnergyGrowth.toFixed(2)} EJ
+              </div>
+            </div>
+          </div>
+
           {/* Clean Displacement */}
           <div className="flex justify-between items-center gap-6">
             <span className="text-xs font-semibold text-green-700">Clean Displacement</span>
@@ -108,15 +120,12 @@ export default function NetChangeTimeline() {
             </div>
           </div>
 
-          {/* Fossil Fuel Growth */}
+          {/* Efficiency Savings */}
           <div className="flex justify-between items-center gap-6">
-            <span className="text-xs font-semibold text-red-700">Fossil Fuel Growth</span>
+            <span className="text-xs font-semibold text-blue-700">Efficiency Savings</span>
             <div className="text-right">
-              <div className="text-sm font-bold text-red-700">
-                {data.fossilGrowth > 0 ? '+' : ''}{data.fossilGrowth.toFixed(2)} EJ
-              </div>
-              <div className="text-xs text-red-600">
-                {data.fossilGrowthPercent > 0 ? '+' : ''}{data.fossilGrowthPercent.toFixed(2)}%
+              <div className="text-sm font-bold text-blue-700">
+                {data.efficiencySavings > 0 ? '+' : ''}{data.efficiencySavings.toFixed(2)} EJ
               </div>
             </div>
           </div>
@@ -127,7 +136,7 @@ export default function NetChangeTimeline() {
               <span className="text-xs font-semibold text-gray-700">Net Change</span>
               <div className="text-right">
                 <div className={`text-base font-bold ${data.netChange > 0 ? 'text-red-700' : 'text-green-700'}`}>
-                  {data.netChange > 0 ? '+' : ''}{data.netChange.toFixed(2)} EJ
+                  {data.netChange > 0 ? '+' : ''}{data.netChange.toFixed(4)} EJ
                 </div>
                 <div className={`text-xs ${data.netChange > 0 ? 'text-red-600' : 'text-green-600'}`}>
                   {data.netChangePercent > 0 ? '+' : ''}{data.netChangePercent.toFixed(2)}%
@@ -264,29 +273,38 @@ export default function NetChangeTimeline() {
           {/* Main lines */}
           <Line
             type="monotone"
+            dataKey="totalEnergyGrowth"
+            stroke="#DC2626"
+            strokeWidth={2.5}
+            dot={false}
+            activeDot={{ r: 6, fill: '#DC2626' }}
+            name="Energy Services Demand"
+          />
+          <Line
+            type="monotone"
             dataKey="displacement"
             stroke="#16A34A"
             strokeWidth={2.5}
             dot={false}
             activeDot={{ r: 6, fill: '#16A34A' }}
-            name="Displacement (D)"
+            name="Clean Displacement"
           />
           <Line
             type="monotone"
-            dataKey="fossilGrowth"
-            stroke="#DC2626"
+            dataKey="efficiencySavings"
+            stroke="#2563EB"
             strokeWidth={2.5}
             dot={false}
-            activeDot={{ r: 6, fill: '#DC2626' }}
-            name="Fossil Fuel Growth"
+            activeDot={{ r: 6, fill: '#2563EB' }}
+            name="Efficiency Savings"
           />
           <Line
             type="monotone"
             dataKey="netChange"
-            stroke="#7C3AED"
+            stroke="#9333EA"
             strokeWidth={3}
             dot={false}
-            activeDot={{ r: 6, fill: '#7C3AED' }}
+            activeDot={{ r: 6, fill: '#9333EA' }}
             name="Net Change"
             strokeDasharray="5 5"
           />
@@ -295,23 +313,29 @@ export default function NetChangeTimeline() {
       </ResponsiveContainer>
 
       {/* Explanation */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 bg-green-50 rounded-lg border-l-2 border-green-600">
-          <div className="font-semibold text-green-800 mb-2">Displacement (D)</div>
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-4 bg-red-50 rounded-lg border-l-2 border-red-600">
+          <div className="font-semibold text-red-800 mb-2">Energy Services Demand</div>
           <div className="text-sm text-gray-700">
-            Rate at which clean energy replaces fossil fuels (EJ/year)
+            The net change in demand for new energy services (EJ/year)
           </div>
         </div>
-        <div className="p-4 bg-red-50 rounded-lg border-l-2 border-red-600">
-          <div className="font-semibold text-red-800 mb-2">Fossil Fuel Growth</div>
+        <div className="p-4 bg-green-50 rounded-lg border-l-2 border-green-600">
+          <div className="font-semibold text-green-800 mb-2">Clean Displacement</div>
           <div className="text-sm text-gray-700">
-            Annual change in fossil fuel services (EJ/year)
+            Amount of fossil fuel consumption replaced by clean energy growth (EJ/year)
+          </div>
+        </div>
+        <div className="p-4 bg-blue-50 rounded-lg border-l-2 border-blue-600">
+          <div className="font-semibold text-blue-800 mb-2">Efficiency Savings</div>
+          <div className="text-sm text-gray-700">
+            Reduction in fossil fuel consumption from efficiency improvements (EJ/year)
           </div>
         </div>
         <div className="p-4 bg-purple-50 rounded-lg border-l-2 border-purple-600">
           <div className="font-semibold text-purple-800 mb-2">Net Change</div>
           <div className="text-sm text-gray-700">
-            Fossil Growth - Displacement. Shows the net impact on fossil consumption after clean energy displacement. Negative means fossil is actually declining.
+            Demand - Clean Displacement - Efficiency Savings. Shows net fossil fuel consumption change. Negative means fossil is declining.
           </div>
         </div>
       </div>
