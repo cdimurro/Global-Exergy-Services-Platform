@@ -357,7 +357,7 @@ export default function DisplacementTracker() {
               {getStatusText(currentData.status, currentData.period)}
             </div>
             <div className="text-sm text-gray-600">
-              Net Change: {currentData.netChange > 0 ? '+' : ''}{currentData.netChange.toFixed(2)} EJ
+              Net Change: {currentData.netChange > 0 ? '+' : ''}{currentData.netChange.toFixed(4)} EJ
             </div>
           </div>
 
@@ -407,7 +407,7 @@ export default function DisplacementTracker() {
               Net Change in Fossil Fuel Consumption
             </div>
             <div className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900">
-              {currentData.netChange > 0 ? '+' : ''}{currentData.netChange.toFixed(2)}
+              {currentData.netChange > 0 ? '+' : ''}{currentData.netChange.toFixed(4)}
               <span className="text-base sm:text-xl md:text-2xl ml-1 sm:ml-2 text-gray-500">EJ</span>
             </div>
             <div className="text-base sm:text-lg font-semibold text-red-600 mt-2">
