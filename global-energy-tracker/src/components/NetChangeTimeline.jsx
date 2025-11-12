@@ -66,6 +66,8 @@ export default function NetChangeTimeline() {
         displacementNegative: -displacement, // Show as negative for visualization
         fossilGrowth,
         netChange,
+        netChangePositive: netChange > 0 ? netChange : 0, // Positive values only
+        netChangeNegative: netChange < 0 ? netChange : 0, // Negative values only
         cleanGrowth,
         totalEnergyGrowth,
         efficiencySavings,
@@ -229,15 +231,6 @@ export default function NetChangeTimeline() {
           data={timelineData}
           margin={{ top: 20, right: 30, left: 30, bottom: 30 }}
         >
-          <defs>
-            {/* Conditional fill for Net Change based on positive/negative */}
-            <linearGradient id="netChangeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity={0.6} />
-              <stop offset="50%" stopColor="#DC2626" stopOpacity={0.6} />
-              <stop offset="50%" stopColor="#16A34A" stopOpacity={0.6} />
-              <stop offset="100%" stopColor="#16A34A" stopOpacity={0.6} />
-            </linearGradient>
-          </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis
             dataKey="year"
@@ -299,15 +292,25 @@ export default function NetChangeTimeline() {
             name="Efficiency Savings"
           />
 
-          {/* Net Change as area with conditional fill */}
+          {/* Net Change split into positive (red) and negative (green) areas */}
           <Area
             type="monotone"
-            dataKey="netChange"
+            dataKey="netChangePositive"
             stroke="#9333EA"
             strokeWidth={3}
-            fill="url(#netChangeGradient)"
+            fill="#DC2626"
+            fillOpacity={0.6}
             name="Net Change"
-            fillOpacity={1}
+          />
+          <Area
+            type="monotone"
+            dataKey="netChangeNegative"
+            stroke="#9333EA"
+            strokeWidth={3}
+            fill="#16A34A"
+            fillOpacity={0.6}
+            name="Net Change"
+            legendType="none"
           />
 
         </ComposedChart>
