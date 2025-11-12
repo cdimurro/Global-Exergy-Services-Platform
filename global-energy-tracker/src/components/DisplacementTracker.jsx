@@ -164,11 +164,13 @@ export default function DisplacementTracker() {
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
+      // Use 4 decimal places for Net Change, 2 for others
+      const decimals = data.name === 'Net Change' ? 4 : 2;
       return (
         <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
           <p className="font-bold text-gray-800 mb-2">{data.label}</p>
           <p className="text-sm text-gray-700">
-            Annual Change: {data.value > 0 ? '+' : ''}{data.value.toFixed(4)} EJ ({data.percent > 0 ? '+' : ''}{data.percent.toFixed(2)}%)
+            Annual Change: {data.value > 0 ? '+' : ''}{data.value.toFixed(decimals)} EJ ({data.percent > 0 ? '+' : ''}{data.percent.toFixed(2)}%)
           </p>
         </div>
       );
