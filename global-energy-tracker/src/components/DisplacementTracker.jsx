@@ -145,6 +145,13 @@ export default function DisplacementTracker() {
       label: 'Fossil Fuel Growth'
     },
     {
+      name: 'Efficiency Savings',
+      value: Math.max(0, currentData.efficiencySavings),
+      percent: currentData.efficiencySavings / (currentData.fossilGrowth || 1) * 100,
+      color: '#10B981',
+      label: 'Efficiency Savings'
+    },
+    {
       name: 'Net Change',
       value: currentData.netChange,
       percent: currentData.netChangePercent,
@@ -365,6 +372,10 @@ export default function DisplacementTracker() {
               <span className="text-sm font-medium text-gray-700">Fossil Fuel Growth</span>
             </div>
             <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#10B981' }}></div>
+              <span className="text-sm font-medium text-gray-700">Efficiency Savings</span>
+            </div>
+            <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded" style={{ backgroundColor: '#9333EA' }}></div>
               <span className="text-sm font-medium text-gray-700">Net Change</span>
             </div>
@@ -438,10 +449,10 @@ export default function DisplacementTracker() {
           <div className="border-l-4 border-red-600 pl-4">
             <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
           </div>
-          <div className="border-l-4 border-blue-600 pl-4">
+          <div className="border-l-4 border-green-600 pl-4">
             <strong>Efficiency Savings:</strong> The reduction in fossil fuel consumption achieved through improvements in energy efficiency, measured by changes in global exergy efficiency over time.
           </div>
-          <div className="border-l-4 border-gray-600 pl-4">
+          <div className="border-l-4 border-purple-600 pl-4">
             <strong>Net Change:</strong> The difference in the amount of fossil fuel consumption after accounting for displacement and efficiency savings in a given year.
           </div>
         </div>

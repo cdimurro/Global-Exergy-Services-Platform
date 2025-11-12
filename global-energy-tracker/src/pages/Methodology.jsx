@@ -68,7 +68,7 @@ export default function Methodology() {
               We need to start measuring energy consumption based on the actual energy services provided, because that is what matters to society, not how many BTUs are in a given amount of coal.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4">
-              <p className="font-semibold text-gray-800 mb-2">System-Wide Efficiency by Source:</p>
+              <p className="font-semibold text-gray-800 mb-2">System-Wide Efficiency Measurements by Source:</p>
               <ul className="space-y-2 ml-4">
                 <li>• Coal (power plants): <strong>~32% efficient</strong></li>
                 <li>• Oil (combustion engines): <strong>~30% efficient</strong></li>
@@ -79,10 +79,10 @@ export default function Methodology() {
               </ul>
             </div>
             <p className="mb-4">
-              <strong>Exergy Quality Factors:</strong> Many people are unaware that energy has both a quantity and quality to it. In order to accurately calculate the quantity, it's important to account for the thermodynamic quality, also known as <strong>exergy</strong>. Electricity has 100% quality for example, because it can be used to do any work, but low-temperature heat has a quality of ~20% because it can only be used to perform some work. This gives clean sources an additional advantage. Wind, and solar deliver high-quality electricity (exergy 1.0) while using natural gas for heating delivers low-quality heat (exergy 0.2-0.5).
+              <strong>Exergy Quality Factors:</strong> Many people are unaware of the fact that energy has both a quantity and quality to it. In order to accurately calculate the quantity of energy, it's important to also account for the thermodynamic quality, which is known as <strong>exergy</strong>. Electricity has 100% quality, because it can be used to do any work, but low-temperature heat has a quality of ~20% because it can only be used to perform some work (you can't make steel with low-temperature heat). This gives clean energy sources an additional advantage. Wind, and solar deliver high-quality electricity (exergy 1.0) while using natural gas for heating delivers low-quality heat (exergy 0.2-0.5).
             </p>
             <p>
-              This is why electrification is so powerful. When we replace a fossil fuel service with clean electricity (solar/wind/nuclear), we need 2.0-2.5× less primary energy to accomplish the same amount of thermodynamic work. This is one of the underappreciated aspects of the energy transition, and it means that we don't need to replace 100% of fossil fuel primary energy consumption, we only need to replace ~40-45% to achieve the same energy services.
+              This is why electrification is so powerful. When we replace a fossil fuel service with clean electricity (solar/wind/nuclear), we need 2.0-2.5× less primary energy to accomplish the same amount of thermodynamic work. This is one of the most underappreciated aspects of the energy transition, and it means that we don't need to replace 100% of fossil fuel primary energy consumption, we only need to replace ~40-45% to provide the same energy services.
             </p>
           </section>
 
@@ -120,10 +120,10 @@ export default function Methodology() {
               <div className="border-l-4 border-red-600 pl-4">
                 <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
               </div>
-              <div className="border-l-4 border-blue-600 pl-4">
-                <strong>Efficiency Savings:</strong> The reduction in fossil fuel consumption achieved through improvements in energy efficiency, measured by changes in global exergy efficiency over time.
+              <div className="border-l-4 border-green-600 pl-4">
+                <strong>Efficiency Savings:</strong> The reduction in energy consumption achieved through improvements in energy efficiency, measured by changes in global exergy efficiency over time.
               </div>
-              <div className="border-l-4 border-gray-600 pl-4">
+              <div className="border-l-4 border-purple-600 pl-4">
                 <strong>Net Change:</strong> The difference in the amount of fossil fuel consumption after accounting for displacement and efficiency savings in a given year.
               </div>
             </div>
@@ -135,7 +135,10 @@ export default function Methodology() {
                 Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement - Efficiency Savings
               </p>
               <p className="text-sm text-gray-600">
-                When this number is positive, it means that fossil fuel consumption is increasing, and when this number is negative, it means that fossil fuel consumption is declining.
+                When this number is positive, it means that fossil fuel consumption is increasing. 
+              </p>
+              <p className="text-sm text-gray-600">
+                When this number is negative, it means that fossil fuel consumption is decreasing.
               </p>
             </div>
           </section>
@@ -151,7 +154,7 @@ export default function Methodology() {
             <div className="space-y-4">
               <div className="bg-red-50 border-l-4 border-red-600 p-3">
                 <strong className="text-red-800">Consumption Rising:</strong>
-                <p className="text-gray-700 mt-1">Clean energy is growing, but fossil fuel consumption grew by a larger amount. In this scenario, fossil consumption continues to increase. This is where we currently are.</p>
+                <p className="text-gray-700 mt-1">Clean energy is growing, but fossil fuel consumption is growing by a larger amount. In this scenario, fossil consumption continues to increase. This is where we currently are.</p>
               </div>
               <div className="bg-yellow-50 border-l-4 border-yellow-600 p-3">
                 <strong className="text-yellow-800">Consumption Plateauing:</strong>
@@ -159,7 +162,7 @@ export default function Methodology() {
               </div>
               <div className="bg-green-50 border-l-4 border-green-600 p-3">
                 <strong className="text-green-800">Consumption Declining:</strong>
-                <p className="text-gray-700 mt-1">Clean energy and energy efficiency measures are displacing a larger amount of energy services than fossil fuels are meeting. Fossil consumption will continue declining as long as this remains the case.</p>
+                <p className="text-gray-700 mt-1">Clean energy and energy efficiency measures are displacing a larger amount of energy services than fossil fuels are meeting. In this scenario, fossil consumption will continue declining.</p>
               </div>
             </div>
           </section>
@@ -209,13 +212,13 @@ export default function Methodology() {
               Why This Matters
             </h2>
             <p className="mb-4">
-              By measuring energy services instead of primary energy, we can finally see what's really happening in the energy transition. We can track the true impact of clean energy, understand the power of electrification, and identify exactly how close we are to peak fossil fuel consumption.
+              By measuring energy services instead of primary energy, we can finally get an accurate sense of what energy sources are providing our energy. This will allow us to gain useful insights into how the energy transition is progressing, and it will allow us to track the true impact of whether clean energy sources are displacing fossil fuel consumption, or not. It also helps us understand the power of electrification, and identify exactly how close we are to peak fossil fuel consumption.
             </p>
             <p className="mb-4">
               This isn't just about better metrics - it's about better decision-making. When policymakers, businesses, and citizens understand that electric vehicles displace 3x their weight in fossil fuels, or that heat pumps cut energy use by 70%, it changes the entire conversation about climate action.
             </p>
             <p>
-              The energy transition is happening. This dashboard shows you exactly how fast, where we stand, and what it will take to accelerate it.
+              The energy transition is happening. This dashboard measures it properly, so that you can actually see it. The real value doesn't come from being able to see the energy transition though, it comes from understanding exactly what's needed to accelerate it.
             </p>
           </section>
         </div>
