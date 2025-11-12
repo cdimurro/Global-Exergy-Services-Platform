@@ -21,13 +21,13 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center h-16 md:h-20">
 
-          {/* Logo/Title - Visible on mobile */}
-          <div className="font-bold text-lg md:text-xl text-gray-800 md:hidden">
+          {/* Logo/Title - Visible on all screens */}
+          <div className="font-bold text-lg md:text-2xl text-blue-600">
             Energy Tracker
           </div>
 
           {/* Desktop Navigation - Hidden on mobile */}
-          <div className="hidden md:flex md:space-x-2 md:mx-auto">
+          <div className="hidden md:flex md:space-x-2">
             {navItems.map(item => (
               <Link
                 key={item.path}
