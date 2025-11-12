@@ -114,10 +114,10 @@ export default function Methodology() {
               We calculate four key metrics for each year:
             </p>
             <div className="space-y-3">
-              <div className="border-l-4 border-green-600 pl-4">
+              <div className="border-l-4 border-red-600 pl-4">
                 <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
               </div>
-              <div className="border-l-4 border-red-600 pl-4">
+              <div className="border-l-4 border-green-600 pl-4">
                 <strong>Clean Energy Displacement (D):</strong> The total amount of fossil fuel consumption replaced by clean energy and efficiency measures in a given year.
               </div>
               <div className="border-l-4 border-blue-600 pl-4">

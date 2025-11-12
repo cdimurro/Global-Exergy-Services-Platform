@@ -134,14 +134,14 @@ export default function DisplacementTracker() {
       name: 'Energy Services Demand',
       value: currentData.totalEnergyGrowth,
       percent: currentData.totalEnergyGrowthPercent,
-      color: '#16A34A',
+      color: '#DC2626',
       label: 'Energy Services Demand'
     },
     {
       name: 'Clean Displacement',
       value: Math.max(0, currentData.displacementRate),
       percent: currentData.cleanRelativeChange,
-      color: '#DC2626',
+      color: '#16A34A',
       label: 'Clean Displacement (D)'
     },
     {
@@ -364,11 +364,11 @@ export default function DisplacementTracker() {
           {/* Color-coded legend */}
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#16A34A' }}></div>
+              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#DC2626' }}></div>
               <span className="text-sm font-medium text-gray-700">Energy Services Demand</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#DC2626' }}></div>
+              <div className="w-4 h-4 rounded" style={{ backgroundColor: '#16A34A' }}></div>
               <span className="text-sm font-medium text-gray-700">Clean Displacement</span>
             </div>
             <div className="flex items-center gap-2">
@@ -443,10 +443,10 @@ export default function DisplacementTracker() {
       <div className="mt-8 p-6 bg-gray-50 rounded-lg">
         <h3 className="text-xl font-bold mb-4 text-gray-800">Key Definitions</h3>
         <div className="space-y-3 mb-6">
-          <div className="border-l-4 border-green-600 pl-4">
+          <div className="border-l-4 border-red-600 pl-4">
             <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
           </div>
-          <div className="border-l-4 border-red-600 pl-4">
+          <div className="border-l-4 border-green-600 pl-4">
             <strong>Clean Energy Displacement (D):</strong> The total amount of fossil fuel consumption replaced by clean energy and efficiency measures in a given year.
           </div>
           <div className="border-l-4 border-blue-600 pl-4">
