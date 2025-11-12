@@ -134,9 +134,9 @@ export default function NetChangeTimeline() {
           </div>
 
           {/* Net Change */}
-          <div className={`${data.netChange > 0 ? 'bg-red-50' : 'bg-green-50'} p-2 rounded border ${data.netChange > 0 ? 'border-red-300' : 'border-green-300'} mt-2`}>
+          <div className="bg-purple-50 p-2 rounded border border-purple-300 mt-2">
             <div className="flex justify-between items-center gap-6">
-              <span className="text-xs font-semibold text-gray-700">Net Change</span>
+              <span className="text-xs font-semibold text-purple-800">Net Change</span>
               <div className="text-right">
                 <div className={`text-base font-bold ${data.netChange > 0 ? 'text-red-700' : 'text-green-700'}`}>
                   {data.netChange > 0 ? '+' : ''}{data.netChange.toFixed(4)} EJ
@@ -233,7 +233,7 @@ export default function NetChangeTimeline() {
             {/* Conditional fill for Net Change based on positive/negative */}
             <linearGradient id="netChangeGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stopColor="#DC2626" stopOpacity={1} />
-              <stop offset="50%" stopColor="#94a3b8" stopOpacity={0.2} />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity={0.5} />
               <stop offset="100%" stopColor="#16A34A" stopOpacity={1} />
             </linearGradient>
           </defs>
