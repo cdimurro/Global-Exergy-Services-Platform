@@ -69,6 +69,8 @@ export default function EnergySupply() {
         clean: { waste: 0 }
       };
 
+      if (!yearData.sources_useful_ej) return processed;
+
       Object.entries(yearData.sources_useful_ej).forEach(([source, useful]) => {
         const efficiency = eff[source] || 0.5;
         const primary = useful / efficiency;
@@ -109,6 +111,8 @@ export default function EnergySupply() {
             fossil: { waste: 0 },
             clean: { waste: 0 }
           };
+
+          if (!yearData.sources_useful_ej) return processed;
 
           Object.entries(yearData.sources_useful_ej).forEach(([source, useful]) => {
             let efficiency = eff[source] || 0.5;
