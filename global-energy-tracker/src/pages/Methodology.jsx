@@ -111,7 +111,7 @@ export default function Methodology() {
               Tracking Displacement
             </h2>
             <p className="mb-4">
-              We calculate three key metrics for each year:
+              We calculate four key metrics for each year:
             </p>
             <div className="space-y-3">
               <div className="border-l-4 border-green-600 pl-4">
@@ -120,8 +120,11 @@ export default function Methodology() {
               <div className="border-l-4 border-red-600 pl-4">
                 <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
               </div>
+              <div className="border-l-4 border-blue-600 pl-4">
+                <strong>Efficiency Savings:</strong> The reduction in fossil fuel consumption achieved through improvements in energy efficiency, measured by changes in global exergy efficiency over time.
+              </div>
               <div className="border-l-4 border-gray-600 pl-4">
-                <strong>Net Change:</strong> The difference in the amount of fossil fuel consumption after accounting for displacement in a given year. 
+                <strong>Net Change:</strong> The difference in the amount of fossil fuel consumption after accounting for displacement and efficiency savings in a given year.
               </div>
             </div>
             <p className="mb-4">
@@ -129,7 +132,7 @@ export default function Methodology() {
             </p>
             <div className="bg-gray-100 border border-gray-300 p-4 my-4 text-center">
               <p className="text-lg font-bold text-blue-600 mb-2">
-                Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement
+                Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement - Efficiency Savings
               </p>
               <p className="text-sm text-gray-600">
                 When this number is positive, it means that fossil fuel consumption is increasing, and when this number is negative, it means that fossil fuel consumption is declining.
