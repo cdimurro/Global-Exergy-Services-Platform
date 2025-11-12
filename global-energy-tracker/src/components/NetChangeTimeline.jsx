@@ -63,11 +63,13 @@ export default function NetChangeTimeline() {
       calculatedData.push({
         year: curr.year,
         displacement,
+        displacementNegative: -displacement, // Show as negative for visualization
         fossilGrowth,
         netChange,
         cleanGrowth,
         totalEnergyGrowth,
         efficiencySavings,
+        efficiencySavingsNegative: -efficiencySavings, // Show as negative for visualization
         totalFossil: curr.fossil_services_ej,
         totalClean: curr.clean_services_ej,
         isPeak: displacement >= fossilGrowth,
@@ -112,10 +114,10 @@ export default function NetChangeTimeline() {
             <span className="text-xs font-semibold text-green-700">Clean Displacement</span>
             <div className="text-right">
               <div className="text-sm font-bold text-green-700">
-                {data.displacement > 0 ? '+' : ''}{data.displacement.toFixed(2)} EJ
+                {data.displacementNegative.toFixed(2)} EJ
               </div>
               <div className="text-xs text-green-600">
-                {data.displacementPercent > 0 ? '+' : ''}{data.displacementPercent.toFixed(2)}%
+                {data.displacementPercent > 0 ? '-' : ''}{data.displacementPercent.toFixed(2)}%
               </div>
             </div>
           </div>
@@ -125,7 +127,7 @@ export default function NetChangeTimeline() {
             <span className="text-xs font-semibold text-blue-700">Efficiency Savings</span>
             <div className="text-right">
               <div className="text-sm font-bold text-blue-700">
-                {data.efficiencySavings > 0 ? '+' : ''}{data.efficiencySavings.toFixed(2)} EJ
+                {data.efficiencySavingsNegative.toFixed(2)} EJ
               </div>
             </div>
           </div>
@@ -261,39 +263,7 @@ export default function NetChangeTimeline() {
           {/* Reference line at zero */}
           <ReferenceLine y={0} stroke="#1f2937" strokeWidth={2} />
 
-          {/* Stacked areas for displacement components */}
-          <defs>
-            <linearGradient id="displacementGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#16A34A" stopOpacity={0.6} />
-              <stop offset="95%" stopColor="#16A34A" stopOpacity={0.3} />
-            </linearGradient>
-            <linearGradient id="efficiencyGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#2563EB" stopOpacity={0.6} />
-              <stop offset="95%" stopColor="#2563EB" stopOpacity={0.3} />
-            </linearGradient>
-          </defs>
-
-          {/* Stacked areas - bottom to top */}
-          <Area
-            type="monotone"
-            dataKey="displacement"
-            stackId="1"
-            stroke="#16A34A"
-            strokeWidth={2}
-            fill="url(#displacementGradient)"
-            name="Clean Displacement"
-          />
-          <Area
-            type="monotone"
-            dataKey="efficiencySavings"
-            stackId="1"
-            stroke="#2563EB"
-            strokeWidth={2}
-            fill="url(#efficiencyGradient)"
-            name="Efficiency Savings"
-          />
-
-          {/* Main lines */}
+          {/* Energy Services Demand - solid red line */}
           <Line
             type="monotone"
             dataKey="totalEnergyGrowth"
@@ -303,15 +273,38 @@ export default function NetChangeTimeline() {
             activeDot={{ r: 6, fill: '#DC2626' }}
             name="Energy Services Demand"
           />
+
+          {/* Displacement components as negative dashed lines */}
           <Line
+            type="monotone"
+            dataKey="displacementNegative"
+            stroke="#16A34A"
+            strokeWidth={2}
+            strokeDasharray="5 5"
+            dot={false}
+            activeDot={{ r: 5, fill: '#16A34A' }}
+            name="Clean Displacement"
+          />
+          <Line
+            type="monotone"
+            dataKey="efficiencySavingsNegative"
+            stroke="#2563EB"
+            strokeWidth={2}
+            strokeDasharray="5 5"
+            dot={false}
+            activeDot={{ r: 5, fill: '#2563EB' }}
+            name="Efficiency Savings"
+          />
+
+          {/* Net Change as area with conditional fill */}
+          <Area
             type="monotone"
             dataKey="netChange"
             stroke="#9333EA"
             strokeWidth={3}
-            dot={false}
-            activeDot={{ r: 6, fill: '#9333EA' }}
+            fill="url(#netChangeGradient)"
             name="Net Change"
-            strokeDasharray="5 5"
+            fillOpacity={0.3}
           />
 
         </ComposedChart>
