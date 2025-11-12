@@ -36,7 +36,7 @@ export default function DisplacementBySource() {
 
     // Calculate for different time periods
     const periods = {
-      current: { years: 1, label: '2024' },
+      current: { years: 1, label: '2023-2024' },
       '5year': { years: 5, label: 'Last 5 Years (2019-2024)' },
       '10year': { years: 10, label: 'Last 10 Years (2014-2024)' },
       'all': { years: timeseries.length - 1, label: 'All Years (1965-2024)' }
