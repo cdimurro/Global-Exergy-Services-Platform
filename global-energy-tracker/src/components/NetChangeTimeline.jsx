@@ -42,9 +42,17 @@ export default function NetChangeTimeline() {
       // Calculate displacement (clean growth if positive, 0 otherwise)
       const displacement = Math.max(0, cleanGrowth);
 
-      // Net change = Fossil Growth - Displacement
-      // This shows the actual change in fossil consumption after accounting for clean energy displacement
-      const netChange = fossilGrowth - displacement;
+      // Calculate total energy services demand
+      const totalEnergyGrowth = curr.total_services_ej - prev.total_services_ej;
+
+      // Calculate efficiency savings
+      const efficiencyChange = curr.global_exergy_efficiency - prev.global_exergy_efficiency;
+      const efficiencySavings = prev.fossil_services_ej > 0 && prev.global_exergy_efficiency > 0
+        ? (efficiencyChange / prev.global_exergy_efficiency) * prev.fossil_services_ej
+        : 0;
+
+      // Net change = Energy Services Demand - Clean Displacement - Efficiency Savings
+      const netChange = totalEnergyGrowth - displacement - efficiencySavings;
 
       // Calculate relative changes (%)
       const fossilGrowthPercent = (fossilGrowth / prev.fossil_services_ej) * 100;
