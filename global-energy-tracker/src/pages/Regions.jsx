@@ -57,6 +57,7 @@ export default function Regions() {
   const [quickFilterRegions, setQuickFilterRegions] = useState('all'); // 'all', 'fossil', 'clean' for regions mode
   const [quickFilterSources, setQuickFilterSources] = useState('all'); // 'all', 'fossil', 'clean' for sources mode - when active, selectedSources is ignored
   const [showRelativeChart3, setShowRelativeChart3] = useState(false); // Show relative values for Chart 3
+  const [showAnnualChange, setShowAnnualChange] = useState(false); // Show annual change instead of absolute values for Chart 1
 
   // Force scroll to top on mount
   useEffect(() => {
@@ -140,7 +141,7 @@ export default function Regions() {
     const firstRegion = Object.values(filteredByTime)[0];
     if (!firstRegion || !firstRegion.data.length) return [];
 
-    return firstRegion.data
+    const absoluteData = firstRegion.data
       .filter(yearEntry => yearEntry.year >= 1965) // Only show data from 1965-2024
       .map(yearEntry => {
         const row = { year: yearEntry.year };
@@ -201,7 +202,26 @@ export default function Regions() {
 
         return row;
       });
-  }, [filteredByTime, selectedRegions, selectedSource, viewMode, selectedSources, selectedRegion, quickFilterSources]);
+
+    // If showing annual change, calculate year-over-year differences
+    if (showAnnualChange && absoluteData.length > 1) {
+      return absoluteData.slice(1).map((row, index) => {
+        const prevRow = absoluteData[index];
+        const changeRow = { year: row.year };
+
+        // Calculate change for each data key (excluding 'year')
+        Object.keys(row).forEach(key => {
+          if (key !== 'year') {
+            changeRow[key] = row[key] - prevRow[key];
+          }
+        });
+
+        return changeRow;
+      });
+    }
+
+    return absoluteData;
+  }, [filteredByTime, selectedRegions, selectedSource, viewMode, selectedSources, selectedRegion, quickFilterSources, showAnnualChange]);
 
   // Process data for Chart 2 (2024 snapshot comparison)
   const chart2Data = useMemo(() => {
@@ -308,20 +328,23 @@ export default function Regions() {
     );
   }
 
-  // Get Y-axis label based on view mode
+  // Get Y-axis label based on view mode and annual change toggle
   const getYAxisLabel = () => {
+    const changePrefix = showAnnualChange ? 'Annual Change in ' : '';
+    const changeSuffix = showAnnualChange ? ' (PJ/year)' : ' (PJ)';
+
     if (viewMode === 'regions') {
       // Handle virtual source labels
       if (selectedSource === 'all') {
-        return 'All Sources Energy Services (PJ)';
+        return changePrefix + 'All Sources Energy Services' + changeSuffix;
       } else if (selectedSource === 'fossil') {
-        return 'Fossil Fuels Energy Services (PJ)';
+        return changePrefix + 'Fossil Fuels Energy Services' + changeSuffix;
       } else if (selectedSource === 'clean') {
-        return 'Clean Energy Services (PJ)';
+        return changePrefix + 'Clean Energy Services' + changeSuffix;
       }
-      return `${getSourceName(selectedSource)} Energy Services (PJ)`;
+      return changePrefix + `${getSourceName(selectedSource)} Energy Services` + changeSuffix;
     } else {
-      return 'Energy Services (PJ)';
+      return changePrefix + 'Energy Services' + changeSuffix;
     }
   };
 
@@ -361,11 +384,29 @@ export default function Regions() {
 
         {/* Filter Controls */}
         <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
-          {/* View Mode Selection */}
+          {/* View Mode Selection and Annual Change Toggle */}
           <div className="mb-6">
-            <label className="block text-lg font-semibold mb-3 text-gray-700">
-              View Mode
-            </label>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+              <label className="block text-lg font-semibold text-gray-700">
+                View Mode
+              </label>
+              {/* Annual Change Toggle */}
+              <div className="flex items-center gap-3">
+                <label className="text-sm font-semibold text-gray-700">View Annual Change</label>
+                <button
+                  onClick={() => setShowAnnualChange(!showAnnualChange)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    showAnnualChange ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      showAnnualChange ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setViewMode('regions')}
@@ -980,11 +1021,29 @@ export default function Regions() {
       >
         {/* Filter Controls */}
         <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
-          {/* View Mode Selection */}
+          {/* View Mode Selection and Annual Change Toggle */}
           <div className="mb-6">
-            <label className="block text-lg font-semibold mb-3 text-gray-700">
-              View Mode
-            </label>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+              <label className="block text-lg font-semibold text-gray-700">
+                View Mode
+              </label>
+              {/* Annual Change Toggle */}
+              <div className="flex items-center gap-3">
+                <label className="text-sm font-semibold text-gray-700">View Annual Change</label>
+                <button
+                  onClick={() => setShowAnnualChange(!showAnnualChange)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                    showAnnualChange ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                      showAnnualChange ? 'translate-x-6' : 'translate-x-1'
+                    }`}
+                  />
+                </button>
+              </div>
+            </div>
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setViewMode('regions')}
