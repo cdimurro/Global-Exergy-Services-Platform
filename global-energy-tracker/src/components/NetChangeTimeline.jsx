@@ -292,13 +292,15 @@ export default function NetChangeTimeline() {
             name="Efficiency Savings"
           />
 
-          {/* Net Change line (purple, no fill) */}
-          <Line
+          {/* Net Change area with purple fill */}
+          <Area
             type="monotone"
             dataKey="netChange"
             stroke="#9333EA"
             strokeWidth={3}
-            dot={false}
+            fill="#9333EA"
+            fillOpacity={0.5}
+            baseLine={0}
             name="Net Change"
           />
 
