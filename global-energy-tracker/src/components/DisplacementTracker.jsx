@@ -453,7 +453,7 @@ export default function DisplacementTracker() {
             <strong>Efficiency Savings:</strong> The reduction in fossil fuel consumption achieved through improvements in energy efficiency, measured by changes in global exergy efficiency over time.
           </div>
           <div className="border-l-4 border-purple-600 pl-4">
-            <strong>Net Change:</strong> The difference in the amount of fossil fuel consumption after accounting for displacement and efficiency savings in a given year.
+            <strong>Net Change:</strong> Shows net change in fossil fuel consumption. Negative means fossil fuel consumption is decreasing.
           </div>
         </div>
 
