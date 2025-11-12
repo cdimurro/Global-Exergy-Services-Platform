@@ -248,7 +248,7 @@ export default function InteractiveChart() {
   const renderChart = () => {
     if (chartType === 'absolute') {
       return (
-        <AreaChart data={chartData} margin={{ top: 10, right: 40, left: 20, bottom: 20 }}>
+        <AreaChart data={chartData} margin={{ top: 10, right: 40, left: 80, bottom: 20 }}>
           <defs>
             {/* Always define gradients for all sources */}
             {ENERGY_SOURCES.map(source => (
@@ -303,7 +303,7 @@ export default function InteractiveChart() {
       const yAxisMin = -yAxisMax;
 
       return (
-        <LineChart data={chartData} margin={{ top: 20, right: 40, left: 60, bottom: 20 }}>
+        <LineChart data={chartData} margin={{ top: 20, right: 40, left: 80, bottom: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
           <XAxis dataKey="year" tick={{ fontSize: 15 }} interval="preserveStartEnd" height={60} />
           <YAxis tick={{ fontSize: 15 }} width={80} domain={[yAxisMin, yAxisMax]} label={{ value: 'Change in Global Energy Services (EJ)', angle: -90, position: 'insideLeft', style: { fontSize: 17, fontWeight: 600 } }} />
