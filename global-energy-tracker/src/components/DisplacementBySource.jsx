@@ -203,7 +203,7 @@ export default function DisplacementBySource() {
               className={`px-6 py-3 rounded-lg font-medium transition-all ${
                 selectedPeriod === periodKey
                   ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300 border border-gray-300'
+                  : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-300'
               }`}
             >
               {sourceData[periodKey].period}
