@@ -396,20 +396,20 @@ export default function InteractiveChart() {
             <div className="flex gap-3">
               <button
                 onClick={() => setChartType('absolute')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${
                   chartType === 'absolute'
                     ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                 }`}
               >
                 Total Energy Services
               </button>
               <button
                 onClick={() => setChartType('change')}
-                className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                className={`px-6 py-3 rounded-lg font-medium transition-all ${
                   chartType === 'change'
                     ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                 }`}
               >
                 Annual Change
