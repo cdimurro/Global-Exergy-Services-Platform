@@ -70,6 +70,7 @@ export default function NetChangeTimeline() {
         totalEnergyGrowth,
         efficiencySavings,
         efficiencySavingsNegative: -efficiencySavings, // Show as negative for visualization
+        combinedNegative: -(displacement + efficiencySavings), // Combined stack for visualization
         totalFossil: curr.fossil_services_ej,
         totalClean: curr.clean_services_ej,
         isPeak: displacement >= fossilGrowth,
@@ -230,9 +231,17 @@ export default function NetChangeTimeline() {
         >
           <defs>
             <linearGradient id="netChangeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#DC2626" stopOpacity={0.2} />
-              <stop offset="50%" stopColor="#94a3b8" stopOpacity={0.05} />
-              <stop offset="100%" stopColor="#16A34A" stopOpacity={0.2} />
+              <stop offset="0%" stopColor="#DC2626" stopOpacity={0.6} />
+              <stop offset="50%" stopColor="#94a3b8" stopOpacity={0.1} />
+              <stop offset="100%" stopColor="#16A34A" stopOpacity={0.6} />
+            </linearGradient>
+            <linearGradient id="displacementGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#16A34A" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#16A34A" stopOpacity={0.1} />
+            </linearGradient>
+            <linearGradient id="efficiencyGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#2563EB" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#2563EB" stopOpacity={0.1} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
@@ -274,25 +283,25 @@ export default function NetChangeTimeline() {
             name="Energy Services Demand"
           />
 
-          {/* Displacement components as negative dashed lines */}
-          <Line
+          {/* Displacement components as stacked negative areas with dashed borders */}
+          <Area
             type="monotone"
             dataKey="displacementNegative"
+            stackId="negative"
             stroke="#16A34A"
             strokeWidth={2}
             strokeDasharray="5 5"
-            dot={false}
-            activeDot={{ r: 5, fill: '#16A34A' }}
+            fill="url(#displacementGradient)"
             name="Clean Displacement"
           />
-          <Line
+          <Area
             type="monotone"
             dataKey="efficiencySavingsNegative"
+            stackId="negative"
             stroke="#2563EB"
             strokeWidth={2}
             strokeDasharray="5 5"
-            dot={false}
-            activeDot={{ r: 5, fill: '#2563EB' }}
+            fill="url(#efficiencyGradient)"
             name="Efficiency Savings"
           />
 
@@ -304,7 +313,7 @@ export default function NetChangeTimeline() {
             strokeWidth={3}
             fill="url(#netChangeGradient)"
             name="Net Change"
-            fillOpacity={0.3}
+            fillOpacity={0.7}
           />
 
         </ComposedChart>
