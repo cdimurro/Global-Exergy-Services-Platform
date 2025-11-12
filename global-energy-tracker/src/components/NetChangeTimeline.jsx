@@ -261,13 +261,36 @@ export default function NetChangeTimeline() {
           {/* Reference line at zero */}
           <ReferenceLine y={0} stroke="#1f2937" strokeWidth={2} />
 
-          {/* Shaded area for net change */}
+          {/* Stacked areas for displacement components */}
+          <defs>
+            <linearGradient id="displacementGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#16A34A" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="#16A34A" stopOpacity={0.3} />
+            </linearGradient>
+            <linearGradient id="efficiencyGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#2563EB" stopOpacity={0.6} />
+              <stop offset="95%" stopColor="#2563EB" stopOpacity={0.3} />
+            </linearGradient>
+          </defs>
+
+          {/* Stacked areas - bottom to top */}
           <Area
             type="monotone"
-            dataKey="netChange"
-            fill="url(#netChangeGradient)"
-            stroke="none"
-            fillOpacity={1}
+            dataKey="displacement"
+            stackId="1"
+            stroke="#16A34A"
+            strokeWidth={2}
+            fill="url(#displacementGradient)"
+            name="Clean Displacement"
+          />
+          <Area
+            type="monotone"
+            dataKey="efficiencySavings"
+            stackId="1"
+            stroke="#2563EB"
+            strokeWidth={2}
+            fill="url(#efficiencyGradient)"
+            name="Efficiency Savings"
           />
 
           {/* Main lines */}
@@ -279,24 +302,6 @@ export default function NetChangeTimeline() {
             dot={false}
             activeDot={{ r: 6, fill: '#DC2626' }}
             name="Energy Services Demand"
-          />
-          <Line
-            type="monotone"
-            dataKey="displacement"
-            stroke="#16A34A"
-            strokeWidth={2.5}
-            dot={false}
-            activeDot={{ r: 6, fill: '#16A34A' }}
-            name="Clean Displacement"
-          />
-          <Line
-            type="monotone"
-            dataKey="efficiencySavings"
-            stroke="#2563EB"
-            strokeWidth={2.5}
-            dot={false}
-            activeDot={{ r: 6, fill: '#2563EB' }}
-            name="Efficiency Savings"
           />
           <Line
             type="monotone"
