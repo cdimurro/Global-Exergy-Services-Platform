@@ -312,15 +312,15 @@ export default function Regions() {
     if (viewMode === 'regions') {
       // Handle virtual source labels
       if (selectedSource === 'all') {
-        return 'All Sources Energy Services (PJ)';
+        return 'All Sources Energy Services (EJ)';
       } else if (selectedSource === 'fossil') {
-        return 'Fossil Fuels Energy Services (PJ)';
+        return 'Fossil Fuels Energy Services (EJ)';
       } else if (selectedSource === 'clean') {
-        return 'Clean Energy Services (PJ)';
+        return 'Clean Energy Services (EJ)';
       }
-      return `${getSourceName(selectedSource)} Energy Services (PJ)`;
+      return `${getSourceName(selectedSource)} Energy Services (EJ)`;
     } else {
-      return 'Energy Services (PJ)';
+      return 'Energy Services (EJ)';
     }
   };
 
