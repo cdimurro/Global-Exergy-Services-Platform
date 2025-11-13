@@ -555,42 +555,38 @@ function Imports() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 1: The Fossil Trap */}
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-600">
-            <h3 className="font-bold text-lg text-gray-800 mb-2">The Fossil Trap</h3>
+            <h3 className="font-bold text-lg text-gray-800 mb-2">The Fossil Fuel Trap</h3>
             <p className="text-gray-700 mb-3">
-              Fossil fuel power plants create a <strong>perpetual import dependency</strong>. A coal or gas plant requires continuous fuel shipments throughout its 30-40 year lifetime.
+              Fossil fuel power plants create <strong>perpetual import dependency</strong>. A coal or gas plant requires continuous fuel shipments throughout its 30-40 year lifetime.
             </p>
             <p className="text-gray-700 mb-3">
-              Over its lifetime, a 600 MW coal plant will import <strong>~1,330 EJ</strong> of coal—far exceeding the useful energy it generates. This locks nations into:
+              Over its lifetime, a 600 MW coal plant will import <strong>~1,330 EJ</strong> of coal, which far exceeds the useful energy that it generates.
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-1 ml-4">
-              <li>Price volatility from global markets</li>
-              <li>Geopolitical vulnerability</li>
-              <li>Ongoing trade deficits</li>
-              <li>Supply chain disruptions</li>
-            </ul>
           </div>
 
           {/* Card 2: Electrification Benefit */}
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-600">
             <h3 className="font-bold text-lg text-gray-800 mb-2">Electrification Benefit</h3>
             <p className="text-gray-700 mb-3">
-              Electric motors are <strong>3-4x more efficient</strong> than combustion engines. When you replace:
+              Electric motors are <strong>3-4x more efficient</strong> than combustion engines.
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
-              <li><strong>Gasoline car → Electric vehicle:</strong> 3-4x less energy per mile</li>
-              <li><strong>Gas furnace → Heat pump:</strong> 3-5x less energy per BTU of heat</li>
-              <li><strong>Industrial boiler → Electric process heat:</strong> 2-3x less energy</li>
+              <li><strong>Electric vehicles →</strong> Can run on any source of electricity</li>
+              <li><strong>Gasoline vehicles →</strong> Require constant fuel imports</li>
             </ul>
             <p className="text-gray-700 mt-3">
-              This <strong>efficiency multiplier</strong> means renewables don't need to match fossil fuel capacity 1:1—they can deliver equivalent services with far less primary energy.
+              Electrification <strong>reduces energy consumption</strong> and <strong>fossil fuel imports.</strong>
             </p>
           </div>
 
-          {/* Card 3: Renewable Edge */}
+          {/* Card 3: Renewable Advantage */}
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-600">
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Renewable Edge</h3>
+            <h3 className="font-bold text-lg text-gray-800 mb-2">The Renewable Advantage</h3>
             <p className="text-gray-700 mb-3">
-              Solar, wind, and hydro plants require <strong>zero fuel imports</strong>. The same 600 MW capacity delivers:
+              Build <strong>renewable energy infrastructure</strong> and it <strong>will generate energy for decades.</strong>
+            </p>
+            <p className="text-gray-700 mb-3">
+              Build <strong>fossil fuel infrastructure</strong> and it <strong>will require imports for decades.</strong>
             </p>
             <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
               <li><strong>Offshore wind:</strong> +128 EJ net lifetime services (30-40 years)</li>
@@ -598,7 +594,7 @@ function Imports() {
               <li><strong>Solar PV:</strong> +41 EJ net lifetime services (25-30 years)</li>
             </ul>
             <p className="text-gray-700 mt-3">
-              One-time capital investment → <strong>decades of energy independence</strong>. No fuel price risk, no supply disruptions, no trade deficits.
+              Renewables require a one-time capital investment. Then they provide <strong>decades of energy independence</strong>. No fuel price risk, no supply disruptions, no emissions.
             </p>
           </div>
 
