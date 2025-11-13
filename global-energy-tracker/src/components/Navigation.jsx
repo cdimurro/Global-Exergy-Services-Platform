@@ -11,7 +11,7 @@ export default function Navigation() {
     { path: '/energy-supply', label: 'Energy Supply' },
     { path: '/demand-growth', label: 'Demand Growth' },
     { path: '/regions', label: 'Regions' },
-    { path: '/parameter-status', label: 'Parameter Status' },
+    { path: '/imports', label: 'Imports' },
     { path: '/reality-check', label: 'Reality Check' },
     { path: '/methodology', label: 'Methodology' }
   ];
