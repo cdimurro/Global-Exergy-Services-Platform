@@ -29,9 +29,6 @@ export default function EnergySupply() {
   const [isFullscreenChart2, setIsFullscreenChart2] = useState(false);
   const [isFullscreenChart3, setIsFullscreenChart3] = useState(false);
 
-  // Chart 3 relative mode toggle
-  const [showRelativeChart3, setShowRelativeChart3] = useState(false);
-
   // Force scroll to top on mount
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -901,21 +898,10 @@ export default function EnergySupply() {
               Primary Energy vs. Energy Services by Source (2024)
             </h2>
             <p className="text-sm text-gray-600">
-              {showRelativeChart3
-                ? 'Relative breakdown: Energy services and waste as percentage of total primary energy (100%)'
-                : 'Energy services (colored by source) stacked with waste energy (red) shows total primary energy'}
+              Energy services (colored by source) stacked with waste energy (red) shows total primary energy
             </p>
           </div>
-          <div className="flex gap-2 items-center">
-            <label className="flex items-center gap-2 text-sm text-gray-700">
-              <span>Show Relative Values</span>
-              <input
-                type="checkbox"
-                checked={showRelativeChart3}
-                onChange={(e) => setShowRelativeChart3(e.target.checked)}
-                className="w-4 h-4"
-              />
-            </label>
+          <div className="flex gap-2">
             <ChartExportButtons
               onDownloadPNG={() => handleDownloadPNG('chart-primary-useful-2024', 'primary_vs_useful_2024.png')}
               onDownloadCSV={() => {
@@ -936,34 +922,14 @@ export default function EnergySupply() {
 
         <ResponsiveContainer width="100%" height={getChart3Height()}>
           <BarChart
-            data={ENERGY_SOURCES.map(source => {
-              const primary = data2024?.sources[source]?.primary || 0;
-              const useful = data2024?.sources[source]?.useful || 0;
-              const waste = data2024?.sources[source]?.waste || 0;
-              const efficiency = data2024?.sources[source]?.efficiency || 0;
-
-              if (showRelativeChart3 && primary > 0) {
-                // In relative mode, show as percentages out of 100%
-                return {
-                  source: getSourceName(source),
-                  sourceKey: source,
-                  primary: primary,
-                  useful: (useful / primary) * 100,
-                  waste: (waste / primary) * 100,
-                  efficiency: efficiency
-                };
-              } else {
-                // In absolute mode, show actual EJ values
-                return {
-                  source: getSourceName(source),
-                  sourceKey: source,
-                  primary: primary,
-                  useful: useful,
-                  waste: waste,
-                  efficiency: efficiency
-                };
-              }
-            })}
+            data={ENERGY_SOURCES.map(source => ({
+              source: getSourceName(source),
+              sourceKey: source,
+              primary: data2024?.sources[source]?.primary || 0,
+              useful: data2024?.sources[source]?.useful || 0,
+              waste: data2024?.sources[source]?.waste || 0,
+              efficiency: data2024?.sources[source]?.efficiency || 0
+            }))}
             margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
@@ -973,67 +939,35 @@ export default function EnergySupply() {
               textAnchor="end"
               height={100}
             />
-            <YAxis
-              label={{
-                value: showRelativeChart3 ? 'Percentage (%)' : 'Energy (EJ)',
-                angle: -90,
-                position: 'insideLeft'
-              }}
-              domain={showRelativeChart3 ? [0, 100] : undefined}
-            />
+            <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
             <Tooltip content={({ active, payload }) => {
               if (!active || !payload || payload.length === 0) return null;
               const data = payload[0].payload;
-
-              if (showRelativeChart3) {
-                // Relative mode tooltip
-                return (
-                  <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
-                    <div className="font-bold text-lg mb-2">{data.source}</div>
-                    <div className="space-y-1 text-sm">
-                      <div className="flex justify-between gap-4">
-                        <span className="text-gray-600">Energy Services:</span>
-                        <span className="font-semibold">{data.useful.toFixed(1)}%</span>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <span className="text-gray-600">Waste Energy:</span>
-                        <span className="font-semibold text-red-600">{data.waste.toFixed(1)}%</span>
-                      </div>
-                      <div className="flex justify-between gap-4 pt-2 border-t border-gray-200">
-                        <span className="text-gray-600">Efficiency:</span>
-                        <span className="font-bold">{data.efficiency.toFixed(1)}%</span>
-                      </div>
+              const usefulPercent = (data.useful / data.primary) * 100;
+              const wastePercent = (data.waste / data.primary) * 100;
+              return (
+                <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+                  <div className="font-bold text-lg mb-2">{data.source}</div>
+                  <div className="space-y-1 text-sm">
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Primary Energy:</span>
+                      <span className="font-semibold">{data.primary.toFixed(2)} EJ</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Energy Services:</span>
+                      <span className="font-semibold">{data.useful.toFixed(2)} EJ ({usefulPercent.toFixed(1)}%)</span>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <span className="text-gray-600">Waste Energy:</span>
+                      <span className="font-semibold text-red-600">{data.waste.toFixed(2)} EJ ({wastePercent.toFixed(1)}%)</span>
+                    </div>
+                    <div className="flex justify-between gap-4 pt-2 border-t border-gray-200">
+                      <span className="text-gray-600">Efficiency:</span>
+                      <span className="font-bold">{data.efficiency.toFixed(1)}%</span>
                     </div>
                   </div>
-                );
-              } else {
-                // Absolute mode tooltip
-                const usefulPercent = (data.useful / data.primary) * 100;
-                const wastePercent = (data.waste / data.primary) * 100;
-                return (
-                  <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
-                    <div className="font-bold text-lg mb-2">{data.source}</div>
-                    <div className="space-y-1 text-sm">
-                      <div className="flex justify-between gap-4">
-                        <span className="text-gray-600">Primary Energy:</span>
-                        <span className="font-semibold">{data.primary.toFixed(2)} EJ</span>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <span className="text-gray-600">Energy Services:</span>
-                        <span className="font-semibold">{data.useful.toFixed(2)} EJ ({usefulPercent.toFixed(1)}%)</span>
-                      </div>
-                      <div className="flex justify-between gap-4">
-                        <span className="text-gray-600">Waste Energy:</span>
-                        <span className="font-semibold text-red-600">{data.waste.toFixed(2)} EJ ({wastePercent.toFixed(1)}%)</span>
-                      </div>
-                      <div className="flex justify-between gap-4 pt-2 border-t border-gray-200">
-                        <span className="text-gray-600">Efficiency:</span>
-                        <span className="font-bold">{data.efficiency.toFixed(1)}%</span>
-                      </div>
-                    </div>
-                  </div>
-                );
-              }
+                </div>
+              );
             }} />
             <Legend />
             <Bar dataKey="useful" name="Energy Services" stackId="a" fill="#000000">
