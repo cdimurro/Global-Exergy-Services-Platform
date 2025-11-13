@@ -51,9 +51,9 @@ export default function Methodology() {
             <div className="bg-gray-100 border border-gray-300 p-4 text-center">
               <p className="font-semibold mb-2">A Simple Example:</p>
               <p className="text-gray-700">
-                <strong>Coal Power:</strong> 1 EJ primary → 0.32 EJ useful → 0.27 EJ services (27% final value)<br/>
-                <strong>Wind Power:</strong> 1 EJ primary → 0.70 EJ useful → 0.67 EJ services (67% final value)<br/>
-                <strong>Wind is 2.5× more effective per unit of primary energy</strong>
+                <strong>Coal Power:</strong> 1 EJ primary → 0.32 EJ useful (68% waste) → 0.27 EJ services<br/>
+                <strong>Wind Power:</strong> 1 EJ primary → 0.90 EJ useful (10% waste) → 0.75 EJ services<br/>
+                <strong>Wind is 2.8× more effective and wastes far less energy</strong>
               </p>
             </div>
           </section>
@@ -68,18 +68,21 @@ export default function Methodology() {
               We need to start measuring energy consumption based on the actual energy services provided, because that is what matters to society, not how many BTUs are in a given amount of coal.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4">
-              <p className="font-semibold text-gray-800 mb-2">System-Wide Efficiency Measurements by Source:</p>
+              <p className="font-semibold text-gray-800 mb-2">System-Wide Efficiency Measurements by Source (Primary → Useful):</p>
               <ul className="space-y-2 ml-4">
-                <li>• Coal (power plants): <strong>32% efficient</strong></li>
-                <li>• Oil (combustion engines): <strong>30% efficient</strong></li>
-                <li>• Natural Gas (heating, power): <strong>50% efficient</strong></li>
-                <li>• Nuclear (full chain): <strong>25% efficient</strong> (33% thermal × 90% T&D × 85% end-use)</li>
-                <li>• Biomass (traditional/modern mix): <strong>28% efficient</strong></li>
-                <li>• Hydro: <strong>85% efficient</strong></li>
-                <li>• Wind: <strong>75% efficient</strong></li>
-                <li>• Solar: <strong>75% efficient</strong></li>
-                <li>• Geothermal: <strong>75% efficient</strong></li>
+                <li>• Coal (power plants): <strong>32% efficient</strong> - Most energy lost as waste heat</li>
+                <li>• Oil (combustion engines): <strong>30% efficient</strong> - ICE engines waste ~70%</li>
+                <li>• Natural Gas (heating, power): <strong>50% efficient</strong> - Better than coal/oil</li>
+                <li>• Nuclear (thermal conversion): <strong>25% efficient</strong> - Thermal plant losses</li>
+                <li>• Biomass (traditional/modern mix): <strong>28% efficient</strong> - Combustion losses</li>
+                <li>• Hydro: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
+                <li>• Wind: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
+                <li>• Solar: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
+                <li>• Geothermal: <strong>85% efficient</strong> - Some conversion losses</li>
               </ul>
+              <p className="text-sm text-gray-600 mt-3">
+                <em>Note: For energy services calculations (Tier 3), these values are further adjusted by exergy quality factors and end-use efficiency, resulting in lower effective rates (e.g., wind/solar ~75% for services).</em>
+              </p>
             </div>
             <p className="mb-4">
               <strong>Exergy Quality Factors:</strong> Many people are unaware of the fact that energy has both a quantity and quality to it. In order to accurately calculate the quantity of energy, it's important to also account for the thermodynamic quality, which is known as <strong>exergy</strong>. Electricity has 100% quality, because it can be used to do any work, but low-temperature heat has a quality of ~20% because it can only be used to perform some work (you can't make steel with low-temperature heat). This gives clean energy sources an additional advantage. Wind, and solar deliver high-quality electricity (exergy 1.0) while using natural gas for heating delivers low-quality heat (exergy 0.2-0.5).
