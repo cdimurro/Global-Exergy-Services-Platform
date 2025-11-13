@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Cell } from 'recharts';
 import PageLayout from '../components/PageLayout';
 import AIChatbot from '../components/AIChatbot';
 import { downloadChartAsPNG, downloadDataAsCSV } from '../utils/chartExport';
@@ -354,10 +354,11 @@ function Imports() {
                 Fossil plants have negative net services due to perpetual fuel imports. Renewables provide positive lifetime value.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={() => downloadChartAsPNG('chart2', 'lifetime_services_comparison')}
-                className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart as PNG image"
               >
                 Download PNG
               </button>
@@ -374,7 +375,8 @@ function Imports() {
                   }));
                   downloadDataAsCSV(csvData, 'lifetime_services_comparison');
                 }}
-                className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart data as CSV"
               >
                 Download CSV
               </button>
@@ -392,13 +394,9 @@ function Imports() {
                 <XAxis type="number" label={{ value: 'Net Lifetime Services (EJ)', position: 'insideBottom', offset: -5 }} />
                 <YAxis dataKey="name" type="category" width={170} />
                 <Tooltip content={<CustomTooltipChart2 />} />
-                <Bar
-                  dataKey="net_lifetime_services_ej"
-                  fill="#3B82F6"
-                  name="Net Services"
-                >
+                <Bar dataKey="net_lifetime_services_ej" name="Net Services">
                   {lifetimeServicesData?.plant_types.map((entry, index) => (
-                    <Bar
+                    <Cell
                       key={`cell-${index}`}
                       fill={entry.type === 'fossil' ? '#DC2626' : entry.type === 'renewable' ? '#22C55E' : '#3B82F6'}
                     />
