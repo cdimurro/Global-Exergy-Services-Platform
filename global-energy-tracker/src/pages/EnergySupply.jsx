@@ -142,14 +142,9 @@ export default function EnergySupply() {
 
           if (!yearData.sources_useful_ej) return processed;
 
-          Object.entries(yearData.sources_useful_ej).forEach(([source]) => {
-            // Calculate calibrated value starting from actual 2024
+          Object.entries(yearData.sources_useful_ej).forEach(([source, useful]) => {
+            // Use the actual projection data value, not recalculated growth
             const yearsSince2024 = yearData.year - 2024;
-            const hist2024Value = baseline2024.sources[source]?.useful || 0;
-            const growthRate = growthRates[source] || 0;
-
-            // Apply growth rate from 2024 baseline
-            const useful = hist2024Value * Math.pow(1 + growthRate, yearsSince2024);
 
             let efficiency = eff[source] || 0.5;
 
