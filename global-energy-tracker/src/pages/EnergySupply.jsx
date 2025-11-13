@@ -39,7 +39,7 @@ export default function EnergySupply() {
   // Load data
   useEffect(() => {
     Promise.all([
-      fetch('/data/energy_services_timeseries.json').then(r => r.json()),
+      fetch('/data/useful_energy_timeseries.json').then(r => r.json()),
       fetch('/data/demand_growth_projections.json').then(r => r.json()),
       fetch('/data/efficiency_factors_corrected.json').then(r => r.json())
     ]).then(([useful, projections, efficiency]) => {
@@ -69,9 +69,9 @@ export default function EnergySupply() {
         clean: { waste: 0 }
       };
 
-      if (!yearData.sources_services_ej) return processed;
+      if (!yearData.sources_useful_ej) return processed;
 
-      Object.entries(yearData.sources_services_ej).forEach(([source, useful]) => {
+      Object.entries(yearData.sources_useful_ej).forEach(([source, useful]) => {
         const efficiency = eff[source] || 0.5;
         const primary = useful / efficiency;
         const waste = primary - useful;
@@ -111,15 +111,15 @@ export default function EnergySupply() {
 
         // Calculate source-by-source growth rates from projection
         const growthRates = {};
-        if (projection2025.sources_services_ej && baseline2024.sources) {
-          Object.keys(projection2025.sources_services_ej).forEach(source => {
-            const proj2025 = projection2025.sources_services_ej[source] || 0;
+        if (projection2025.sources_useful_ej && baseline2024.sources) {
+          Object.keys(projection2025.sources_useful_ej).forEach(source => {
+            const proj2025 = projection2025.sources_useful_ej[source] || 0;
             const hist2024 = baseline2024.sources[source]?.useful || 0;
             growthRates[source] = hist2024 > 0 ? (proj2025 - hist2024) / hist2024 : 0;
           });
         }
 
-        projections = scenario.data.map((yearData, index) => {
+        projections = scenario.data.map((yearData) => {
           const processed = {
             year: yearData.year,
             sources: {},
@@ -128,9 +128,9 @@ export default function EnergySupply() {
             clean: { waste: 0 }
           };
 
-          if (!yearData.sources_services_ej) return processed;
+          if (!yearData.sources_useful_ej) return processed;
 
-          Object.entries(yearData.sources_services_ej).forEach(([source, projValue]) => {
+          Object.entries(yearData.sources_useful_ej).forEach(([source]) => {
             // Calculate calibrated value starting from actual 2024
             const yearsSince2024 = yearData.year - 2024;
             const hist2024Value = baseline2024.sources[source]?.useful || 0;
