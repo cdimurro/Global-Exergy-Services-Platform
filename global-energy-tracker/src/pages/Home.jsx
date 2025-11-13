@@ -40,10 +40,12 @@ export default function Home() {
     total_services_ej,
     fossil_services_ej,
     clean_services_ej,
-    fossil_services_share_percent,
-    clean_services_share_percent,
     sources_services_ej
   } = data;
+
+  // Calculate percentages dynamically for precision (don't use pre-rounded values from JSON)
+  const fossil_services_share_percent = (fossil_services_ej / total_services_ej) * 100;
+  const clean_services_share_percent = (clean_services_ej / total_services_ej) * 100;
 
   // Sort sources by energy amount
   const sortedSources = Object.entries(sources_services_ej)
