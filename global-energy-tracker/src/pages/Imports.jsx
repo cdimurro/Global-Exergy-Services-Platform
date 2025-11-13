@@ -262,7 +262,7 @@ function Imports() {
                   <button
                     key={fuel}
                     onClick={() => setSelectedFuel(fuel)}
-                    className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                       selectedFuel === fuel
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -280,7 +280,7 @@ function Imports() {
               <div className="flex gap-2">
                 <button
                   onClick={() => setEnergyType('primary')}
-                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                     energyType === 'primary'
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -290,7 +290,7 @@ function Imports() {
                 </button>
                 <button
                   onClick={() => setEnergyType('useful')}
-                  className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                  className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                     energyType === 'useful'
                       ? 'bg-blue-600 text-white'
                       : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -311,7 +311,7 @@ function Imports() {
                   <button
                     key={region}
                     onClick={() => toggleRegion(region)}
-                    className={`px-3 py-1 rounded text-xs font-medium transition-colors ${
+                    className={`px-3 py-1 rounded-lg font-medium transition-all text-xs ${
                       selectedRegions.includes(region)
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -482,7 +482,7 @@ function Imports() {
                   <button
                     key={option.value}
                     onClick={() => setSortBy(option.value)}
-                    className={`px-4 py-2 rounded text-sm font-medium transition-colors ${
+                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                       sortBy === option.value
                         ? 'bg-blue-600 text-white'
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
@@ -551,7 +551,7 @@ function Imports() {
         <h2 className="text-3xl font-bold text-gray-900 mb-6">Understanding Energy Imports</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 1: The Fossil Trap */}
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+          <div className="bg-red-50 border-l-4 border-red-600 rounded-lg p-6">
             <h3 className="text-xl font-bold text-red-900 mb-3">The Fossil Trap</h3>
             <p className="text-gray-700 mb-3">
               Fossil fuel power plants create a <strong>perpetual import dependency</strong>. A coal or gas plant requires continuous fuel shipments throughout its 30-40 year lifetime.
@@ -568,7 +568,7 @@ function Imports() {
           </div>
 
           {/* Card 2: Electrification Benefit */}
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+          <div className="bg-blue-50 border-l-4 border-blue-600 rounded-lg p-6">
             <h3 className="text-xl font-bold text-blue-900 mb-3">Electrification Benefit</h3>
             <p className="text-gray-700 mb-3">
               Electric motors are <strong>3-4x more efficient</strong> than combustion engines. When you replace:
@@ -584,7 +584,7 @@ function Imports() {
           </div>
 
           {/* Card 3: Renewable Edge */}
-          <div className="bg-green-50 border border-green-200 rounded-lg p-6">
+          <div className="bg-green-50 border-l-4 border-green-600 rounded-lg p-6">
             <h3 className="text-xl font-bold text-green-900 mb-3">Renewable Edge</h3>
             <p className="text-gray-700 mb-3">
               Solar, wind, and hydro plants require <strong>zero fuel imports</strong>. The same 600 MW capacity delivers:
@@ -600,7 +600,7 @@ function Imports() {
           </div>
 
           {/* Card 4: Action */}
-          <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
+          <div className="bg-purple-50 border-l-4 border-purple-600 rounded-lg p-6">
             <h3 className="text-xl font-bold text-purple-900 mb-3">Action: Map Your Transition</h3>
             <p className="text-gray-700 mb-3">
               For net importing nations, the path to energy independence is clear:
