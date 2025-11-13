@@ -213,14 +213,11 @@ function Imports() {
   return (
     <PageLayout>
       {/* Header */}
-      <div className="mb-8">
+      <div className="mb-8 text-center">
         <h1 className="text-4xl font-bold text-gray-900 mb-3">
-          Imports
+          Breaking the Fossil Fuel Dependence Cycle
         </h1>
         <p className="text-xl text-gray-600">
-          Breaking the Fossil Dependence Cycle
-        </p>
-        <p className="text-base text-gray-500 mt-2">
           For net importers (75% global population), renewables deliver lifetime services—fossils lock in volatility and costs
         </p>
       </div>
@@ -237,16 +234,18 @@ function Imports() {
                 Positive values indicate net importers, negative values indicate net exporters
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={() => downloadChartAsPNG('chart1', 'net_energy_imports')}
-                className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart as PNG image"
               >
                 Download PNG
               </button>
               <button
                 onClick={() => downloadDataAsCSV(chart1Data, 'net_energy_imports')}
-                className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart data as CSV"
               >
                 Download CSV
               </button>
@@ -368,10 +367,11 @@ function Imports() {
                 Fossil plants have negative net services due to perpetual fuel imports. Renewables provide positive lifetime value.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={() => downloadChartAsPNG('chart2', 'lifetime_services_comparison')}
-                className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart as PNG image"
               >
                 Download PNG
               </button>
@@ -388,7 +388,8 @@ function Imports() {
                   }));
                   downloadDataAsCSV(csvData, 'lifetime_services_comparison');
                 }}
-                className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart data as CSV"
               >
                 Download CSV
               </button>
@@ -445,10 +446,11 @@ function Imports() {
                 Most regions have 10-1000x more renewable potential than fossil fuel reserves
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <button
                 onClick={() => downloadChartAsPNG('chart3', 'energy_potential_by_region')}
-                className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+                className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart as PNG image"
               >
                 Download PNG
               </button>
@@ -463,7 +465,8 @@ function Imports() {
                   }));
                   downloadDataAsCSV(csvData, 'energy_potential_by_region');
                 }}
-                className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700"
+                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium text-xs sm:text-sm whitespace-nowrap"
+                title="Download chart data as CSV"
               >
                 Download CSV
               </button>
@@ -588,11 +591,6 @@ function Imports() {
             <p className="text-gray-700 mb-3">
               Build <strong>fossil fuel infrastructure</strong> and it <strong>will require imports for decades.</strong>
             </p>
-            <ul className="list-disc list-inside text-gray-700 space-y-2 ml-4">
-              <li><strong>Offshore wind:</strong> +128 EJ net lifetime services (30-40 years)</li>
-              <li><strong>Hydropower:</strong> +568 EJ net lifetime services (80+ years)</li>
-              <li><strong>Solar PV:</strong> +41 EJ net lifetime services (25-30 years)</li>
-            </ul>
             <p className="text-gray-700 mt-3">
               Renewables require a one-time capital investment. Then they provide <strong>decades of energy independence</strong>. No fuel price risk, no supply disruptions, no emissions.
             </p>
@@ -605,14 +603,10 @@ function Imports() {
               For net importing nations, the path to energy independence is clear:
             </p>
             <ol className="list-decimal list-inside text-gray-700 space-y-2 ml-4">
-              <li><strong>Electrify everything possible:</strong> Transport, heating, industry</li>
-              <li><strong>Build renewable generation:</strong> Prioritize solar, wind, storage</li>
-              <li><strong>Phase out fuel imports:</strong> Coal first, then oil, then gas</li>
-              <li><strong>Capture efficiency gains:</strong> Better insulation, process optimization</li>
+              <li><strong>Electrify as much as possible:</strong> Transport, heating, industry</li>
+              <li><strong>Build domestic energy generation:</strong> Prioritize renewable energy, or nuclear</li>
+              <li><strong>Implement energy efficiency measures:</strong> Better insulation, process optimization</li>
             </ol>
-            <p className="text-gray-700 mt-3 font-medium">
-              The data shows: <strong>Renewables + Electrification = Energy Security</strong>
-            </p>
           </div>
         </div>
       </div>
