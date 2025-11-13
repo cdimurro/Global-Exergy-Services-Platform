@@ -218,7 +218,7 @@ function Imports() {
           Breaking the Fossil Fuel Dependence Cycle
         </h1>
         <p className="text-xl text-gray-600">
-          For net importers (75% global population), renewables deliver lifetime services—fossils lock in volatility and costs
+          75% of the global population lives in net energy importing regions.
         </p>
       </div>
 
