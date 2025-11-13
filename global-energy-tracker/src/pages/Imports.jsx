@@ -12,9 +12,18 @@ function Imports() {
   const [error, setError] = useState(null);
 
   // Chart 1 controls
+  const [viewMode, setViewMode] = useState('regions'); // 'regions' or 'fuels'
+  const [showAnnualChange, setShowAnnualChange] = useState(false);
+
+  // Compare Regions mode
   const [selectedRegions, setSelectedRegions] = useState([]);
-  const [selectedFuel, setSelectedFuel] = useState('total');
+  const [selectedFuel, setSelectedFuel] = useState('total'); // 'total', 'coal', 'oil', 'gas', or 'fossil'
   const [energyType, setEnergyType] = useState('primary'); // primary or useful
+
+  // Compare Fuels mode
+  const [selectedRegion, setSelectedRegion] = useState('Japan');
+  const [selectedFuels, setSelectedFuels] = useState([]); // Array of 'coal', 'oil', 'gas'
+  const [fuelCategory, setFuelCategory] = useState('all'); // 'all', 'fossil', or null
 
   useEffect(() => {
     Promise.all([
@@ -44,39 +53,107 @@ function Imports() {
 
   // Process Chart 1 data
   const chart1Data = useMemo(() => {
-    if (!netImportsData || selectedRegions.length === 0) return [];
+    if (!netImportsData) return [];
 
-    // Get all years across selected regions
-    const allYears = new Set();
-    selectedRegions.forEach(regionName => {
-      const region = netImportsData.regions.find(r => r.region === regionName);
-      if (region) {
-        region.years.forEach(y => allYears.add(y.year));
-      }
-    });
+    let data = [];
 
-    const years = Array.from(allYears).sort((a, b) => a - b);
+    if (viewMode === 'regions') {
+      // Compare Regions mode
+      if (selectedRegions.length === 0) return [];
 
-    return years.map(year => {
-      const dataPoint = { year };
-
+      // Get all years across selected regions
+      const allYears = new Set();
       selectedRegions.forEach(regionName => {
         const region = netImportsData.regions.find(r => r.region === regionName);
         if (region) {
-          const yearData = region.years.find(y => y.year === year);
-          if (yearData) {
-            if (selectedFuel === 'total') {
-              dataPoint[regionName] = yearData.total[`${energyType}_ej`];
-            } else {
-              dataPoint[regionName] = yearData[selectedFuel][`${energyType}_ej`];
-            }
-          }
+          region.years.forEach(y => allYears.add(y.year));
         }
       });
 
-      return dataPoint;
-    });
-  }, [netImportsData, selectedRegions, selectedFuel, energyType]);
+      const years = Array.from(allYears).sort((a, b) => a - b);
+
+      data = years.map(year => {
+        const dataPoint = { year };
+
+        selectedRegions.forEach(regionName => {
+          const region = netImportsData.regions.find(r => r.region === regionName);
+          if (region) {
+            const yearData = region.years.find(y => y.year === year);
+            if (yearData) {
+              let value = 0;
+              if (selectedFuel === 'total') {
+                value = yearData.total[`${energyType}_ej`];
+              } else if (selectedFuel === 'fossil') {
+                // Sum coal + oil + gas
+                value = yearData.coal[`${energyType}_ej`] +
+                        yearData.oil[`${energyType}_ej`] +
+                        yearData.gas[`${energyType}_ej`];
+              } else {
+                value = yearData[selectedFuel][`${energyType}_ej`];
+              }
+              dataPoint[regionName] = value;
+            }
+          }
+        });
+
+        return dataPoint;
+      });
+    } else {
+      // Compare Fuels mode
+      const region = netImportsData.regions.find(r => r.region === selectedRegion);
+      if (!region) return [];
+
+      // Determine which fuels to show
+      let fuelsToShow = [];
+      if (fuelCategory === 'all') {
+        fuelsToShow = ['coal', 'oil', 'gas'];
+      } else if (fuelCategory === 'fossil') {
+        fuelsToShow = ['coal', 'oil', 'gas'];
+      } else {
+        fuelsToShow = selectedFuels;
+      }
+
+      if (fuelsToShow.length === 0 && fuelCategory !== 'all') return [];
+
+      data = region.years.map(yearData => {
+        const dataPoint = { year: yearData.year };
+
+        if (fuelCategory === 'all') {
+          // Show total for all fuels
+          dataPoint['Total'] = yearData.total[`${energyType}_ej`];
+        } else {
+          // Show individual fuels
+          fuelsToShow.forEach(fuel => {
+            const fuelName = fuel.charAt(0).toUpperCase() + fuel.slice(1);
+            dataPoint[fuelName] = yearData[fuel][`${energyType}_ej`];
+          });
+        }
+
+        return dataPoint;
+      });
+    }
+
+    // Apply annual change calculation if enabled
+    if (showAnnualChange && data.length > 1) {
+      const changedData = [];
+      for (let i = 1; i < data.length; i++) {
+        const currentYear = data[i];
+        const previousYear = data[i - 1];
+        const changedPoint = { year: currentYear.year };
+
+        Object.keys(currentYear).forEach(key => {
+          if (key !== 'year') {
+            changedPoint[key] = (currentYear[key] || 0) - (previousYear[key] || 0);
+          }
+        });
+
+        changedData.push(changedPoint);
+      }
+      return changedData;
+    }
+
+    return data;
+  }, [netImportsData, viewMode, selectedRegions, selectedRegion, selectedFuel, selectedFuels, fuelCategory, energyType, showAnnualChange]);
 
   // Process Chart 3 data - always sort by renewable advantage
   const chart3Data = useMemo(() => {
@@ -100,6 +177,24 @@ function Imports() {
     });
   };
 
+  const toggleFuel = (fuel) => {
+    setSelectedFuels(prev => {
+      if (prev.includes(fuel)) {
+        return prev.filter(f => f !== fuel);
+      } else {
+        return [...prev, fuel];
+      }
+    });
+  };
+
+  const selectAllRegions = () => {
+    setSelectedRegions(availableRegions);
+  };
+
+  const clearAllRegions = () => {
+    setSelectedRegions([]);
+  };
+
   const REGION_COLORS = {
     'Japan': '#DC2626',
     'China': '#EF4444',
@@ -120,6 +215,17 @@ function Imports() {
 
   const getRegionColor = (region, index) => {
     return REGION_COLORS[region] || `hsl(${(index * 137.5) % 360}, 70%, 50%)`;
+  };
+
+  const FUEL_COLORS = {
+    'Coal': '#DC2626',
+    'Oil': '#F97316',
+    'Gas': '#EAB308',
+    'Total': '#3B82F6'
+  };
+
+  const getFuelColor = (fuel) => {
+    return FUEL_COLORS[fuel] || '#6B7280';
   };
 
   const CustomTooltip = ({ active, payload, label }) => {
@@ -240,37 +346,242 @@ function Imports() {
           </div>
 
           {/* Controls */}
-          <div className="mb-6 space-y-4">
-            {/* Fuel Type Selection */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Fuel Type:</label>
-              <div className="flex flex-wrap gap-2">
-                {['total', 'coal', 'oil', 'gas'].map(fuel => (
+          <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
+            {/* View Mode Toggle */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-sm font-semibold text-gray-700">View Mode</h3>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-gray-700">View Annual Change</span>
                   <button
-                    key={fuel}
-                    onClick={() => setSelectedFuel(fuel)}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
-                      selectedFuel === fuel
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    onClick={() => setShowAnnualChange(!showAnnualChange)}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      showAnnualChange ? 'bg-blue-600' : 'bg-gray-300'
                     }`}
                   >
-                    {fuel.charAt(0).toUpperCase() + fuel.slice(1)}
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        showAnnualChange ? 'translate-x-6' : 'translate-x-1'
+                      }`}
+                    />
                   </button>
-                ))}
+                </div>
+              </div>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => setViewMode('regions')}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                    viewMode === 'regions'
+                      ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  }`}
+                >
+                  Compare Regions
+                </button>
+                <button
+                  onClick={() => setViewMode('fuels')}
+                  className={`px-6 py-3 rounded-lg font-medium transition-all ${
+                    viewMode === 'fuels'
+                      ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
+                  }`}
+                >
+                  Compare Fuel Types
+                </button>
               </div>
             </div>
 
+            {viewMode === 'regions' ? (
+              <>
+                {/* Region Selection */}
+                <div className="mb-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-gray-700">Select Regions</h3>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={selectAllRegions}
+                        className="px-3 py-1 text-xs bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-lg font-medium transition-all"
+                      >
+                        Select All
+                      </button>
+                      <button
+                        onClick={clearAllRegions}
+                        className="px-3 py-1 text-xs bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-lg font-medium transition-all"
+                      >
+                        Clear All
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {availableRegions.map((region, index) => (
+                      <button
+                        key={region}
+                        onClick={() => toggleRegion(region)}
+                        className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                          selectedRegions.includes(region)
+                            ? 'text-white ring-2 ring-offset-2'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                        style={{
+                          backgroundColor: selectedRegions.includes(region) ? getRegionColor(region, index) : undefined,
+                          ringColor: getRegionColor(region, index)
+                        }}
+                      >
+                        {region}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fuel Type Selection */}
+                <div className="mb-4">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-3">Select Fuel Type</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setSelectedFuel('total')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        selectedFuel === 'total'
+                          ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      All Fuels
+                    </button>
+                    <button
+                      onClick={() => setSelectedFuel('fossil')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        selectedFuel === 'fossil'
+                          ? 'bg-red-600 text-white ring-2 ring-red-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Fossil Fuels
+                    </button>
+                    <button
+                      onClick={() => setSelectedFuel('coal')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        selectedFuel === 'coal'
+                          ? 'bg-red-700 text-white ring-2 ring-red-700 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Coal
+                    </button>
+                    <button
+                      onClick={() => setSelectedFuel('oil')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        selectedFuel === 'oil'
+                          ? 'bg-orange-600 text-white ring-2 ring-orange-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Oil
+                    </button>
+                    <button
+                      onClick={() => setSelectedFuel('gas')}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        selectedFuel === 'gas'
+                          ? 'bg-yellow-600 text-white ring-2 ring-yellow-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Gas
+                    </button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Region Selection (Single) */}
+                <div className="mb-6">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-3">Select Region</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {availableRegions.map((region, index) => (
+                      <button
+                        key={region}
+                        onClick={() => setSelectedRegion(region)}
+                        className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                          selectedRegion === region
+                            ? 'text-white ring-2 ring-offset-2'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                        style={{
+                          backgroundColor: selectedRegion === region ? getRegionColor(region, index) : undefined,
+                          ringColor: getRegionColor(region, index)
+                        }}
+                      >
+                        {region}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fuel Selection */}
+                <div className="mb-4">
+                  <h3 className="text-sm font-semibold text-gray-700 mb-3">Select Fuel Types</h3>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <button
+                      onClick={() => {
+                        setFuelCategory('all');
+                        setSelectedFuels([]);
+                      }}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        fuelCategory === 'all'
+                          ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      All Fuels
+                    </button>
+                    <button
+                      onClick={() => {
+                        setFuelCategory('fossil');
+                        setSelectedFuels(['coal', 'oil', 'gas']);
+                      }}
+                      className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                        fuelCategory === 'fossil'
+                          ? 'bg-red-600 text-white ring-2 ring-red-600 ring-offset-2'
+                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      }`}
+                    >
+                      Fossil Fuels
+                    </button>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {['coal', 'oil', 'gas'].map(fuel => (
+                      <button
+                        key={fuel}
+                        onClick={() => {
+                          setFuelCategory(null);
+                          toggleFuel(fuel);
+                        }}
+                        className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
+                          selectedFuels.includes(fuel) && fuelCategory === null
+                            ? 'ring-2 ring-offset-2'
+                            : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                        style={{
+                          backgroundColor: selectedFuels.includes(fuel) && fuelCategory === null ? FUEL_COLORS[fuel.charAt(0).toUpperCase() + fuel.slice(1)] : undefined
+                        }}
+                      >
+                        {fuel.charAt(0).toUpperCase() + fuel.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
             {/* Energy Type Selection */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Energy Type:</label>
+              <h3 className="text-sm font-semibold text-gray-700 mb-3">Energy Type</h3>
               <div className="flex gap-2">
                 <button
                   onClick={() => setEnergyType('primary')}
                   className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                     energyType === 'primary'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                   }`}
                 >
                   Primary Energy
@@ -279,34 +590,12 @@ function Imports() {
                   onClick={() => setEnergyType('useful')}
                   className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
                     energyType === 'useful'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
+                      : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-300'
                   }`}
                 >
                   Useful Energy
                 </button>
-              </div>
-            </div>
-
-            {/* Region Selection */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Select Regions (showing {selectedRegions.length} of {availableRegions.length}):
-              </label>
-              <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 bg-gray-50 rounded">
-                {availableRegions.map(region => (
-                  <button
-                    key={region}
-                    onClick={() => toggleRegion(region)}
-                    className={`px-3 py-1 rounded-lg font-medium transition-all text-xs ${
-                      selectedRegions.includes(region)
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    {region}
-                  </button>
-                ))}
               </div>
             </div>
           </div>
@@ -321,21 +610,40 @@ function Imports() {
                   label={{ value: 'Year', position: 'insideBottom', offset: -10 }}
                 />
                 <YAxis
-                  label={{ value: 'Net Imports (EJ)', angle: -90, position: 'insideLeft' }}
+                  label={{
+                    value: showAnnualChange ? 'Net Imports (EJ/year)' : 'Net Imports (EJ)',
+                    angle: -90,
+                    position: 'insideLeft'
+                  }}
                 />
                 <Tooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '20px' }} />
-                {selectedRegions.map((region, index) => (
-                  <Line
-                    key={region}
-                    type="monotone"
-                    dataKey={region}
-                    stroke={getRegionColor(region, index)}
-                    strokeWidth={2}
-                    dot={false}
-                    name={region}
-                  />
-                ))}
+                {viewMode === 'regions' ? (
+                  selectedRegions.map((region, index) => (
+                    <Line
+                      key={region}
+                      type="monotone"
+                      dataKey={region}
+                      stroke={getRegionColor(region, index)}
+                      strokeWidth={2}
+                      dot={false}
+                      name={region}
+                    />
+                  ))
+                ) : (
+                  // Compare Fuels mode
+                  Object.keys(chart1Data[0] || {}).filter(key => key !== 'year').map((fuel) => (
+                    <Line
+                      key={fuel}
+                      type="monotone"
+                      dataKey={fuel}
+                      stroke={getFuelColor(fuel)}
+                      strokeWidth={2}
+                      dot={false}
+                      name={fuel}
+                    />
+                  ))
+                )}
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -351,7 +659,7 @@ function Imports() {
                 Lifetime Energy Services Comparison
               </h2>
               <p className="text-sm text-gray-600">
-                Fossil plants have negative net services due to perpetual fuel imports. Renewables provide positive lifetime value.
+                Fossil plants have negative net services due to perpetual fuel imports. Renewables deliver positive lifetime energy services.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
@@ -409,8 +717,8 @@ function Imports() {
           <div className="mt-4 text-sm text-gray-600">
             <p className="font-medium mb-2">Reading this chart:</p>
             <ul className="list-disc list-inside space-y-1">
-              <li className="text-red-600">Red bars (fossil plants): Negative values show lifetime fuel imports exceed generation value</li>
-              <li className="text-green-600">Green bars (renewable plants and nuclear): Positive values show pure energy gain with zero or minimal fuel imports</li>
+              <li className="text-red-600">Red bars: Negative values show lifetime fuel consumption that exceeds energy generation values</li>
+              <li className="text-green-600">Green bars: Positive values show pure energy gain with zero fuel imports</li>
             </ul>
           </div>
         </div>
