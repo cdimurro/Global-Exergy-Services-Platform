@@ -52,7 +52,7 @@ export default function RealityCheck() {
             </p>
             <div className="bg-gray-100 border border-gray-300 p-4 my-4 text-center">
               <p className="text-lg font-bold text-blue-600">
-                <strong>Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement - Efficiency Savings
+                <strong>Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement - Efficiency Savings</strong>
               </p>
             </div>
             <p className="mb-4">
@@ -100,14 +100,7 @@ export default function RealityCheck() {
             <p className="mb-4">
               <strong>Electrifying as much as possible is always the first step to making our energy systems cleaner and more efficient.</strong> There is no other single action that has a larger impact on improving the overall efficiency of the energy system than electrification. In past years the focus has been to electrify, building more clean energy, and then use less energy through efficiency. While this simple blueprint still holds true, it ignores the growth of energy demand, and the entrenched nature of fossil fuels across our energy systems. In order to further refine this approach, and get faster results, we should prioritize displacing the energy services that are currently being met by fossil fuels first, while also removing fossil fuel subsidies and pricing in any unpriced externalities. 
 
-
-              This is because electric technologies are generally much more efficient than their fossil fuel counterparts. For example, electric vehicles are typically around 3 times more efficient than internal combustion engine vehicles, and heat pumps can be up to 4 times more efficient than traditional gas furnaces. By electrifying as much as possible, we can significantly reduce the amount of primary energy consumption needed to meet our energy services demand.
-            </p>
-            <p className="mb-4">
-              The fact that the most common way we measure energy consumption has so many flaws means we've essentially been flying blind, and it's one of the main reasons why the energy transition hasn't made more progress. This platform was created to help solve the many shortcomings of tracking the energy system by using primary energy consumption. To solve this, we aimed to create the most comprehensive and accurate picture of the entire global energy system at a high level.
-            </p>
-            <p className="mb-4">
-              By measuring the amount of energy services provided instead of primary energy consumption, we can cut through the noise and waste, and get a clearer sense of where energy is being, what it's being used for, and how much value it's providing to society.
+              The reason we want as much electrification as possible is because electric technologies are much more efficient at converting energy into work than fossil fuels are. Electric vehicles are typically around 3 times more efficient than internal combustion engine vehicles, and heat pumps can be up to 4 times more efficient than traditional gas furnaces. By electrifying as much as possible, we can provide the same energy services with clean energy, and by using 2-2.5x less primary energy. The amount of energy that we waste would drop significantly if we electrified everything.
             </p>
           </section>
 
@@ -117,7 +110,13 @@ export default function RealityCheck() {
               A New Path Forward
             </h2>
             <p className="mb-4">
-              Thanks to a vast arrangement of data and new technologies, it's now possible to create a much more accurate picture of the global energy system. The insights gained by changing how we measure energy could have massive implications across the world, and could also play a pivotal role in how we manage the energy transition.
+              The fact that the most common way we measure energy consumption is so fundamentally flawed means that we've essentially been flying blind, and it's one of the main reasons why the energy transition hasn't made more progress, and often receives criticism. This platform was designed to create the most accurate picture of the entire global energy system, by addressing the shortcomings of traditional primary energy measurements, and focusing on energy services instead.
+            </p>
+            <p className="mb-4">
+              Measuring energy services allows us to cut through the noise and get a clearer sense of where energy is being used, what it's being used for, and how much value it's providing to society. It also shows us how much energy is being wasted, where it's being wasted, and how to eliminate that waste. This is crucial information for policymakers, businesses, and individuals who are trying to make informed decisions about energy use and sustainability.
+            </p>
+            <p className="mb-4">
+              Thanks to a vast arrangement of data and new technologies, it's now possible to create a much more accurate picture of the global energy system. The insights gained by changing how we measure energy could have massive implications across the world, and could play a pivotal role in how we manage the energy transition.
             </p>
             <div className="bg-gray-100 border border-gray-300 p-4 text-center">
               <p className="font-semibold mb-2">The Key Difference:</p>

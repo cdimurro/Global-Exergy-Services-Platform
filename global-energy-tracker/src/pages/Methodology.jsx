@@ -27,10 +27,10 @@ export default function Methodology() {
               A Better Way to Measure Energy Consumption
             </h2>
             <p className="mb-4">
-              Traditional energy metrics measure <strong>primary energy</strong> - the raw energy content of fuels before they're converted into useful work. This is fundamentally misleading because it counts massive amounts of wasted heat as if it were useful energy.
+              Traditional energy metrics measure <strong>primary energy</strong> - the energy content of fossil fuels after they are extracted and before they are converted into useful work. This is fundamentally misleading because it counts massive amounts of wasted heat as if it were useful energy, and it's also not possible to calculate the primary energy vallues for renewables with precision.
             </p>
             <p className="mb-4">
-              This platform uses a <strong>three-tier framework</strong> that focuses on <strong>Energy Services</strong> and accounts for both conversion efficiency and thermodynamic exergy:
+              To solve this problem, this platform uses a <strong>three-tier framework</strong> that focuses on <strong>Energy Services</strong> and accounts for both conversion efficiency and thermodynamic exergy:
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4">
               <div className="space-y-3">
@@ -44,16 +44,16 @@ export default function Methodology() {
                 </div>
                 <div>
                   <strong className="text-blue-800">Tier 3: Energy Services</strong>
-                  <p className="text-gray-700">Thermodynamic value delivered, accounting for quality (exergy × useful). Global: ~150 EJ/year</p>
+                  <p className="text-gray-700">Thermodynamic value delivered, accounting for quality (exergy × useful). Global: ~140 EJ/year</p>
                 </div>
               </div>
             </div>
             <div className="bg-gray-100 border border-gray-300 p-4 text-center">
               <p className="font-semibold mb-2">A Simple Example:</p>
               <p className="text-gray-700">
-                <strong>Coal Power:</strong> 1 EJ primary → 0.32 EJ useful (68% waste) → 0.27 EJ services<br/>
-                <strong>Wind Power:</strong> 1 EJ primary → 0.90 EJ useful (10% waste) → 0.75 EJ services<br/>
-                <strong>Wind is 2.8× more effective and wastes far less energy</strong>
+                <strong>Coal Power:</strong> 1 EJ primary → 0.32 EJ useful → 0.27 EJ services<br/>
+                <strong>Wind Power:</strong> 1 EJ primary → 0.70 EJ useful → 0.70 EJ services<br/>
+                <strong>Wind is 2.6× more effective at derlivering energy services per unit of primary energy.</strong>
               </p>
             </div>
           </section>
@@ -64,8 +64,8 @@ export default function Methodology() {
               Why Efficiency Changes Everything
             </h2>
             <p className="mb-4">
-              Fossil fuels are incredibly inefficient. Most of the energy they contain is lost as waste heat during combustion and conversion. Clean electricity delivers far more useful energy, though transmission and end-use losses still apply.
-              We need to start measuring energy consumption based on the actual energy services provided, because that is what matters to society, not how many BTUs are in a given amount of coal.
+              Fossil fuels are incredibly inefficient. 60-65% of the primary energy that they contain is wasted as heat during combustion and conversion. Clean electricity sources such as renewables and nuclear are far more efficient, although some transmission and end-use losses still apply.
+              It's time we started measuring energy consumption based on the actual energy services that are provided, because that is what matters to society, not how many BTUs are in a given amount of coal.
             </p>
             <div className="bg-blue-50 border-l-4 border-blue-600 p-4 mb-4">
               <p className="font-semibold text-gray-800 mb-2">System-Wide Efficiency Measurements by Source (Primary → Useful):</p>
@@ -75,20 +75,20 @@ export default function Methodology() {
                 <li>• Natural Gas (heating, power): <strong>50% efficient</strong> - Better than coal/oil</li>
                 <li>• Nuclear (thermal conversion): <strong>25% efficient</strong> - Thermal plant losses</li>
                 <li>• Biomass (traditional/modern mix): <strong>28% efficient</strong> - Combustion losses</li>
-                <li>• Hydro: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
-                <li>• Wind: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
-                <li>• Solar: <strong>90% efficient</strong> - Minimal conversion waste (T&D losses only)</li>
-                <li>• Geothermal: <strong>85% efficient</strong> - Some conversion losses</li>
+                <li>• Hydro: <strong>70% efficient</strong> - Conversion losses (T&D losses)</li>
+                <li>• Wind: <strong>70% efficient</strong> - Conversion losses (T&D losses)</li>
+                <li>• Solar: <strong>70% efficient</strong> - Conversion losses (T&D losses)</li>
+                <li>• Geothermal: <strong>85% efficient</strong> - Conversion losses</li>
               </ul>
               <p className="text-sm text-gray-600 mt-3">
                 <em>Note: For energy services calculations (Tier 3), these values are further adjusted by exergy quality factors and end-use efficiency, resulting in lower effective rates (e.g., wind/solar ~75% for services).</em>
               </p>
             </div>
             <p className="mb-4">
-              <strong>Exergy Quality Factors:</strong> Many people are unaware of the fact that energy has both a quantity and quality to it. In order to accurately calculate the quantity of energy, it's important to also account for the thermodynamic quality, which is known as <strong>exergy</strong>. Electricity has 100% quality, because it can be used to do any work, but low-temperature heat has a quality of ~20% because it can only be used to perform some work (you can't make steel with low-temperature heat). This gives clean energy sources an additional advantage. Wind, and solar deliver high-quality electricity (exergy 1.0) while using natural gas for heating delivers low-quality heat (exergy 0.2-0.5).
+              <strong>Exergy Quality Factors:</strong> Many people are unaware of the fact that energy has both a quantity and a quality to it. In order to accurately calculate the quantity of energy, it's essential to account for the thermodynamic quality, which is known as <strong>exergy</strong>. Electricity has 100% exergy, because it can be used to do any work, but low-temperature heat has a quality of ~20% because it can only be used to perform some work. It doesn't matter how much low-temperature heat you have, you still won't be able to make steel. This gives clean energy sources an enormous advantage, because they provide electricity directly, which is the highest quality form of energy that there is.
             </p>
             <p>
-              This is why electrification is so powerful. When we replace a fossil fuel service with clean electricity (solar/wind/nuclear), we need 2.0-2.5× less primary energy to accomplish the same amount of thermodynamic work. This is one of the most underappreciated aspects of the energy transition, and it means that we don't need to replace 100% of fossil fuel primary energy consumption, we only need to replace ~40-45% to provide the same energy services.
+              This is also why electrification is so powerful, and why it's the single most important thing that we can improve about the way we produce and consume energy. When we replace an energy service from fossil fuels to clean energy, we actually need 2.0-2.5× less primary energy to accomplish the same amount of thermodynamic work. This is one of the most underappreciated aspects of the energy transition, and it means that we don't need to replace 100% of fossil fuel primary energy consumption, we only need to replace ~40-45% of it to provide the same energy services.
             </p>
           </section>
 
@@ -218,13 +218,13 @@ export default function Methodology() {
               Why This Matters
             </h2>
             <p className="mb-4">
-              By measuring energy services instead of primary energy, we can finally get an accurate sense of what energy sources are providing our energy. This will allow us to gain useful insights into how the energy transition is progressing, and it will allow us to track the true impact of whether clean energy sources are displacing fossil fuel consumption, or not. It also helps us understand the power of electrification, and identify exactly how close we are to peak fossil fuel consumption.
+              By measuring energy services instead of primary energy, we can finally get an accurate sense of what energy sources are providing our energy. This will allow us to gain useful insights into how the energy transition is progressing, and it will allow us to track the true impact of whether clean energy sources are displacing fossil fuel consumption, or not. It also helps us understand the power of electrification, and can help identify how close we are to peak fossil fuel consumption.
             </p>
             <p className="mb-4">
-              This isn't just about better metrics - it's about better decision-making. When policymakers, businesses, and citizens understand that electric vehicles displace 3x their weight in fossil fuels, or that heat pumps cut energy use by 70%, it changes the entire conversation about climate action.
+              It's not just about better data and metrics - it's about making better decisions. Such as whether to build an LNG terminal and import natural gas for the next 30 years, or to build a series of renewable energy projects and not have to import any fuels for the next 30 years. When policymakers, businesses, and citizens understand that electric vehicles displace 3x their weight in fossil fuels, or that heat pumps cut energy use by 70%, it can change the entire conversation about climate action.
             </p>
             <p>
-              The energy transition is happening. This dashboard measures it properly, so that you can actually see it. The real value doesn't come from being able to see the energy transition though, it comes from understanding exactly what's needed to accelerate it.
+              The energy transition is happening. This dashboard measures it properly, so that we can actually see it. It's one thing to be able to see the energy transition happening, but the real value comes from being able to make the right decisions to accelerate it.
             </p>
           </section>
         </div>
