@@ -51,7 +51,7 @@ export default function DisplacementAnalysis() {
               What is Displacement?
             </h3>
             <p className="text-gray-700">
-              Displacement (D) measures the rate at which clean energy services are being added to the global energy system.
+              Displacement (D) measures the rate at which clean exergy services are being added to the global energy system.
               When clean energy grows, it represents new capacity that can offset fossil fuel demand.
             </p>
           </div>

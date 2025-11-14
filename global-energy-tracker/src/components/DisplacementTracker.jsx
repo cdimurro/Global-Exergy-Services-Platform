@@ -59,21 +59,21 @@ export default function DisplacementTracker() {
       // Displacement (D) = clean energy growth (positive only)
       const displacementValue = Math.max(0, cleanGrowth);
 
-      // Total Energy Service Growth (Energy Services Demand)
+      // Total Exergy Service Growth (Exergy Services Demand)
       const totalEnergyGrowthValue = endYear.total_services_ej - startYear.total_services_ej;
       const totalEnergyGrowthPercentValue = startYear.total_services_ej > 0
         ? (totalEnergyGrowthValue / startYear.total_services_ej) * 100
         : 0;
 
-      // Efficiency Savings = reduction in fossil services needed due to efficiency improvements
-      // If efficiency improved, the fossil services that would have been needed at old efficiency
+      // Efficiency Savings = reduction in fossil exergy services needed due to efficiency improvements
+      // If efficiency improved, the fossil exergy services that would have been needed at old efficiency
       // but are now saved through better efficiency
       const efficiencyChange = endYear.global_exergy_efficiency - startYear.global_exergy_efficiency;
       const efficiencySavingsValue = startYear.fossil_services_ej > 0 && startYear.global_exergy_efficiency > 0
         ? (efficiencyChange / startYear.global_exergy_efficiency) * startYear.fossil_services_ej
         : 0;
 
-      // Net Change = Energy Services Demand - Clean Displacement - Efficiency Savings
+      // Net Change = Exergy Services Demand - Clean Displacement - Efficiency Savings
       // Alternatively: Net Change = Fossil Growth - Clean Displacement - Efficiency Savings
       // (These should be equivalent since Fossil Growth = Total Growth - Clean Growth)
       const netChangeValue = totalEnergyGrowthValue - displacementValue - efficiencySavingsValue;
@@ -131,11 +131,11 @@ export default function DisplacementTracker() {
   // Bar chart data
   const barChartData = [
     {
-      name: 'Energy Services Demand',
+      name: 'Exergy Services Demand',
       value: currentData.totalEnergyGrowth,
       percent: currentData.totalEnergyGrowthPercent,
       color: '#DC2626',
-      label: 'Energy Services Demand'
+      label: 'Exergy Services Demand'
     },
     {
       name: 'Clean Displacement',
@@ -203,13 +203,13 @@ export default function DisplacementTracker() {
     const periodText = periodLabel === '2024' ? 'in 2024' : `over ${periodLabel.toLowerCase()}`;
     switch (status) {
       case 'recarbonization':
-        return `Clean energy services shrank ${periodText}. Fossil fuels expanded to meet all energy demand.`;
+        return `Clean exergy services shrank ${periodText}. Fossil fuels expanded to meet all exergy demand.`;
       case 'rising':
-        return `Clean energy grew ${periodText}, but fossil fuel demand grew by more.`;
+        return `Clean exergy grew ${periodText}, but fossil fuel demand grew by more.`;
       case 'peak':
-        return `Clean growth perfectly balanced fossil demand changes ${periodText}. Fossil consumption was flat.`;
+        return `Clean exergy growth perfectly balanced fossil demand changes ${periodText}. Fossil consumption was flat.`;
       case 'declining':
-        return `Clean energy growth exceeded fossil demand growth ${periodText}. Fossil consumption declined.`;
+        return `Clean exergy growth exceeded fossil demand growth ${periodText}. Fossil consumption declined.`;
       default:
         return '';
     }
@@ -226,7 +226,7 @@ export default function DisplacementTracker() {
     const csvData = [];
 
     // Add header
-    csvData.push(['Year', 'Displacement (EJ/year)', 'Fossil Growth (EJ/year)', 'Clean Growth (EJ/year)', 'Efficiency Savings (EJ/year)', 'Energy Services Demand (EJ/year)', 'Net Change (EJ/year)', 'Status', 'Fossil Total (EJ)', 'Clean Total (EJ)']);
+    csvData.push(['Year', 'Displacement (EJ/year)', 'Fossil Growth (EJ/year)', 'Clean Growth (EJ/year)', 'Efficiency Savings (EJ/year)', 'Exergy Services Demand (EJ/year)', 'Net Change (EJ/year)', 'Status', 'Fossil Total (EJ)', 'Clean Total (EJ)']);
 
     // Calculate for all years
     for (let i = 1; i < timeseries.length; i++) {
@@ -246,7 +246,7 @@ export default function DisplacementTracker() {
         ? (efficiencyChange / prev.global_exergy_efficiency) * prev.fossil_services_ej
         : 0;
 
-      // Net Change = Energy Services Demand - Clean Displacement - Efficiency Savings
+      // Net Change = Exergy Services Demand - Clean Displacement - Efficiency Savings
       const netChangeValue = totalGrowthValue - displacementValue - efficiencySavingsValue;
 
       let status;
@@ -367,7 +367,7 @@ export default function DisplacementTracker() {
           <div className="flex flex-wrap justify-center gap-4 mt-6">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded" style={{ backgroundColor: '#DC2626' }}></div>
-              <span className="text-sm font-medium text-gray-700">Energy Services Demand</span>
+              <span className="text-sm font-medium text-gray-700">Exergy Services Demand</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded" style={{ backgroundColor: '#16A34A' }}></div>
@@ -446,7 +446,7 @@ export default function DisplacementTracker() {
         <h3 className="text-xl font-bold mb-4 text-gray-800">Key Definitions</h3>
         <div className="space-y-3 mb-6">
           <div className="border-l-4 border-red-600 pl-4">
-            <strong>Energy Services Demand:</strong> The net change in demand for new energy services (positive or negative).
+            <strong>Exergy Services Demand:</strong> The net change in demand for new exergy services (positive or negative).
           </div>
           <div className="border-l-4 border-green-600 pl-4">
             <strong>Clean Energy Displacement (D):</strong> The amount of fossil fuel consumption replaced by clean energy growth in a given year.
@@ -461,7 +461,7 @@ export default function DisplacementTracker() {
 
         <div className="bg-white border border-gray-300 p-4 text-center">
           <p className="text-lg font-bold text-blue-600 mb-2">
-            Δ Fossil Fuel Consumption = Energy Services Demand - Clean Displacement - Efficiency Savings
+            Δ Fossil Fuel Consumption = Exergy Services Demand - Clean Displacement - Efficiency Savings
           </p>
           <p className="text-sm text-gray-600">
             When this number is positive, fossil fuel consumption is increasing. When negative, fossil fuel consumption is declining.
