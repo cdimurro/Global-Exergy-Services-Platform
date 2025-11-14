@@ -223,7 +223,7 @@ export default function DisplacementBySource() {
             <span className="text-2xl ml-2 text-gray-500">EJ</span>
           </div>
           <div className="text-sm text-gray-600 mt-2">
-            Total clean energy services added over the period
+            Total clean exergy services added over the period
           </div>
         </div>
 

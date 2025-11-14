@@ -43,7 +43,7 @@ export default function ParameterStatusTable() {
       if (cleanGrowth < 0) {
         parameterStatus = 'Displacement = 0 (Clean Shrinking)';
         result = 'Recarbonization';
-        physicalMeaning = 'Clean energy services were shrinking. Fossil fuels expanded to meet all energy demand.';
+        physicalMeaning = 'Clean exergy services were shrinking. Fossil fuels expanded to meet all exergy demand.';
       } else if (Math.abs(displacement - fossilGrowth) < 0.01) {
         parameterStatus = 'Displacement = Fossil Fuel Growth';
         result = 'Peak Reached';

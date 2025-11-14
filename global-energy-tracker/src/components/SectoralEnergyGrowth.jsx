@@ -113,7 +113,7 @@ export default function SectoralEnergyGrowth() {
     const startYear = 2015;
     const endYear = 2050;
 
-    // Get baseline energy services for 2024
+    // Get baseline exergy services for 2024
     const baseline2024 = historicalData.data.find(d => d.year === 2024);
     if (!baseline2024) return;
 
@@ -125,7 +125,7 @@ export default function SectoralEnergyGrowth() {
     for (let year = startYear; year <= endYear; year++) {
       const yearData = { year };
 
-      // Get total energy services for this year and energy source distribution
+      // Get total exergy services for this year and energy source distribution
       let totalUseful;
       let historicalYear;
       let projYear;
@@ -578,7 +578,7 @@ export default function SectoralEnergyGrowth() {
               domain={showRelative ? [0, 100] : [0, 'auto']}
               ticks={showRelative ? [0, 25, 50, 75, 100] : undefined}
               label={{
-                value: showRelative ? 'Share of Total Energy (%)' : 'Energy Services (EJ)',
+                value: showRelative ? 'Share of Total Energy (%)' : 'Exergy Services (EJ)',
                 angle: -90,
                 position: 'insideLeft',
                 style: { fontSize: 17, fontWeight: 600 }
@@ -686,7 +686,7 @@ export default function SectoralEnergyGrowth() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h2 className="text-3xl font-bold text-gray-800 mb-1">
-              Energy Services Growth by Sector
+              Exergy Services Growth by Sector
             </h2>
             <p className="text-sm text-gray-600">
               2015-2024 historical data • 2025-2050 projections
@@ -708,7 +708,7 @@ export default function SectoralEnergyGrowth() {
       <ChartFullscreenModal
         isOpen={isFullscreen}
         onClose={() => setIsFullscreen(false)}
-        title="Energy Services Growth by Sector"
+        title="Exergy Services Growth by Sector"
         description="Historical data (2015-2024) and projections (2025-2050)"
         exportButtons={
           <ChartExportButtons

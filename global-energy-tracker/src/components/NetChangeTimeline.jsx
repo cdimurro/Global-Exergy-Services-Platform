@@ -42,7 +42,7 @@ export default function NetChangeTimeline() {
       // Calculate displacement (clean growth if positive, 0 otherwise)
       const displacement = Math.max(0, cleanGrowth);
 
-      // Calculate total energy services demand
+      // Calculate total exergy services demand
       const totalEnergyGrowth = curr.total_services_ej - prev.total_services_ej;
 
       // Calculate efficiency savings
@@ -51,7 +51,7 @@ export default function NetChangeTimeline() {
         ? (efficiencyChange / prev.global_exergy_efficiency) * prev.fossil_services_ej
         : 0;
 
-      // Net change = Energy Services Demand - Clean Displacement - Efficiency Savings
+      // Net change = Exergy Services Demand - Clean Displacement - Efficiency Savings
       const netChange = totalEnergyGrowth - displacement - efficiencySavings;
 
       // Calculate relative changes (%)
@@ -102,9 +102,9 @@ export default function NetChangeTimeline() {
         <div className="font-bold text-lg mb-3 text-gray-900">{label}</div>
 
         <div className="space-y-2">
-          {/* Energy Services Demand */}
+          {/* Exergy Services Demand */}
           <div className="flex justify-between items-center gap-6">
-            <span className="text-xs font-semibold text-red-700">Energy Services Demand</span>
+            <span className="text-xs font-semibold text-red-700">Exergy Services Demand</span>
             <div className="text-right">
               <div className="text-sm font-bold text-red-700">
                 {data.totalEnergyGrowth > 0 ? '+' : ''}{data.totalEnergyGrowth.toFixed(2)} EJ
@@ -265,7 +265,7 @@ export default function NetChangeTimeline() {
           {/* Reference line at zero */}
           <ReferenceLine y={0} stroke="#1f2937" strokeWidth={2} />
 
-          {/* Energy Services Demand - solid red line */}
+          {/* Exergy Services Demand - solid red line */}
           <Line
             type="monotone"
             dataKey="totalEnergyGrowth"
@@ -273,7 +273,7 @@ export default function NetChangeTimeline() {
             strokeWidth={2.5}
             dot={false}
             activeDot={{ r: 6, fill: '#DC2626' }}
-            name="Energy Services Demand"
+            name="Exergy Services Demand"
           />
 
           {/* Displacement components as stacked negative areas with dashed borders */}
@@ -316,9 +316,9 @@ export default function NetChangeTimeline() {
       {/* Explanation */}
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="p-4 bg-red-50 rounded-lg border-l-2 border-red-600">
-          <div className="font-semibold text-red-800 mb-2">Energy Services Demand</div>
+          <div className="font-semibold text-red-800 mb-2">Exergy Services Demand</div>
           <div className="text-sm text-gray-700">
-            The net change in demand for new energy services (EJ/year)
+            The net change in demand for new exergy services (EJ/year)
           </div>
         </div>
         <div className="p-4 bg-green-50 rounded-lg border-l-2 border-green-600">
@@ -374,7 +374,7 @@ export default function NetChangeTimeline() {
         isOpen={isFullscreen}
         onClose={() => setIsFullscreen(false)}
         title="Historical Displacement & Net Change Timeline"
-        description="Annual changes in energy services delivery"
+        description="Annual changes in exergy services delivery"
         exportButtons={
           <ChartExportButtons
             onDownloadPNG={downloadPNG}
