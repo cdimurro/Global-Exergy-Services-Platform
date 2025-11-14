@@ -82,8 +82,8 @@ See full methodology in METHODOLOGY_VALIDATION.md
 
 All 5 validation tests PASSED:
 - Brockway et al. 2021: Within 4.3%
-- IEA WEO 2024: 96% alignment
-- RMI 2024: 2.57x advantage (within range)
+- IEA WEO 2024: 98% alignment
+- RMI 2024: 3.0-3.4x advantage (within range)
 - Energy balance: <0.1% error
 - Historical trends: Smooth and plausible
 

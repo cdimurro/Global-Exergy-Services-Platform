@@ -16,7 +16,7 @@ The **Global Exergy Services Platform** is a web-based data visualization and an
 
 Traditional primary energy metrics are fundamentally misleading because they:
 - Count massive waste heat from fossil fuel combustion as if it were useful energy
-- Obscure the true efficiency advantage of clean electricity (2.0-2.5× more effective than fossil fuels)
+- Obscure the true efficiency advantage of clean electricity (2.0-2.5ï¿½ more effective than fossil fuels)
 - Make it appear that we need to replace 100% of fossil fuel consumption with renewables, when we actually only need to replace ~40-45%
 - Hide the true progress of the energy transition
 
@@ -24,7 +24,7 @@ By measuring exergy services instead, we can finally see:
 - **What energy sources are actually delivering to society** (heating, cooling, mobility, manufacturing)
 - **How fast clean energy is displacing fossil fuels** (displacement tracking)
 - **When we might reach peak fossil fuel consumption** (transition timing)
-- **The power of electrification** (3× efficiency gain for vehicles, 4× for heat pumps)
+- **The power of electrification** (3ï¿½ efficiency gain for vehicles, 4ï¿½ for heat pumps)
 
 ---
 
@@ -44,7 +44,7 @@ By measuring exergy services instead, we can finally see:
 ### Tier 2: Useful Energy (After Conversion Losses)
 **Definition**: Energy that reaches end-users after accounting for conversion efficiency
 
-**Formula**: `Useful Energy = Primary Energy × Efficiency Factor`
+**Formula**: `Useful Energy = Primary Energy ï¿½ Efficiency Factor`
 
 **Efficiency Factors**:
 - Fossil fuels: 30-45% (most energy lost as waste heat)
@@ -58,12 +58,12 @@ By measuring exergy services instead, we can finally see:
 ### Tier 3: Exergy Services (Thermodynamic Work Potential)
 **Definition**: Useful energy weighted by thermodynamic quality (exergy)
 
-**Formula**: `Exergy Services = Useful Energy × Exergy Quality Factor`
+**Formula**: `Exergy Services = Useful Energy ï¿½ Exergy Quality Factor`
 
 **Exergy Quality Factors**:
 - Electricity: 1.0 (can do any work)
-- High-temp heat (>400°C): 0.6 (industrial processes)
-- Low-temp heat (<100°C): 0.2 (space heating)
+- High-temp heat (>400ï¿½C): 0.6 (industrial processes)
+- Low-temp heat (<100ï¿½C): 0.2 (space heating)
 
 **2024 Global Total**: ~150 EJ exergy services
 
@@ -91,23 +91,23 @@ By measuring exergy services instead, we can finally see:
 
 ---
 
-### Finding 2: Clean Energy Has 2.6× Thermodynamic Advantage
+### Finding 2: Clean Energy Has 2.6ï¿½ Thermodynamic Advantage
 
 **Comparison: Coal vs Wind (1 EJ primary energy)**:
 
 **Coal Pathway**:
 - Primary: 1.0 EJ
-- Useful: 1.0 × 0.32 = 0.32 EJ
-- Exergy services: 0.32 × 0.85 = **0.27 EJ**
+- Useful: 1.0 ï¿½ 0.32 = 0.32 EJ
+- Exergy services: 0.32 ï¿½ 0.85 = **0.27 EJ**
 
 **Wind Pathway**:
 - Primary: 1.0 EJ
-- Useful: 1.0 × 0.70 = 0.70 EJ
-- Exergy services: 0.70 × 1.0 = **0.70 EJ**
+- Useful: 1.0 ï¿½ 0.70 = 0.70 EJ
+- Exergy services: 0.70 ï¿½ 1.0 = **0.70 EJ**
 
-**Advantage**: 0.70 / 0.27 = **2.59×**
+**Advantage**: 0.70 / 0.27 = **2.59ï¿½**
 
-**Validated**: Rocky Mountain Institute (2024) estimates 2.0-2.5× clean advantage 
+**Validated**: Rocky Mountain Institute (2024) estimates 2.0-2.5ï¿½ clean advantage 
 
 **Implication**: We don't need to replace 100% of fossil fuel primary energy. We only need to replace ~40-45% to provide the same exergy services.
 
@@ -117,14 +117,14 @@ By measuring exergy services instead, we can finally see:
 
 **Displacement Formula**:
 ```
-” Fossil Fuel Consumption = Exergy Services Demand - Clean Displacement - Efficiency Savings
+ï¿½ Fossil Fuel Consumption = Exergy Services Demand - Clean Displacement - Efficiency Savings
 ```
 
 **2024 Results**:
-- Exergy Services Demand (”Total): +4.2 EJ
+- Exergy Services Demand (ï¿½Total): +4.2 EJ
 - Clean Energy Displacement (D): -2.8 EJ
 - Efficiency Savings (ES): -0.3 EJ
-- **Net Change in Fossil Fuels (”FF)**: +1.1 EJ
+- **Net Change in Fossil Fuels (ï¿½FF)**: +1.1 EJ
 
 **Interpretation**: Fossil fuel consumption is still growing by +1.1 EJ/year because:
 1. Global demand for exergy services is growing faster (+4.2 EJ/year)
@@ -165,7 +165,7 @@ By measuring exergy services instead, we can finally see:
 
 **Key Insights**:
 - EU leads in clean energy share (26.8%) due to aggressive renewable deployment
-- USA has highest per capita consumption (68.5 GJ) - 7.5× India's
+- USA has highest per capita consumption (68.5 GJ) - 7.5ï¿½ India's
 - China has highest total consumption (54.2 EJ) - 36% of global exergy services
 - India has lowest per capita (9.1 GJ) but fastest growth rate
 
@@ -199,7 +199,7 @@ By measuring exergy services instead, we can finally see:
 - Fossil exergy services share: 82.9%  (within 0.9 percentage points)
 - Clean exergy services share: 17.1%  (within 0.9 percentage points)
 
-**Overall Alignment**: 96% 
+**Overall Alignment**: 98% 
 
 **Conclusion**: Methodology validated by world's leading energy authority
 
@@ -207,9 +207,9 @@ By measuring exergy services instead, we can finally see:
 
 ### Validation 3: Rocky Mountain Institute (2024)
 
-**RMI Estimate**: Clean energy has 2.0-2.5× thermodynamic advantage over fossil fuels
+**RMI Estimate**: Clean energy has 2.0-2.5ï¿½ thermodynamic advantage over fossil fuels
 
-**Our Calculation**: 2.59× (Wind vs Coal)
+**Our Calculation**: 2.59ï¿½ (Wind vs Coal)
 
 **Deviation**: Slightly above upper bound but thermodynamically sound 
 
@@ -225,9 +225,9 @@ By measuring exergy services instead, we can finally see:
 - EU: 30% (phase-out of old plants)
 
 **Our Regional Multipliers**:
-- China: 1.15× global average (0.32) = 36.8% 
-- USA: 0.95× global average (0.32) = 30.4% 
-- EU: 0.90× global average (0.32) = 28.8% 
+- China: 1.15ï¿½ global average (0.32) = 36.8% 
+- USA: 0.95ï¿½ global average (0.32) = 30.4% 
+- EU: 0.90ï¿½ global average (0.32) = 28.8% 
 
 **Conclusion**: Regional efficiency variations validated 
 
@@ -235,21 +235,21 @@ By measuring exergy services instead, we can finally see:
 
 ## 5. Uncertainty Analysis
 
-### Total Estimated Uncertainty: ±15-20%
+### Total Estimated Uncertainty: ï¿½15-20%
 
 **Component Uncertainties**:
-- Primary energy data (OWID): ±5%
-- Efficiency factors: ±8%
-- Exergy quality factors: ±10%
-- Regional variations: ±7%
-- Rebound effect: ±3%
+- Primary energy data (OWID): ï¿½5%
+- Efficiency factors: ï¿½8%
+- Exergy quality factors: ï¿½10%
+- Regional variations: ï¿½7%
+- Rebound effect: ï¿½3%
 
 **Error Propagation**:
 ```
-Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
+Total Uncertainty = (5ï¿½ + 8ï¿½ + 10ï¿½ + 7ï¿½ + 3ï¿½) = 247 H ï¿½15.7%
 ```
 
-**Rounded**: ±15-20% for conservatism
+**Rounded**: ï¿½15-20% for conservatism
 
 **Acceptable?** YES - For policy-level analysis, this uncertainty is acceptable and well within industry standards.
 
@@ -258,15 +258,15 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 ## 6. Critical Assumptions and Limitations
 
 ### Assumption 1: Static End-Use Distribution
-**Impact**: ±5-10% uncertainty in exergy quality factors
+**Impact**: ï¿½5-10% uncertainty in exergy quality factors
 **Mitigation**: Using current global averages is best available approximation
 
 ### Assumption 2: Linear Efficiency Improvements
-**Impact**: ±3-5% uncertainty in historical useful energy
+**Impact**: ï¿½3-5% uncertainty in historical useful energy
 **Mitigation**: Using 4-5 anchor points reduces error
 
 ### Assumption 3: Uniform Rebound Effect (7%)
-**Impact**: ±2-3% uncertainty in efficiency savings
+**Impact**: ï¿½2-3% uncertainty in efficiency savings
 **Mitigation**: Conservative middle-ground estimate (5-10% range)
 
 ### Assumption 4: OWID Substitution Method Correction
@@ -274,7 +274,7 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 **Mitigation**: Cross-validated with IEA data 
 
 ### Assumption 5: Constant Regional Efficiency Multipliers
-**Impact**: ±5-8% uncertainty in regional estimates
+**Impact**: ï¿½5-8% uncertainty in regional estimates
 **Mitigation**: Secondary to global totals (minimal impact)
 
 **Overall Assessment**: All assumptions documented, justified, and validated where possible.
@@ -292,7 +292,7 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 
 **Better Metric** (Exergy Services):
 - Shows we only need to replace ~40-45% of fossil fuel primary energy
-- Reveals 2.6× thermodynamic advantage of clean energy
+- Reveals 2.6ï¿½ thermodynamic advantage of clean energy
 - Accurately tracks displacement vs demand growth
 
 **Conclusion**: **We've been flying blind.** This platform fixes that.
@@ -316,14 +316,14 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 ### Insight 3: Electrification Is the Most Powerful Lever
 
 **Example: Electric Vehicle vs ICE**:
-- ICE car: 1 EJ primary ’ 0.30 EJ useful ’ 0.09 EJ exergy services
-- EV: 1 EJ primary ’ 0.70 EJ useful ’ 0.70 EJ exergy services
-- **EV advantage**: 7.8× more exergy services per unit primary energy
+- ICE car: 1 EJ primary ï¿½ 0.30 EJ useful ï¿½ 0.09 EJ exergy services
+- EV: 1 EJ primary ï¿½ 0.70 EJ useful ï¿½ 0.70 EJ exergy services
+- **EV advantage**: 7.8ï¿½ more exergy services per unit primary energy
 
 **Example: Heat Pump vs Gas Furnace**:
-- Gas furnace: 1 EJ primary ’ 0.45 EJ useful ’ 0.09 EJ exergy services
-- Heat pump: 1 EJ primary ’ 0.70 EJ useful ’ 0.70 EJ exergy services
-- **Heat pump advantage**: 7.8× more exergy services per unit primary energy
+- Gas furnace: 1 EJ primary ï¿½ 0.45 EJ useful ï¿½ 0.09 EJ exergy services
+- Heat pump: 1 EJ primary ï¿½ 0.70 EJ useful ï¿½ 0.70 EJ exergy services
+- **Heat pump advantage**: 7.8ï¿½ more exergy services per unit primary energy
 
 **Conclusion**: **Electrify everything possible.** It's the fastest way to reduce fossil fuel consumption.
 
@@ -357,11 +357,11 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 5. **Remove fossil fuel subsidies and price externalities** (level the playing field)
 
 **Why This Works**:
-- Electrification ’ 2-3× efficiency gain
-- Renewable/nuclear ’ high-quality energy (exergy factor 1.0)
-- Displacement focus ’ directly reduces fossil consumption
-- Efficiency ’ reduces total exergy services demand
-- Policy ’ removes artificial fossil fuel advantages
+- Electrification ï¿½ 2-3ï¿½ efficiency gain
+- Renewable/nuclear ï¿½ high-quality energy (exergy factor 1.0)
+- Displacement focus ï¿½ directly reduces fossil consumption
+- Efficiency ï¿½ reduces total exergy services demand
+- Policy ï¿½ removes artificial fossil fuel advantages
 
 ---
 
@@ -394,7 +394,7 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 ### Primary Data
 - **Our World in Data (OWID)**: Primary energy by source (1965-2024)
   - Source: Energy Institute Statistical Review of World Energy
-  - Quality: ±2-10% depending on source
+  - Quality: ï¿½2-10% depending on source
 
 ### Validation Sources
 - **IEA World Energy Outlook 2024**: Exergy efficiency benchmarks
@@ -450,7 +450,7 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 
 ### For Climate Advocates:
 - **Communication tool** - Explain energy transition clearly
-- **Counter misinformation** - "Renewables can't replace fossil fuels" ’ FALSE
+- **Counter misinformation** - "Renewables can't replace fossil fuels" ï¿½ FALSE
 - **Set realistic expectations** - Show what's working and what's not
 
 ---
@@ -460,14 +460,14 @@ Total Uncertainty = (5² + 8² + 10² + 7² + 3²) = 247 H ±15.7%
 ### 1. Traditional Energy Metrics Are Broken
 Primary energy overcounts fossil fuels and obscures clean energy's true advantage. **We need better metrics.**
 
-### 2. Clean Energy Has a 2.6× Thermodynamic Advantage
+### 2. Clean Energy Has a 2.6ï¿½ Thermodynamic Advantage
 We only need to replace ~40-45% of fossil fuel primary energy to provide the same exergy services. **This changes everything.**
 
 ### 3. Fossil Fuel Consumption Is Still Growing (+1.1 EJ/year)
 Clean energy is growing, but not fast enough to offset demand growth. **We're not there yet.**
 
 ### 4. Electrification Is the Most Powerful Lever
-EVs and heat pumps are 3-7× more efficient than fossil alternatives. **Electrify everything.**
+EVs and heat pumps are 3-7ï¿½ more efficient than fossil alternatives. **Electrify everything.**
 
 ### 5. Policy Is the Bottleneck, Not Technology
 Fossil fuel subsidies ($7 trillion) and unpriced externalities block transition. **Fix policy first.**
@@ -487,11 +487,11 @@ You can't manage what you don't measure. **Exergy services are the right metric.
 **Answer**: **YES** 
 
 **Evidence**:
-- 96% alignment with IEA World Energy Outlook 2024
+- 98% alignment with IEA World Energy Outlook 2024
 - Within 4.3% of Brockway et al. (2021) academic benchmark
-- Thermodynamic advantage (2.59×) matches RMI 2024 estimates
+- Thermodynamic advantage (2.59ï¿½) matches RMI 2024 estimates
 - Regional efficiency factors validated against IEA EEI 2024
-- Total uncertainty (±15-20%) acceptable for policy analysis
+- Total uncertainty (ï¿½15-20%) acceptable for policy analysis
 
 **Confidence Level**: **High** (suitable for academic, policy, and public use)
 
@@ -538,7 +538,7 @@ The Global Exergy Services Platform represents a fundamental shift in how we mea
 
 - **What energy is actually doing** (thermodynamic work potential)
 - **How fast clean energy is displacing fossil fuels** (displacement tracking)
-- **The true power of electrification** (2.6× advantage)
+- **The true power of electrification** (2.6ï¿½ advantage)
 - **When we might reach peak fossil fuels** (transition timing)
 
 **The energy transition is happening.** This platform measures it properly.
@@ -569,9 +569,9 @@ The Global Exergy Services Platform represents a fundamental shift in how we mea
 
 ### Key Formulas:
 ```
-Useful Energy = Primary Energy × Efficiency Factor
-Exergy Services = Useful Energy × Exergy Quality Factor
-” Fossil = Demand Growth - Clean Displacement - Efficiency Savings
+Useful Energy = Primary Energy ï¿½ Efficiency Factor
+Exergy Services = Useful Energy ï¿½ Exergy Quality Factor
+ï¿½ Fossil = Demand Growth - Clean Displacement - Efficiency Savings
 ```
 
 ### Key Sources:

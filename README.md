@@ -40,7 +40,7 @@ Tier 3: Exergy Services (thermodynamic work potential)
 ## Key Insights (2024)
 
 ### Clean Energy's True Share
-- **Primary Energy:** 6.6% clean
+- **Primary Energy:** 7.1% clean
 - **Useful Energy:** 15.8% clean
 - **Exergy Services:** 17.1% clean
 
