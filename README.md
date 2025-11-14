@@ -125,7 +125,6 @@ OWID compiles data from:
 - ✅ **NREL 2024**: Renewable efficiency data (inverter 98%, T&D losses 6%)
 - ✅ **Rocky Mountain Institute (2024)**: Clean advantage 3.0-3.4× (exceeds 2.0-2.5× baseline)
 - ✅ **Cullen & Allwood (2010)**: Exergy methodology framework & low-temp heating factor 0.20
-- ✅ **Grok Analysis 2024**: 148.94 EJ vs ~154 EJ target (-3.3%, conservative)
 
 **Accuracy Score**: **98% alignment** with authoritative sources
 
@@ -222,14 +221,6 @@ Output files generated in `public/data/`:
 - **Regional benchmarking**: Compare efficiency and energy mix across 27 regions
 - **Import dependency analysis**: Track fossil fuel import requirements and renewable energy potential
 - **Scenario modeling**: Explore Baseline, Accelerated, and Net Zero demand growth paths
-
----
-
-### Summary
-1. Clean energy is cleaner than fossil fuels
-2. Clean energy is more efficient than fossil fuels
-3. Clean energy is more thermodynamically valueable than fossil fuels
-3. Clean energy is growing faster than fossil fuels
 
 ---
 
