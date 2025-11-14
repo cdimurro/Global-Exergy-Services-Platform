@@ -75,9 +75,9 @@ export default function Home() {
     return `${entry.name}: ${entry.value.toFixed(1)} EJ (${entry.percentage.toFixed(2)}%)`;
   };
 
-  // Download functions for Global Energy Services chart
+  // Download functions for Global Exergy Services chart
   const downloadGlobalEnergyPNG = () => {
-    downloadChartAsPNG(globalEnergyChartRef, `global_energy_services_${year}`);
+    downloadChartAsPNG(globalEnergyChartRef, `global_exergy_services_${year}`);
   };
 
   const downloadGlobalEnergyCSV = () => {
@@ -97,7 +97,7 @@ export default function Home() {
   const downloadFossilBreakdownCSV = () => {
     const csvData = fossilSources.map(([source, ej]) => ({
       'Source': getSourceName(source),
-      'Energy Services (EJ)': ej.toFixed(2),
+      'Exergy Services (EJ)': ej.toFixed(2),
       'Share of Fossil (%)': ((ej / fossil_services_ej) * 100).toFixed(2)
     }));
     downloadDataAsCSV(csvData, `fossil_fuel_breakdown_${year}`);
@@ -111,7 +111,7 @@ export default function Home() {
   const downloadCleanBreakdownCSV = () => {
     const csvData = cleanSources.map(([source, ej]) => ({
       'Source': getSourceName(source),
-      'Energy Services (EJ)': ej.toFixed(2),
+      'Exergy Services (EJ)': ej.toFixed(2),
       'Share of Clean (%)': ((ej / clean_services_ej) * 100).toFixed(2)
     }));
     downloadDataAsCSV(csvData, `clean_energy_breakdown_${year}`);
@@ -122,10 +122,10 @@ export default function Home() {
       {/* Page Header */}
       <div className="text-center mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3">
-          Global Energy Services Tracker
+          Global Exergy Services Platform
         </h1>
         <p className="text-sm text-gray-600">
-          Get a complete view of the energy system and gain valuable insights by measuring energy services instead of primary energy.
+          Tracking global energy services using exergy-weighted methodology: measuring thermodynamic work potential, not just energy flows.
         </p>
       </div>
 
@@ -138,7 +138,7 @@ export default function Home() {
       <div className="metric-card mb-8 bg-white">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold text-gray-800">
-            Global Energy Services for {year}
+            Global Exergy Services for {year}
           </h2>
           <ChartExportButtons
             onDownloadPNG={downloadGlobalEnergyPNG}
@@ -153,7 +153,7 @@ export default function Home() {
             <span className="text-base sm:text-2xl md:text-3xl ml-1 sm:ml-2 text-gray-500">EJ</span>
           </div>
           <div className="text-[10px] sm:text-sm md:text-base text-gray-500 px-2">
-            Exajoules of energy services delivered globally
+            Exajoules of exergy services (thermodynamic work potential) delivered globally
           </div>
         </div>
 
@@ -197,7 +197,7 @@ export default function Home() {
               <div className="text-base sm:text-2xl md:text-3xl font-bold text-red-600 mb-1 sm:mb-2">
                 {fossil_services_share_percent.toFixed(2)}%
               </div>
-              <div className="text-[10px] sm:text-sm text-gray-500">of total energy services</div>
+              <div className="text-[10px] sm:text-sm text-gray-500">of total exergy services</div>
             </div>
 
             {/* Clean Card */}
@@ -212,7 +212,7 @@ export default function Home() {
               <div className="text-base sm:text-2xl md:text-3xl font-bold text-green-600 mb-1 sm:mb-2">
                 {clean_services_share_percent.toFixed(2)}%
               </div>
-              <div className="text-[10px] sm:text-sm text-gray-500">of total energy services</div>
+              <div className="text-[10px] sm:text-sm text-gray-500">of total exergy services</div>
             </div>
           </div>
         </div>
@@ -360,28 +360,29 @@ export default function Home() {
           </div>
         </div>
 
-      {/* Understanding Energy Services */}
+      {/* Understanding Exergy Services */}
       <div className="metric-card bg-white mb-8 border-2 border-blue-200">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">
-          Understanding Energy Services
+          Understanding Exergy Services
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-blue-600">
             <h3 className="font-bold text-lg text-gray-800 mb-2">
-              What Are Energy Services?
+              What Are Exergy Services?
             </h3>
             <p className="text-gray-700">
-              Energy services are the work delivered by energy systems: heat, motion, light, and computation.
-              Unlike primary energy (coal, oil, gas), energy services represent the actual benefits that society receives from energy consumption.
+              Exergy services measure the thermodynamic work potential of energy, weighted by quality.
+              This captures the actual benefits society receives—heating, mobility, manufacturing—using consistent energy units (EJ).
+              Unlike primary energy, exergy services account for both efficiency AND quality of energy.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-600">
             <h3 className="font-bold text-lg text-gray-800 mb-2">
-              Why Measure Services?
+              Why Exergy Weighting Matters
             </h3>
             <p className="text-gray-700">
-              Traditional energy statistics track primary energy consumption, which creates a misleading picture. 
-              The problem with measuring primary energy is that 60-65% of it gets wasted as heat during generation and conversion, and none of that wasted energy provides any value to society.
+              Not all energy is equal. 1 EJ of electricity (exergy factor 1.0) can do more useful work than 1 EJ of low-temperature heat (exergy factor 0.12).
+              Traditional metrics ignore this quality difference, creating a misleading picture where fossil fuels appear more important than they actually are.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-600">
@@ -389,8 +390,8 @@ export default function Home() {
               Electrification Advantage
             </h3>
             <p className="text-gray-700">
-              Electric technologies (heat pumps, EVs, induction furnaces) are 2-3x more efficient than fossil fuel alternatives.
-              This efficiency multiplier dramatically reduces total energy demand while enabling clean power sources.
+              Electric technologies (heat pumps, EVs, induction furnaces) are 2-3× more efficient AND deliver higher exergy (quality).
+              This dual advantage means electrification can provide the same services with 60-75% less primary energy.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-600">
@@ -398,8 +399,8 @@ export default function Home() {
               Efficiency Gains
             </h3>
             <p className="text-gray-700">
-              Since 1990, global GDP tripled while energy services grew only by 80% due to efficiency improvements.
-              Better insulation, LED lighting, and efficient motors cut consumption by 30-50% without sacrificing quality of life.
+              Since 1990, global GDP tripled while exergy services grew only by 80% due to efficiency improvements.
+              Better insulation, LED lighting, and efficient motors cut primary energy consumption by 30-50% without sacrificing quality of life.
             </p>
           </div>
         </div>

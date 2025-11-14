@@ -119,14 +119,14 @@ export default function RealityCheck() {
               Thanks to a vast arrangement of data and new technologies, it's now possible to create a much more accurate picture of the global energy system. The insights gained by changing how we measure energy could have massive implications across the world, and could play a pivotal role in how we manage the energy transition.
             </p>
             <div className="bg-gray-100 border border-gray-300 p-4 text-center">
-              <p className="font-semibold mb-2">The Key Difference:</p>
+              <p className="font-semibold mb-2">The Key Differences:</p>
               <p className="text-gray-700">
-                <strong>Primary energy</strong> measures how much oil, coal, and gas gets wasted.<br/>
-                <strong>Energy services</strong> measure how much energy a car uses to drive somewhere.
+                <strong>Primary energy →</strong> Measures the total energy content of fuels as extracted.<br/>
+                <strong>Useful energy →</strong> Measures how much energy is still useful after combustion.<br/>
+                <strong>Energy services →</strong> Describes the final benefit delivered.
               </p>
             </div>
           </section>
-
         </div>
       </div>
 

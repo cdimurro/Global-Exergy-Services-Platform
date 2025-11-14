@@ -1,10 +1,10 @@
-# Global Energy Services Tracker v2.1
+# Global Exergy Services Platform v2.2
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![React](https://img.shields.io/badge/React-19.1-blue.svg)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-7.1-purple.svg)](https://vitejs.dev/)
 
-> **Revealing the true state of the global energy transition using exergy-weighted energy services: measuring thermodynamic value, not just energy flows.**
+> **Tracking global energy services using exergy-weighted methodology: revealing the true state of the energy transition by measuring thermodynamic work potential, not just energy flows.**
 
 🔗 **[Live Demo](https://energy-services.vercel.app/)** | 📊 **[Documentation](./PROJECT_OVERVIEW.md)** | 📈 **[Data & Assumptions](./DATA_AND_ASSUMPTIONS.md)**
 
@@ -12,7 +12,7 @@
 
 ## What This Platform Does
 
-The Global Energy Services Tracker v2.1 is a data visualization platform that reveals the **true state of the global energy system** by measuring **Energy Services**, not just Primary Energy.
+The Global Exergy Services Platform v2.2 is a data visualization platform that reveals the **true state of the global energy system** by measuring **Exergy Services** using a thermodynamically rigorous methodology, not just Primary Energy.
 
 ### The Problem with Traditional Energy Metrics
 
@@ -25,25 +25,27 @@ This is why quality of energy matters, in addition to the quantity.
 
 ### The Solution: Three-Tier Exergy Framework
 
-This platform uses a **three-tier framework** to measure what energy sources are actually delivering our energy:
+This platform uses a **three-tier framework** to measure what energy sources are actually delivering to society:
 
 ```
 Tier 1: Primary Energy (extraction)
    ↓ [Conversion Efficiency]
 Tier 2: Useful Energy (delivered to end-users)
    ↓ [Exergy Quality Weighting]
-Tier 3: Energy Services (thermodynamic value)
+Tier 3: Exergy Services (thermodynamic work potential)
 ```
+
+**Note:** "Exergy services" measure the thermodynamic work potential of useful energy, weighted by quality. This approximates true energy services (heating, mobility, manufacturing, etc.) while using consistent energy units (EJ).
 
 ## Key Insights (2024)
 
 ### Clean Energy's True Share
 - **Primary Energy:** 6.6% clean
 - **Useful Energy:** 15.8% clean
-- **Energy Services:** 17.4% clean
+- **Exergy Services:** 17.4% clean
 
 ### The Difference
-As you can see, when we measure primary energy consumption, we get vastly different numbers for the share of our energy that comes from clean sources, versus when we measure the amount of energy services that come from clean sources. 
+When we measure primary energy consumption, we get vastly different numbers for the share of our energy that comes from clean sources, versus when we measure the amount of exergy services (thermodynamic work potential) that come from clean sources. 
 
 ### The Clean Energy Advantage
 Clean energy sources deliver more energy services per unit of primary energy for two key reasons:
@@ -74,9 +76,9 @@ Efficiency factors (2024):
 - **Fossil fuels**: Coal 32%, Oil 30%, Gas 45%, Biomass 15%
 - **Clean electricity**: Wind/Solar/Hydro 70%, Nuclear 33%
 
-**Step 2: Calculate Energy Services (Exergy-Weighted)**
+**Step 2: Calculate Exergy Services (Exergy-Weighted)**
 ```
-Energy Services = Useful Energy × Exergy Quality Factor
+Exergy Services = Useful Energy × Exergy Quality Factor
 ```
 
 Exergy factors by end-use:
@@ -148,11 +150,11 @@ OWID compiles data from:
 ```
 global-energy-tracker/
 ├── src/
-│   ├── pages/              # 9 dashboard pages
+│   ├── pages/              # 8 dashboard pages
 │   ├── components/         # Reusable UI components
 │   └── utils/              # Utilities and helpers
 ├── public/data/            # Generated JSON data files
-│   ├── energy_services_timeseries.json
+│   ├── exergy_services_timeseries.json
 │   ├── useful_energy_timeseries.json
 │   ├── regional_energy_timeseries.json
 │   └── regional_net_imports_timeseries.json
@@ -183,7 +185,7 @@ python calculate_net_imports.py
 ```
 
 Output files generated in `public/data/`:
-- `energy_services_timeseries.json` (Tier 3 - exergy-weighted)
+- `exergy_services_timeseries.json` (Tier 3 - exergy-weighted)
 - `useful_energy_timeseries.json` (Tier 2)
 - `regional_energy_timeseries.json`
 - `regional_net_imports_timeseries.json`
@@ -203,9 +205,9 @@ Output files generated in `public/data/`:
 - **Historical context**: 60 years of data showing efficiency improvements and energy mix evolution
 
 ### For Climate Advocates
-- **Honest assessment**: Reveals that clean energy is ~16-17% of useful energy/services, not 20-25% (primary energy basis)
+- **Honest assessment**: Reveals that clean energy is ~16-17% of useful energy/exergy services, not 20-25% (primary energy basis)
 - **Clear advantages**: Quantifies 2-3× thermodynamic superiority of clean electricity over fossil fuels
-- **Displacement reality**: Shows that ~72% of new clean energy just meets demand growth, only ~28% displaces fossils
+- **Displacement reality**: Shows that ~72% of new clean exergy just meets demand growth, only ~28% displaces fossils
 
 ### For Energy Professionals
 - **Regional benchmarking**: Compare efficiency and energy mix across 27 regions
@@ -258,9 +260,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 If you use this data or methodology in your research, please cite:
 
 ```
-Global Energy Services Tracker v2.1 (2025)
+Global Exergy Services Platform v2.2 (2025)
 GitHub Repository: https://github.com/cdimurro/Global-Energy-Services-Tracker
-Methodology: Three-tier exergy-weighted energy services framework
+Methodology: Three-tier exergy-weighted framework measuring exergy services
 Framework: Based on Cullen & Allwood (2010) and Brockway et al. (2021)
 Validation: IEA WEO 2024, IEA EEI 2024, RMI 2024
 Data Sources: Our World in Data Energy Dataset (2024)
@@ -279,8 +281,8 @@ Data Sources: Our World in Data Energy Dataset (2024)
 
 ---
 
-**Goal**: Create the most accurate, honest, and useful public resource for understanding the global energy system through the lens of Energy Services by using rigorous thermodynamic exergy accounting.
+**Goal**: Create the most accurate, honest, and useful public resource for understanding the global energy system through the lens of Exergy Services by using rigorous thermodynamic exergy accounting.
 
-**Version**: 2.1
+**Version**: 2.2
 
 *Last Updated: November 2025*
