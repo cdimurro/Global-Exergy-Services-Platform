@@ -612,10 +612,10 @@ function Imports() {
           <div className="flex justify-between items-start mb-4">
             <div>
               <h2 className="text-2xl font-bold text-gray-800 mb-1">
-                Lifetime Energy Services Comparison
+                Lifetime Exergy Services Comparison
               </h2>
               <p className="text-sm text-gray-600">
-                Fossil plants have negative net services due to perpetual fuel consumption. Renewables deliver positive lifetime energy services.
+                Fossil plants have negative net services due to perpetual fuel consumption. Renewables deliver positive lifetime exergy services.
               </p>
             </div>
             <div className="flex gap-2">
@@ -629,7 +629,7 @@ function Imports() {
                     'Generation (TWh)': p.lifetime_generation_twh,
                     'Useful Energy (EJ)': p.lifetime_useful_energy_ej,
                     'Fuel Imports (EJ)': p.lifetime_fuel_imports_ej,
-                    'Net Energy Services (EJ)': p.net_lifetime_services_ej
+                    'Net Exergy Services (EJ)': p.net_lifetime_services_ej
                   }));
                   downloadDataAsCSV(csvData, 'lifetime_services_comparison');
                 }}
@@ -1089,8 +1089,8 @@ function Imports() {
       <ChartFullscreenModal
         isOpen={isFullscreenChart2}
         onClose={() => setIsFullscreenChart2(false)}
-        title="Lifetime Energy Services Comparison"
-        description="Fossil plants have negative net services due to perpetual fuel consumption. Renewables deliver positive lifetime energy services."
+        title="Lifetime Exergy Services Comparison"
+        description="Fossil plants have negative net services due to perpetual fuel consumption. Renewables deliver positive lifetime exergy services."
         exportButtons={
           <>
             <button

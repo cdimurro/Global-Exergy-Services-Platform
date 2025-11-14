@@ -336,15 +336,15 @@ export default function Regions() {
     if (viewMode === 'regions') {
       // Handle virtual source labels
       if (selectedSource === 'all') {
-        return changePrefix + 'All Sources Energy Services' + changeSuffix;
+        return changePrefix + 'All Sources Exergy Services' + changeSuffix;
       } else if (selectedSource === 'fossil') {
-        return changePrefix + 'Fossil Fuels Energy Services' + changeSuffix;
+        return changePrefix + 'Fossil Fuels Exergy Services' + changeSuffix;
       } else if (selectedSource === 'clean') {
-        return changePrefix + 'Clean Energy Services' + changeSuffix;
+        return changePrefix + 'Clean Exergy Services' + changeSuffix;
       }
-      return changePrefix + `${getSourceName(selectedSource)} Energy Services` + changeSuffix;
+      return changePrefix + `${getSourceName(selectedSource)} Exergy Services` + changeSuffix;
     } else {
-      return changePrefix + 'Energy Services' + changeSuffix;
+      return changePrefix + 'Exergy Services' + changeSuffix;
     }
   };
 
@@ -365,7 +365,7 @@ export default function Regions() {
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
-              Regional Energy Services Over Time
+              Regional Exergy Services Over Time
             </h2>
             <p className="text-sm text-gray-600">
               Compare energy service demand evolution across selected regions
@@ -1024,7 +1024,7 @@ export default function Regions() {
             <XAxis dataKey="year" />
             <YAxis
               label={{
-                value: showRelativeChart3 ? 'Share of Total Energy (%)' : 'Energy Services (PJ)',
+                value: showRelativeChart3 ? 'Share of Total Energy (%)' : 'Exergy Services (PJ)',
                 angle: -90,
                 position: 'insideLeft',
                 style: { textAnchor: 'middle' }
@@ -1104,8 +1104,8 @@ export default function Regions() {
       <ChartFullscreenModal
         isOpen={isFullscreenChart1}
         onClose={() => setIsFullscreenChart1(false)}
-        title="Regional Energy Services Over Time"
-        description="Compare energy service demand evolution across selected regions"
+        title="Regional Exergy Services Over Time"
+        description="Compare exergy service demand evolution across selected regions"
       >
         {/* Filter Controls */}
         <div className="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
@@ -1731,7 +1731,7 @@ export default function Regions() {
             <XAxis dataKey="year" />
             <YAxis
               label={{
-                value: showRelativeChart3 ? 'Share of Total Energy (%)' : 'Energy Services (PJ)',
+                value: showRelativeChart3 ? 'Share of Total Energy (%)' : 'Exergy Services (PJ)',
                 angle: -90,
                 position: 'insideLeft',
                 style: { textAnchor: 'middle' }
@@ -1841,7 +1841,7 @@ export default function Regions() {
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-red-600">
             <h3 className="font-bold text-lg text-gray-800 mb-2">Regional Disparities</h3>
             <p className="text-gray-700">
-              Energy access remains deeply unequal across regions. Some regions consume significantly more energy services services per capita than others. Closing this gap equitably while decarbonizing is the central challenge of the 21st century.
+              Energy access remains deeply unequal across regions. Some regions consume significantly more exergy services per capita than others. Closing this gap equitably while decarbonizing is the central challenge of the 21st century.
             </p>
           </div>
 

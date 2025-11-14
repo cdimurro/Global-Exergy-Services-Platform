@@ -42,7 +42,7 @@ export default function DemandGrowth() {
     return <div className="text-center py-8">Loading projections...</div>;
   }
 
-  // Prepare data for charts (using Energy Services)
+  // Prepare data for charts (using Exergy Services)
   const prepareChartData = () => {
     const allYears = data.scenarios[0].data.map(d => d.year);
 
@@ -130,10 +130,10 @@ export default function DemandGrowth() {
       {/* Page Header */}
       <div className="text-center mb-8">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 mb-3">
-          Energy Services Demand Growth Forecast
+          Exergy Services Demand Growth Forecast
         </h1>
         <p className="text-sm text-gray-600">
-          Comprehensive projections of global energy services demand (2025-2050) based on IEA, BP, and RMI analysis
+          Comprehensive projections of global exergy services demand (2025-2050) based on IEA, BP, and RMI analysis
         </p>
       </div>
 
@@ -144,7 +144,7 @@ export default function DemandGrowth() {
       <div className="metric-card bg-white mb-8">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-2xl font-bold text-gray-800">
-            Total Energy Services Demand Projections
+            Total Exergy Services Demand Projections
           </h2>
           <div className="flex gap-2">
             <ChartExportButtons
@@ -159,7 +159,7 @@ export default function DemandGrowth() {
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
-              <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+              <YAxis label={{ value: 'Exergy Services (EJ)', angle: -90, position: 'insideLeft' }} />
               <Tooltip />
               <Legend />
               <Line
@@ -193,8 +193,8 @@ export default function DemandGrowth() {
       <ChartFullscreenModal
         isOpen={isFullscreenChart1}
         onClose={() => setIsFullscreenChart1(false)}
-        title="Total Energy Services Demand Projections"
-        description="Projected global energy services demand by scenario (2025-2050)"
+        title="Total Exergy Services Demand Projections"
+        description="Projected global exergy services demand by scenario (2025-2050)"
         exportButtons={
           <ChartExportButtons
             onDownloadPNG={handleDownloadTotalPNG}
@@ -266,7 +266,7 @@ export default function DemandGrowth() {
             <AreaChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
-              <YAxis label={{ value: 'Energy (EJ)', angle: -90, position: 'insideLeft' }} />
+              <YAxis label={{ value: 'Exergy Services (EJ)', angle: -90, position: 'insideLeft' }} />
               <Tooltip />
               <Legend />
               <Area
@@ -356,7 +356,7 @@ export default function DemandGrowth() {
               Historical Evolution
             </h3>
             <p className="text-gray-700">
-              Global energy services grew from ~60 EJ in 1965 to ~140 EJ in 2024, driven primarily by fossil fuels.
+              Global exergy services grew from ~60 EJ in 1965 to ~140 EJ in 2024, driven primarily by fossil fuels.
               Clean energy remained under 20% until 2020, when solar and wind deployment accelerated significantly.
             </p>
           </div>

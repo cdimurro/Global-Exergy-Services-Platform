@@ -354,7 +354,7 @@ export default function EnergySupply() {
           Energy Supply Analysis
         </h1>
         <p className="text-sm text-gray-600">
-          Total Energy Supply vs. Energy Services Services
+          Total Energy Supply vs. Exergy Services
         </p>
       </div>
 
@@ -753,7 +753,7 @@ export default function EnergySupply() {
               Global Energy System Efficiency Over Time
             </h2>
             <p className="text-sm text-gray-600">
-              End to end conversion efficiency from primary energy to energy services services
+              End to end conversion efficiency from primary energy to exergy services
             </p>
           </div>
           <div className="flex gap-2">
@@ -800,7 +800,7 @@ export default function EnergySupply() {
                       <span className="font-bold text-red-600 text-lg">{efficiency.toFixed(1)}%</span>
                     </div>
                     <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
-                      Efficiency = Energy Services ÷ Primary Energy
+                      Efficiency = Exergy Services ÷ Primary Energy
                     </div>
                   </div>
                 </div>
@@ -826,7 +826,7 @@ export default function EnergySupply() {
         isOpen={isFullscreenChart2}
         onClose={() => setIsFullscreenChart2(false)}
         title="Global Energy System Efficiency Over Time"
-        description="End to end conversion efficiency from primary energy to energy services services"
+        description="End to end conversion efficiency from primary energy to exergy services"
         exportButtons={
           <ChartExportButtons
             onDownloadPNG={() => handleDownloadPNG('chart-efficiency-time', 'global_efficiency_over_time.png')}
@@ -869,7 +869,7 @@ export default function EnergySupply() {
                       <span className="font-bold text-red-600 text-lg">{efficiency.toFixed(1)}%</span>
                     </div>
                     <div className="text-xs text-gray-500 pt-2 border-t border-gray-200">
-                      Efficiency = Energy Services ÷ Primary Energy
+                      Efficiency = Exergy Services ÷ Primary Energy
                     </div>
                   </div>
                 </div>
@@ -895,7 +895,7 @@ export default function EnergySupply() {
         <div className="flex justify-between items-center mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-800 mb-1">
-              Primary Energy vs. Energy Services by Source (2024)
+              Primary Energy vs. Exergy Services by Source (2024)
             </h2>
             <p className="text-sm text-gray-600">
               Energy services (colored by source) stacked with waste energy (red) shows total primary energy
@@ -909,7 +909,7 @@ export default function EnergySupply() {
                 const csvData = ENERGY_SOURCES.map(source => ({
                   Source: getSourceName(source),
                   'Primary Energy (EJ)': data2024.sources[source]?.primary.toFixed(2) || '0',
-                  'Energy Services (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
+                  'Exergy Services (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
                   'Waste Energy (EJ)': data2024.sources[source]?.waste.toFixed(2) || '0',
                   'Efficiency (%)': data2024.sources[source]?.efficiency.toFixed(1) || '0'
                 }));
@@ -954,7 +954,7 @@ export default function EnergySupply() {
                       <span className="font-semibold">{data.primary.toFixed(2)} EJ</span>
                     </div>
                     <div className="flex justify-between gap-4">
-                      <span className="text-gray-600">Energy Services:</span>
+                      <span className="text-gray-600">Exergy Services:</span>
                       <span className="font-semibold">{data.useful.toFixed(2)} EJ ({usefulPercent.toFixed(1)}%)</span>
                     </div>
                     <div className="flex justify-between gap-4">
@@ -970,7 +970,7 @@ export default function EnergySupply() {
               );
             }} />
             <Legend />
-            <Bar dataKey="useful" name="Energy Services" stackId="a" fill="#000000">
+            <Bar dataKey="useful" name="Exergy Services" stackId="a" fill="#000000">
               {ENERGY_SOURCES.map(source => (
                 <Cell key={source} fill={ENERGY_COLORS[source]} />
               ))}
@@ -991,7 +991,7 @@ export default function EnergySupply() {
       <ChartFullscreenModal
         isOpen={isFullscreenChart3}
         onClose={() => setIsFullscreenChart3(false)}
-        title="Primary Energy vs. Energy Services by Source (2024)"
+        title="Primary Energy vs. Exergy Services by Source (2024)"
         description="Energy services (colored by source) stacked with waste energy (red) shows total primary energy"
         exportButtons={
           <ChartExportButtons
@@ -1001,7 +1001,7 @@ export default function EnergySupply() {
               const csvData = ENERGY_SOURCES.map(source => ({
                 Source: getSourceName(source),
                 'Primary Energy (EJ)': data2024.sources[source]?.primary.toFixed(2) || '0',
-                'Energy Services (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
+                'Exergy Services (EJ)': data2024.sources[source]?.useful.toFixed(2) || '0',
                 'Waste Energy (EJ)': data2024.sources[source]?.waste.toFixed(2) || '0',
                 'Efficiency (%)': data2024.sources[source]?.efficiency.toFixed(1) || '0'
               }));
@@ -1044,7 +1044,7 @@ export default function EnergySupply() {
                       <span className="font-semibold">{data.primary.toFixed(2)} EJ</span>
                     </div>
                     <div className="flex justify-between gap-4">
-                      <span className="text-gray-600">Energy Services:</span>
+                      <span className="text-gray-600">Exergy Services:</span>
                       <span className="font-semibold">{data.useful.toFixed(2)} EJ ({usefulPercent.toFixed(1)}%)</span>
                     </div>
                     <div className="flex justify-between gap-4">
@@ -1060,7 +1060,7 @@ export default function EnergySupply() {
               );
             }} />
             <Legend />
-            <Bar dataKey="useful" name="Energy Services" stackId="a" fill="#000000">
+            <Bar dataKey="useful" name="Exergy Services" stackId="a" fill="#000000">
               {ENERGY_SOURCES.map(source => (
                 <Cell key={source} fill={ENERGY_COLORS[source]} />
               ))}
@@ -1091,7 +1091,7 @@ export default function EnergySupply() {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-green-600">
-            <h3 className="font-bold text-lg text-gray-800 mb-2">Energy Services</h3>
+            <h3 className="font-bold text-lg text-gray-800 mb-2">Exergy Services</h3>
             <p className="text-gray-700">
               The actual energy services delivered to end users: heat, motion, light, etc. This is what matters
               for the economy and our lives. A car doesn't need primary energy—it needs motion.
@@ -1101,7 +1101,7 @@ export default function EnergySupply() {
           <div className="bg-white p-6 rounded-lg shadow-sm border-l-4 border-purple-600">
             <h3 className="font-bold text-lg text-gray-800 mb-2">Conversion Efficiency</h3>
             <p className="text-gray-700">
-              The percentage of primary energy that becomes energy services services. Coal plants are ~32% efficient,
+              The percentage of primary energy that becomes exergy services. Coal plants are ~32% efficient,
               meaning 68% is wasted as heat. Wind turbines are ~75% efficient, wasting only 25%.
             </p>
           </div>
