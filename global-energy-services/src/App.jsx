@@ -4,7 +4,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import DisplacementAnalysis from './pages/DisplacementAnalysis';
 import EnergySupply from './pages/EnergySupply';
-import DemandGrowth from './pages/DemandGrowth';
+import Sectors from './pages/Sectors';
 import Regions from './pages/Regions';
 import Imports from './pages/Imports';
 import RealityCheck from './pages/RealityCheck';
@@ -20,7 +20,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/displacement" element={<DisplacementAnalysis />} />
           <Route path="/energy-supply" element={<EnergySupply />} />
-          <Route path="/demand-growth" element={<DemandGrowth />} />
+          <Route path="/sectors" element={<Sectors />} />
           <Route path="/regions" element={<Regions />} />
           <Route path="/imports" element={<Imports />} />
           <Route path="/reality-check" element={<RealityCheck />} />

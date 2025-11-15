@@ -9,7 +9,7 @@ export default function Navigation() {
     { path: '/', label: 'Home' },
     { path: '/displacement', label: 'Displacement' },
     { path: '/energy-supply', label: 'Energy Supply' },
-    { path: '/demand-growth', label: 'Demand Growth' },
+    { path: '/sectors', label: 'Sectors' },
     { path: '/regions', label: 'Regions' },
     { path: '/imports', label: 'Imports' },
     { path: '/reality-check', label: 'Reality Check' },
