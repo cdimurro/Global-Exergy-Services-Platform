@@ -502,7 +502,7 @@ You can't manage what you don't measure. **Exergy services are the right metric.
 ## 14. How to Contribute
 
 ### Report Issues
-GitHub: https://github.com/cdimurro/Global-Exergy-Services-Platform
+GitHub: https://github.com/cdimurro/Global-Energy-Services-Tracker
 
 ### Suggest Improvements
 - Better efficiency factor estimates
@@ -526,8 +526,9 @@ Contact: [Project maintainer contact info]
 
 **Citation**:
 ```
-Global Energy Services Tracker v2.2 (2025)
-https://energy-services.vercel.app
+Global Energy Services Tracker v2.3 (2024)
+GitHub Repository: https://github.com/cdimurro/Global-Energy-Services-Tracker
+Live Demo: https://energy-services.vercel.app
 ```
 
 ---

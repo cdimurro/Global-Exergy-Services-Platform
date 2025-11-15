@@ -137,7 +137,7 @@ OWID compiles data from:
 1. **🏠 Home** - High-level snapshot with key metrics over time
 2. **🔄 Displacement Analysis** - Track clean energy displacement vs. demand growth
 3. **⚡ Energy Supply** - Compare primary vs. energy services
-4. **📈 Demand Growth** - IEA Projections across Baseline, Accelerated, and Net Zero scenarios
+4. **🏭 Sectors** - Interactive sectoral energy breakdown with fossil/clean analysis and historical evolution (2004-2024)
 5. **🌍 Regions** - Geographic analysis with dual view modes (1965-2024)
 6. **🌐 Net Energy Imports** - Track energy trade flows and energy independence trends
 7. **🎯 Reality Check** - An honest analysis of the current energy transition
@@ -156,7 +156,7 @@ OWID compiles data from:
 ## Technology Stack
 
 ```
-global-energy-tracker/
+global-energy-services/
 ├── src/
 │   ├── pages/              # 8 dashboard pages
 │   ├── components/         # Reusable UI components
@@ -164,6 +164,7 @@ global-energy-tracker/
 ├── public/data/            # Generated JSON data files
 │   ├── exergy_services_timeseries.json
 │   ├── useful_energy_timeseries.json
+│   ├── sectoral_energy_breakdown.json
 │   ├── regional_energy_timeseries.json
 │   └── regional_net_imports_timeseries.json
 └── data-pipeline/          # Python processing scripts

@@ -5,6 +5,51 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [v2.3.1] - 2024-11-15
+
+### Summary
+**Sectors Page Revamp & Project Renaming** - Transformed "Demand Growth" page into interactive "Sectors" dashboard with current (2024) sectoral energy breakdown. Updated fossil intensity values to reflect real-world EV adoption and clean energy deployment. Renamed project to "Global Energy Services Tracker" to emphasize practical energy services delivery.
+
+### Major Changes
+
+#### 1. Sectors Page Overhaul
+- **Page renamed**: "Demand Growth" → "Sectors" (route changed from /energy-sectors to /sectors)
+- **Removed**: Future demand projections, top metric cards, detailed sector information cards
+- **Added**:
+  - Interactive sectoral energy bar chart with Show All/Hide All + individual sector filtering
+  - Fossil vs. Clean energy stacked bar chart by sector
+  - Sectoral Energy Evolution stacked area chart (2004-2024) with absolute/relative toggle
+- **15 sectors tracked**:
+  - Transport: Road (14.5%), Aviation (5%), Shipping (3.5%), Rail (2%)
+  - Industry: Iron & Steel (9.5%), Chemicals (8%), Cement (5.5%), Aluminum (3%), Pulp & Paper (3.5%), Other (14.5%)
+  - Residential: Heating (12.5%), Appliances (8.5%), Cooling (5%)
+  - Commercial Buildings (10.5%), Agriculture (4.5%)
+
+#### 2. Fossil Intensity Updates (2024 Calibration)
+- **Road transport**: 100% → 96% fossil (accounts for ~4% EV market share globally)
+- **Aviation**: 100% → 99.8% fossil (minimal sustainable aviation fuel deployment)
+- **Shipping**: 100% → 99.5% fossil (limited LNG/hydrogen vessels)
+- **Cement**: 100% → 98% fossil (emerging electric kiln technology)
+- Rationale: Reflect real-world 2024 clean energy adoption in previously 100% fossil sectors
+
+#### 3. Project Renaming
+- **Repository**: Global-Exergy-Services-Platform → Global-Energy-Services-Tracker
+- **Main application folder**: global-energy-tracker → global-energy-services
+- **Focus**: Emphasize "Energy Services" (what society receives) over technical "Exergy" terminology
+- **Measurement units**: All values remain in Exergy (EJ) for thermodynamic accuracy
+
+#### 4. Deployment Configuration
+- Added root-level `vercel.json` to handle renamed directory structure
+- Updated all repository URL references in documentation
+
+### Technical Improvements
+- Fully interactive first chart with real-time sector filtering
+- All charts support fullscreen mode, PNG export, CSV export
+- Responsive design maintained across all new visualizations
+- Hot module replacement (HMR) working correctly
+
+---
+
 ## [v2.3] - 2024-11-13
 
 ### Summary
