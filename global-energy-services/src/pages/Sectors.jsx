@@ -15,7 +15,6 @@ export default function Sectors() {
   const [loading, setLoading] = useState(true);
 
   // Interactive chart state
-  const [selectedSectors, setSelectedSectors] = useState(new Set());
   const [viewMode, setViewMode] = useState('absolute'); // 'absolute' or 'percentage'
 
   // Chart refs
@@ -119,26 +118,6 @@ export default function Sectors() {
       })
     : timeseriesData;
 
-  // Filter data based on selected sectors
-  const visibleSectors = selectedSectors.size === 0
-    ? sectorBreakdownData.map(s => s.sector)
-    : Array.from(selectedSectors);
-
-  // Toggle sector selection
-  const toggleSector = (sector) => {
-    const newSelection = new Set(selectedSectors);
-    if (newSelection.has(sector)) {
-      newSelection.delete(sector);
-    } else {
-      newSelection.add(sector);
-    }
-    setSelectedSectors(newSelection);
-  };
-
-  // Select all / deselect all
-  const selectAll = () => setSelectedSectors(new Set());
-  const deselectAll = () => setSelectedSectors(new Set(sectorBreakdownData.map(s => s.sector)));
-
   // Chart heights
   const getChart1Height = () => width < 640 ? 500 : width < 1024 ? 600 : 700;
   const getChart2Height = () => width < 640 ? 400 : width < 1024 ? 500 : 600;
@@ -209,48 +188,10 @@ export default function Sectors() {
           </div>
         </div>
 
-        {/* Sector Selection Controls */}
-        <div className="mb-4 pb-4 border-b border-gray-200">
-          <div className="flex gap-2 mb-3">
-            <button
-              onClick={selectAll}
-              className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-            >
-              Show All
-            </button>
-            <button
-              onClick={deselectAll}
-              className="px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
-            >
-              Hide All
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {sectorBreakdownData.map((sector) => (
-              <button
-                key={sector.sector}
-                onClick={() => toggleSector(sector.sector)}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
-                  selectedSectors.has(sector.sector) || selectedSectors.size === 0
-                    ? 'bg-gray-300 text-gray-500 line-through'
-                    : 'text-white'
-                }`}
-                style={{
-                  backgroundColor: selectedSectors.has(sector.sector) || selectedSectors.size === 0
-                    ? undefined
-                    : getSectorColor(sector.sector)
-                }}
-              >
-                {sector.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div ref={sectorBreakdownChartRef}>
           <ResponsiveContainer width="100%" height={getChart1Height()}>
             <BarChart
-              data={sectorBreakdownData.filter(s => visibleSectors.includes(s.sector))}
+              data={sectorBreakdownData}
               layout="vertical"
               margin={{ left: 150 }}
             >
@@ -259,11 +200,9 @@ export default function Sectors() {
               <YAxis type="category" dataKey="name" width={145} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="servicesEJ" fill="#3B82F6" name="Energy Services (EJ)">
-                {sectorBreakdownData
-                  .filter(s => visibleSectors.includes(s.sector))
-                  .map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={getSectorColor(entry.sector)} />
-                  ))}
+                {sectorBreakdownData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={getSectorColor(entry.sector)} />
+                ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
@@ -284,45 +223,9 @@ export default function Sectors() {
           />
         }
       >
-        <div className="mb-4 pb-4 border-b border-gray-200">
-          <div className="flex gap-2 mb-3">
-            <button
-              onClick={selectAll}
-              className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-            >
-              Show All
-            </button>
-            <button
-              onClick={deselectAll}
-              className="px-3 py-1 text-sm bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
-            >
-              Hide All
-            </button>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {sectorBreakdownData.map((sector) => (
-              <button
-                key={sector.sector}
-                onClick={() => toggleSector(sector.sector)}
-                className={`px-3 py-1 text-xs rounded transition-colors ${
-                  selectedSectors.has(sector.sector) || selectedSectors.size === 0
-                    ? 'bg-gray-300 text-gray-500 line-through'
-                    : 'text-white'
-                }`}
-                style={{
-                  backgroundColor: selectedSectors.has(sector.sector) || selectedSectors.size === 0
-                    ? undefined
-                    : getSectorColor(sector.sector)
-                }}
-              >
-                {sector.name}
-              </button>
-            ))}
-          </div>
-        </div>
         <ResponsiveContainer width="100%" height={getChart1Height()}>
           <BarChart
-            data={sectorBreakdownData.filter(s => visibleSectors.includes(s.sector))}
+            data={sectorBreakdownData}
             layout="vertical"
             margin={{ left: 150 }}
           >
@@ -331,11 +234,9 @@ export default function Sectors() {
             <YAxis type="category" dataKey="name" width={145} />
             <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="servicesEJ" fill="#3B82F6" name="Energy Services (EJ)">
-              {sectorBreakdownData
-                .filter(s => visibleSectors.includes(s.sector))
-                .map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={getSectorColor(entry.sector)} />
-                ))}
+              {sectorBreakdownData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={getSectorColor(entry.sector)} />
+              ))}
             </Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -362,8 +263,8 @@ export default function Sectors() {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis type="number" label={{ value: 'Energy Services (EJ)', position: 'insideBottom', offset: -5 }} />
               <YAxis type="category" dataKey="name" width={145} />
-              <Tooltip />
-              <Legend />
+              <Tooltip content={<FossilCleanTooltip />} />
+              <Legend wrapperStyle={{ paddingTop: '20px' }} />
               <Bar dataKey="fossil" stackId="a" fill="#DC2626" name="Fossil Fuels" />
               <Bar dataKey="clean" stackId="a" fill="#16A34A" name="Clean Energy" />
             </BarChart>
@@ -390,8 +291,8 @@ export default function Sectors() {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" label={{ value: 'Energy Services (EJ)', position: 'insideBottom', offset: -5 }} />
             <YAxis type="category" dataKey="name" width={145} />
-            <Tooltip />
-            <Legend />
+            <Tooltip content={<FossilCleanTooltip />} />
+            <Legend wrapperStyle={{ paddingTop: '20px' }} />
             <Bar dataKey="fossil" stackId="a" fill="#DC2626" name="Fossil Fuels" />
             <Bar dataKey="clean" stackId="a" fill="#16A34A" name="Clean Energy" />
           </BarChart>
@@ -429,8 +330,8 @@ export default function Sectors() {
             <AreaChart data={timeseriesDataProcessed}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="year" />
-              <YAxis label={{ value: viewMode === 'percentage' ? 'Share (%)' : 'Energy Services (EJ)', angle: -90, position: 'insideLeft' }} />
-              <Tooltip />
+              <YAxis label={{ value: viewMode === 'percentage' ? 'Share (%)' : 'Exergy Services (EJ)', angle: -90, position: 'insideLeft' }} />
+              <Tooltip content={<TimeseriesTooltip viewMode={viewMode} />} />
               <Legend />
               {sectorBreakdownData.slice(0, 8).map((sector) => (
                 <Area
@@ -477,8 +378,8 @@ export default function Sectors() {
           <AreaChart data={timeseriesDataProcessed}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="year" />
-            <YAxis label={{ value: viewMode === 'percentage' ? 'Share (%)' : 'Energy Services (EJ)', angle: -90, position: 'insideLeft' }} />
-            <Tooltip />
+            <YAxis label={{ value: viewMode === 'percentage' ? 'Share (%)' : 'Exergy Services (EJ)', angle: -90, position: 'insideLeft' }} />
+            <Tooltip content={<TimeseriesTooltip viewMode={viewMode} />} />
             <Legend />
             {sectorBreakdownData.slice(0, 8).map((sector) => (
               <Area
@@ -578,7 +479,7 @@ function getSectorColor(sector) {
   return colorMap[sector] || '#6B7280';
 }
 
-// Custom tooltip component
+// Custom tooltip component for sectoral breakdown
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const data = payload[0].payload;
@@ -586,9 +487,59 @@ const CustomTooltip = ({ active, payload }) => {
       <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
         <p className="font-bold text-gray-900">{data.name}</p>
         <p className="text-sm text-gray-700">Energy Services: {data.servicesEJ.toFixed(2)} EJ</p>
-        <p className="text-sm text-gray-700">Share: {data.share.toFixed(1)}%</p>
-        <p className="text-sm text-gray-700">Fossil: {data.fossilEJ.toFixed(2)} EJ ({(data.fossilIntensity * 100).toFixed(1)}%)</p>
-        <p className="text-sm text-gray-700">Clean: {data.cleanEJ.toFixed(2)} EJ ({((1 - data.fossilIntensity) * 100).toFixed(1)}%)</p>
+        <p className="text-sm text-gray-700">Share: {data.share.toFixed(2)}%</p>
+        <p className="text-sm text-gray-700">Fossil: {data.fossilEJ.toFixed(2)} EJ ({(data.fossilIntensity * 100).toFixed(2)}%)</p>
+        <p className="text-sm text-gray-700">Clean: {data.cleanEJ.toFixed(2)} EJ ({((1 - data.fossilIntensity) * 100).toFixed(2)}%)</p>
+      </div>
+    );
+  }
+  return null;
+};
+
+// Custom tooltip for fossil vs clean chart
+const FossilCleanTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    const data = payload[0].payload;
+    const total = data.fossil + data.clean;
+    const fossilPercent = (data.fossil / total) * 100;
+    const cleanPercent = (data.clean / total) * 100;
+
+    return (
+      <div className="bg-white p-3 border border-gray-300 rounded shadow-lg">
+        <p className="font-bold text-gray-900 mb-2">{data.name}</p>
+        <p className="text-sm text-red-700">Fossil Fuels: {data.fossil.toFixed(2)} EJ ({fossilPercent.toFixed(2)}%)</p>
+        <p className="text-sm text-green-700">Clean Energy: {data.clean.toFixed(2)} EJ ({cleanPercent.toFixed(2)}%)</p>
+      </div>
+    );
+  }
+  return null;
+};
+
+// Custom tooltip for sectoral evolution timeseries
+const TimeseriesTooltip = ({ active, payload, viewMode }) => {
+  if (active && payload && payload.length) {
+    // Calculate total for percentage calculation
+    const total = payload.reduce((sum, entry) => sum + (entry.value || 0), 0);
+
+    return (
+      <div className="bg-white p-3 border border-gray-300 rounded shadow-lg max-h-96 overflow-y-auto">
+        <p className="font-bold text-gray-900 mb-2">{payload[0].payload.year}</p>
+        {viewMode === 'absolute' && (
+          <p className="text-sm text-gray-700 mb-2 font-semibold">Total: {total.toFixed(2)} EJ</p>
+        )}
+        <div className="space-y-1">
+          {payload.map((entry, index) => {
+            const percent = total > 0 ? (entry.value / total) * 100 : 0;
+            return (
+              <p key={index} className="text-sm" style={{ color: entry.color }}>
+                {entry.name}: {viewMode === 'absolute'
+                  ? `${entry.value.toFixed(2)} EJ (${percent.toFixed(2)}%)`
+                  : `${entry.value.toFixed(2)}%`
+                }
+              </p>
+            );
+          })}
+        </div>
       </div>
     );
   }
