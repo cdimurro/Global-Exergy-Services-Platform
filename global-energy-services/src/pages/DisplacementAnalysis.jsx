@@ -4,6 +4,7 @@ import DisplacementTracker from '../components/DisplacementTracker';
 import NetChangeTimeline from '../components/NetChangeTimeline';
 import DisplacementBySource from '../components/DisplacementBySource';
 import DisplacementBySector from '../components/DisplacementBySector';
+import DisplacementByRegion from '../components/DisplacementByRegion';
 import AIChatbot from '../components/AIChatbot';
 
 export default function DisplacementAnalysis() {
@@ -44,6 +45,11 @@ export default function DisplacementAnalysis() {
       {/* Displacement by Sector */}
       <div className="mb-8">
         <DisplacementBySector />
+      </div>
+
+      {/* Displacement by Region */}
+      <div className="mb-8">
+        <DisplacementByRegion />
       </div>
 
       {/* Key Insights Section */}
