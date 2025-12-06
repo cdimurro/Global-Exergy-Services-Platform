@@ -632,42 +632,6 @@ export default function Regions() {
                 </div>
               </div>
 
-              {/* Sector Selection */}
-              <div className="mt-6">
-                <label className="block text-lg font-semibold mb-3 text-gray-700">
-                  Select Sector
-                  {selectedSector !== 'all' && !selectedRegions.includes('Global') && (
-                    <span className="ml-2 text-sm text-orange-600 font-normal">
-                      (⚠ Sectoral data only available for Global region)
-                    </span>
-                  )}
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => setSelectedSector('all')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
-                      selectedSector === 'all'
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    All Sectors
-                  </button>
-                  {SECTORS.map(sector => (
-                    <button
-                      key={sector}
-                      onClick={() => setSelectedSector(sector)}
-                      className={`px-3 py-2 rounded-lg font-medium transition-all text-xs ${
-                        selectedSector === sector
-                          ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      {SECTOR_NAMES[sector]}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </>
           ) : (
             <>
@@ -776,42 +740,6 @@ export default function Regions() {
                 </div>
               </div>
 
-              {/* Sector Selection for Sources Mode */}
-              <div className="mt-6">
-                <label className="block text-lg font-semibold mb-3 text-gray-700">
-                  Select Sector
-                  {selectedSector !== 'all' && selectedRegion !== 'Global' && (
-                    <span className="ml-2 text-sm text-orange-600 font-normal">
-                      (⚠ Sectoral data only available for Global region)
-                    </span>
-                  )}
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => setSelectedSector('all')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
-                      selectedSector === 'all'
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    All Sectors
-                  </button>
-                  {SECTORS.map(sector => (
-                    <button
-                      key={sector}
-                      onClick={() => setSelectedSector(sector)}
-                      className={`px-3 py-2 rounded-lg font-medium transition-all text-xs ${
-                        selectedSector === sector
-                          ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      {SECTOR_NAMES[sector]}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </>
           )}
         </div>
@@ -1431,42 +1359,6 @@ export default function Regions() {
                 </div>
               </div>
 
-              {/* Sector Selection */}
-              <div className="mt-6">
-                <label className="block text-lg font-semibold mb-3 text-gray-700">
-                  Select Sector
-                  {selectedSector !== 'all' && !selectedRegions.includes('Global') && (
-                    <span className="ml-2 text-sm text-orange-600 font-normal">
-                      (⚠ Sectoral data only available for Global region)
-                    </span>
-                  )}
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => setSelectedSector('all')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
-                      selectedSector === 'all'
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    All Sectors
-                  </button>
-                  {SECTORS.map(sector => (
-                    <button
-                      key={sector}
-                      onClick={() => setSelectedSector(sector)}
-                      className={`px-3 py-2 rounded-lg font-medium transition-all text-xs ${
-                        selectedSector === sector
-                          ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      {SECTOR_NAMES[sector]}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </>
           ) : (
             <>
@@ -1575,42 +1467,6 @@ export default function Regions() {
                 </div>
               </div>
 
-              {/* Sector Selection for Sources Mode */}
-              <div className="mt-6">
-                <label className="block text-lg font-semibold mb-3 text-gray-700">
-                  Select Sector
-                  {selectedSector !== 'all' && selectedRegion !== 'Global' && (
-                    <span className="ml-2 text-sm text-orange-600 font-normal">
-                      (⚠ Sectoral data only available for Global region)
-                    </span>
-                  )}
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  <button
-                    onClick={() => setSelectedSector('all')}
-                    className={`px-4 py-2 rounded-lg font-medium transition-all text-sm ${
-                      selectedSector === 'all'
-                        ? 'bg-blue-600 text-white ring-2 ring-blue-600 ring-offset-2'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    All Sectors
-                  </button>
-                  {SECTORS.map(sector => (
-                    <button
-                      key={sector}
-                      onClick={() => setSelectedSector(sector)}
-                      className={`px-3 py-2 rounded-lg font-medium transition-all text-xs ${
-                        selectedSector === sector
-                          ? 'bg-purple-600 text-white ring-2 ring-purple-600 ring-offset-2'
-                          : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                      }`}
-                    >
-                      {SECTOR_NAMES[sector]}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </>
           )}
         </div>

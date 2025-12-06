@@ -154,7 +154,7 @@ export default function InteractiveChart() {
       <div className="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
         <div className="font-bold text-2xl mb-3">{label}</div>
         {!showRelative && <div className="text-lg font-semibold mb-3">Total: {displayedTotal.toFixed(1)} EJ ({displayedPercentage}%)</div>}
-        {showRelative && <div className="text-lg font-semibold mb-3">Total: 100%</div>}
+        {showRelative && <div className="text-lg font-semibold mb-3">Total: {displayedPercentage}%</div>}
         <div className="space-y-2">
           {payload
             .filter(entry => entry.value > 0)
@@ -251,18 +251,18 @@ export default function InteractiveChart() {
             {/* Always define gradients for all sources */}
             {ENERGY_SOURCES.map(source => (
               <linearGradient key={source} id={`color-${source}`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor={ENERGY_COLORS[source]} stopOpacity={0.8} />
-                <stop offset="95%" stopColor={ENERGY_COLORS[source]} stopOpacity={0.3} />
+                <stop offset="5%" stopColor={ENERGY_COLORS[source]} stopOpacity={0.95} />
+                <stop offset="95%" stopColor={ENERGY_COLORS[source]} stopOpacity={0.6} />
               </linearGradient>
             ))}
             {/* Define gradients for fossil and clean */}
             <linearGradient key="fossil" id="color-fossil" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#DC2626" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#DC2626" stopOpacity={0.3} />
+              <stop offset="5%" stopColor="#DC2626" stopOpacity={0.95} />
+              <stop offset="95%" stopColor="#DC2626" stopOpacity={0.6} />
             </linearGradient>
             <linearGradient key="clean" id="color-clean" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#16A34A" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#16A34A" stopOpacity={0.3} />
+              <stop offset="5%" stopColor="#16A34A" stopOpacity={0.95} />
+              <stop offset="95%" stopColor="#16A34A" stopOpacity={0.6} />
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />

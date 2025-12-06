@@ -6,6 +6,7 @@ import DisplacementAnalysis from './pages/DisplacementAnalysis';
 import EnergySupply from './pages/EnergySupply';
 import Sectors from './pages/Sectors';
 import Regions from './pages/Regions';
+import Costs from './pages/Costs';
 import Imports from './pages/Imports';
 import RealityCheck from './pages/RealityCheck';
 import Methodology from './pages/Methodology';
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/energy-supply" element={<EnergySupply />} />
           <Route path="/sectors" element={<Sectors />} />
           <Route path="/regions" element={<Regions />} />
+          <Route path="/costs" element={<Costs />} />
           <Route path="/imports" element={<Imports />} />
           <Route path="/reality-check" element={<RealityCheck />} />
           <Route path="/methodology" element={<Methodology />} />

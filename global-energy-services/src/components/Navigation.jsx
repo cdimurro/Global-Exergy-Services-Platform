@@ -11,6 +11,7 @@ export default function Navigation() {
     { path: '/energy-supply', label: 'Energy Supply' },
     { path: '/sectors', label: 'Sectors' },
     { path: '/regions', label: 'Regions' },
+    { path: '/costs', label: 'Costs' },
     { path: '/imports', label: 'Imports' },
     { path: '/reality-check', label: 'Reality Check' },
     { path: '/methodology', label: 'Methodology' }

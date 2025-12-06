@@ -16,6 +16,8 @@ export async function loadProjectContext() {
       efficiencyResponse,
       regionalResponse,
       sectoralResponse,
+      sectoralTimeseriesResponse,
+      sectoralV2Response,
       ffGrowthResponse
     ] = await Promise.all([
       fetch('/data/exergy_services_timeseries.json'),
@@ -23,6 +25,8 @@ export async function loadProjectContext() {
       fetch('/data/efficiency_factors_corrected.json'),
       fetch('/data/regional_energy_timeseries.json'),
       fetch('/data/sectoral_energy_breakdown.json').catch(() => null),
+      fetch('/data/sectoral_energy_timeseries_2004_2024.json').catch(() => null),
+      fetch('/data/sectoral_energy_breakdown_v2.json').catch(() => null),
       fetch('/data/ff_growth_timeseries.json').catch(() => null)
     ]);
 
@@ -31,6 +35,8 @@ export async function loadProjectContext() {
     const efficiencyData = await efficiencyResponse.json();
     const regionalData = await regionalResponse.json();
     const sectoralData = sectoralResponse ? await sectoralResponse.json() : null;
+    const sectoralTimeseriesData = sectoralTimeseriesResponse ? await sectoralTimeseriesResponse.json() : null;
+    const sectoralV2Data = sectoralV2Response ? await sectoralV2Response.json() : null;
     const ffGrowthData = ffGrowthResponse ? await ffGrowthResponse.json() : null;
 
     return {
@@ -38,7 +44,8 @@ export async function loadProjectContext() {
       projections: projectionsData,
       efficiency: efficiencyData,
       regional: regionalData,
-      sectoral: sectoralData,
+      sectoral: sectoralV2Data || sectoralData, // Prefer v2 if available
+      sectoralTimeseries: sectoralTimeseriesData,
       ffGrowth: ffGrowthData
     };
   } catch (error) {
@@ -51,18 +58,29 @@ export async function loadProjectContext() {
  * Build comprehensive system prompt with dataset context
  */
 function buildSystemPrompt(projectData) {
-  const { historical, projections, efficiency, regional, sectoral, ffGrowth } = projectData;
+  const { historical, projections, efficiency, regional, sectoral, sectoralTimeseries, ffGrowth } = projectData;
 
   // Get latest data point and previous year for YoY calculations
   const latest = historical.data[historical.data.length - 1];
   const previous = historical.data[historical.data.length - 2];
   const metadata = projections.metadata;
 
-  // Calculate year-over-year changes
-  const fossilChange = latest.fossil_services_ej - previous.fossil_services_ej;
-  const cleanChange = latest.clean_services_ej - previous.clean_services_ej;
+  // Use ff_growth data if available (more accurate), otherwise calculate from services data
+  const ffGrowthLatest = ffGrowth?.data[ffGrowth.data.length - 1];
+  const fossilChange = ffGrowthLatest?.delta_fossil_ej || (latest.fossil_services_ej - previous.fossil_services_ej);
+  const cleanChange = ffGrowthLatest?.delta_clean_ej || (latest.clean_services_ej - previous.clean_services_ej);
   const totalChange = latest.total_services_ej - previous.total_services_ej;
-  const displacement = Math.max(0, cleanChange);
+  const displacement = cleanChange; // Clean energy growth IS the displacement
+  const netFossilChange = fossilChange; // Net change in fossil consumption
+
+  // Get displacement phase information
+  const displacementPhase = fossilChange > cleanChange
+    ? 'Displacement < Fossil Growth (fossil consumption still rising)'
+    : cleanChange > fossilChange
+    ? 'Displacement > Fossil Growth (fossil consumption declining)'
+    : 'Balanced (fossil consumption stable)';
+
+  const ffGrowthPercent = ffGrowthLatest?.ff_growth_pct || ((fossilChange / totalChange) * 100);
 
   // Calculate source-specific changes
   const sourceChanges = Object.keys(latest.sources_services_ej).map(source => {
@@ -83,9 +101,11 @@ Clean Energy Services: ${latest.clean_services_ej.toFixed(1)} EJ (${cleanChange 
 
 ## Year-over-Year Changes (${previous.year} to ${latest.year})
 Fossil Fuel Growth: ${fossilChange > 0 ? '+' : ''}${fossilChange.toFixed(2)} EJ
-Clean Energy Growth: ${cleanChange > 0 ? '+' : ''}${cleanChange.toFixed(2)} EJ
-Displacement: ${displacement.toFixed(2)} EJ
-Net Change in Fossil Consumption: ${(fossilChange - displacement).toFixed(2)} EJ
+Clean Energy Growth (Displacement): ${cleanChange > 0 ? '+' : ''}${cleanChange.toFixed(2)} EJ
+Total Demand Growth: ${totalChange > 0 ? '+' : ''}${totalChange.toFixed(2)} EJ
+Net Change in Fossil Consumption: ${netFossilChange > 0 ? '+' : ''}${netFossilChange.toFixed(2)} EJ
+Displacement Phase: ${displacementPhase}
+Fossil Growth as % of Total Growth: ${ffGrowthPercent.toFixed(1)}%
 
 ## Energy by Source (${latest.year})
 ${sourceChanges}
@@ -125,11 +145,17 @@ ${regional && regional.regions ?
 - Can answer questions like "What is China's clean energy share?" or "How has Europe's energy mix changed since 1990?"`
   : '- Regional data loading...'}
 
-${sectoral ?
-  `## Sectoral Energy Breakdown Available:
-You have access to energy consumption by sector (industrial, transport, residential, etc.)
-- Can answer questions about which sectors consume the most energy
-- Can show sectoral trends over time`
+${sectoral || sectoralTimeseries ?
+  `## Sectoral Energy Data Available:
+You have access to detailed sectoral energy breakdown:
+${sectoral ? `- Current sectoral split (2024): 15 major sectors with fossil/clean breakdown
+- Includes transport (road, aviation, shipping, rail), industry (iron/steel, chemicals, cement, aluminum, pulp/paper), buildings (residential heating/cooling/appliances, commercial), and agriculture
+- Each sector shows fossil intensity and clean energy adoption rates` : ''}
+${sectoralTimeseries ? `- Historical sectoral timeseries (2004-2024): 20 years of sectoral energy evolution
+- Full fossil/clean split for each sector over time
+- Can answer questions like "How has transport sector energy changed since 2004?" or "Which sectors are decarbonizing fastest?"
+- Includes ${Object.keys(sectoralTimeseries.data[0].sectors || {}).length} sectors tracked annually` : ''}
+- Can compare sectoral growth rates, fossil intensity changes, and clean energy adoption patterns`
   : ''}
 
 ${ffGrowth ?
@@ -144,12 +170,14 @@ You have access to detailed fossil fuel growth patterns and displacement dynamic
 
 1. ALWAYS use the exact numbers from the dataset provided above. Do NOT make up numbers or estimates.
 2. ALWAYS verify your answer against the data before responding. If asked about year-over-year changes, use the Year-over-Year Changes section.
-3. When asked about fossil fuel changes, check the "Fossil Fuel Growth" value in the Year-over-Year Changes section.
-4. When asked about increases or decreases, a positive number means increase, negative means decrease.
-5. Be precise with figures from the data. Use exact numbers provided.
-6. Explain thermal accounting when relevant (why nuclear is 25% efficient, coal is 28%, etc).
-7. Always specify which scenario when discussing projections.
-8. Explain concepts clearly for non-experts.
+3. When asked about fossil fuel changes, check the "Fossil Fuel Growth" value (${fossilChange.toFixed(2)} EJ in ${latest.year}) in the Year-over-Year Changes section.
+4. When asked about displacement, use the "Clean Energy Growth (Displacement)" value (${cleanChange.toFixed(2)} EJ in ${latest.year}).
+5. The current displacement phase is: ${displacementPhase}
+6. When asked about increases or decreases, a positive number means increase, negative means decrease.
+7. Be precise with figures from the data. Use exact numbers provided - for example, fossil grew by ${fossilChange.toFixed(2)} EJ, NOT approximately 2 EJ.
+8. Explain thermal accounting when relevant (why nuclear is 25% efficient, coal is 32%, etc).
+9. Always specify which scenario when discussing projections.
+10. Explain concepts clearly for non-experts, but maintain technical accuracy.
 
 ## Historical Data Queries (1965-${latest.year}):
 - You have access to the FULL ${historical.data.length}-year dataset
@@ -217,9 +245,20 @@ After the 2030 peak, fossil consumption declines to 150 EJ by 2040 and 105 EJ by
 User: "What was the absolute increase in fossil fuel energy services in 2024?"
 You: "Fossil fuel energy services increased by ${fossilChange.toFixed(2)} EJ in ${latest.year}, rising from ${previous.fossil_services_ej.toFixed(1)} EJ in ${previous.year} to ${latest.fossil_services_ej.toFixed(1)} EJ in ${latest.year}.
 
-This growth occurred despite clean energy growing by ${cleanChange.toFixed(2)} EJ during the same period. The displacement of ${displacement.toFixed(2)} EJ was not enough to offset the ${fossilChange.toFixed(2)} EJ increase in fossil demand, resulting in a net increase of ${(fossilChange - displacement).toFixed(2)} EJ in fossil consumption.
+This growth occurred even as clean energy grew by ${cleanChange.toFixed(2)} EJ during the same period. While clean energy displaced ${displacement.toFixed(2)} EJ of potential fossil demand, the ${totalChange.toFixed(2)} EJ total growth in energy services meant that ${fossilChange.toFixed(2)} EJ still came from new fossil fuel consumption.
 
-We are currently in the Displacement < Fossil Fuel Growth phase, where clean energy growth has not yet exceeded the rate of new fossil fuel demand."
+${displacementPhase.includes('Displacement <') ?
+  `We are currently in the "Displacement < Fossil Growth" phase, where clean energy growth has not yet exceeded the rate of fossil fuel growth. Fossil fuels met ${ffGrowthPercent.toFixed(1)}% of new energy demand.` :
+  `We are in the "Displacement > Fossil Growth" phase, where clean energy is growing faster than fossil fuels, leading to declining fossil consumption.`}"
+
+User: "How is clean energy displacing fossil fuels?"
+You: "Displacement represents the amount of energy services that clean sources provide, which reduces the need for fossil fuels. In ${latest.year}, clean energy grew by ${cleanChange.toFixed(2)} EJ, which is the displacement.
+
+${displacementPhase.includes('Displacement <') ?
+  `However, total energy demand grew by ${totalChange.toFixed(2)} EJ. Since displacement (${cleanChange.toFixed(2)} EJ) was less than total growth, fossil fuels had to meet the remaining ${fossilChange.toFixed(2)} EJ. This means fossil consumption is still rising, though at a slower rate than it would without clean energy.` :
+  `Total energy demand grew by ${totalChange.toFixed(2)} EJ, but clean energy grew by ${cleanChange.toFixed(2)} EJ. Since displacement exceeded the growth in demand, fossil fuel consumption actually declined by ${Math.abs(fossilChange).toFixed(2)} EJ.`}
+
+The key metric is whether clean energy growth exceeds total demand growth. When it does, we reach peak fossil fuels."
 
 Now respond to user questions using this format. Answer directly, then provide context. No bullets, mdashes, or emojis.`;
 }
